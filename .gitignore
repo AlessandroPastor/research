@@ -1,0 +1,16 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.out
+*.run.xml
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Private / third-party data (not public)
+Articulos/SCUPUS/boleta_*.pdf
+Articulos/SCUPUS/*.csv

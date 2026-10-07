@@ -1,0 +1,633 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Revisión Sistemática de Literatura — Tesis de Pregrado
+% Tema: Comparación de métodos de generación de datos sintéticos para
+%       clasificación fina de Requerimientos No Funcionales (NFRs)
+%       — Dataset PROMISE NFR
+% Universidad Peruana Unión — EP Ingeniería de Sistemas
+%
+% Compilar:  pdflatex rsl  ->  biber rsl  ->  pdflatex rsl  ->  pdflatex rsl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt, a4paper]{article}
+
+% ─── Paquetes ────────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english,spanish]{babel}   % idioma principal: español
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{tcolorbox}
+\usepackage{csquotes}
+\usepackage{url}
+\usepackage[backend=biber, style=apa, natbib=true]{biblatex}
+\usepackage{hyperref}
+
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{referencias_nfr.bib}
+
+% ─── Datos del documento (editar aquí) ───────────────────────────────────────
+\newcommand{\TituloES}{Revisión Sistemática de la Literatura sobre Métodos de Generación de Datos Sintéticos para la Clasificación de Requerimientos No Funcionales en Ingeniería de Software}
+\newcommand{\TituloCorto}{RSL: Datos sintéticos para clasificación de NFRs}
+\newcommand{\Autores}{Andres Lino Montes Mamani \quad Cristian Cabana Sulca \quad Alessandro Pastor Mamani Mamani}
+\newcommand{\Afiliacion}{Universidad Peruana Unión, Facultad de Ingeniería y Arquitectura,\\ Escuela Profesional de Ingeniería de Sistemas, Juliaca, Perú}
+\newcommand{\Asesor}{Mg. Esteban Tocto Cano}
+
+% ─── Geometría e interlineado ────────────────────────────────────────────────
+\geometry{top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm}
+\onehalfspacing
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% ─── Colores ─────────────────────────────────────────────────────────────────
+\definecolor{azulprimario}{RGB}{30, 90, 160}
+\definecolor{azulclaro}{RGB}{210, 228, 247}
+\definecolor{azulmedio}{RGB}{140, 185, 230}
+\definecolor{grisclaro}{RGB}{245, 245, 245}
+\definecolor{grismedio}{RGB}{200, 200, 200}
+\definecolor{verdegap}{RGB}{39, 130, 67}
+\definecolor{verdeclaro}{RGB}{210, 240, 218}
+\definecolor{naranjaacento}{RGB}{204, 102, 0}
+\definecolor{rojoclaro}{RGB}{252, 228, 214}
+
+% ─── Hipervínculos y metadatos del PDF ───────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=azulprimario,
+  urlcolor=azulprimario,
+  citecolor=azulprimario,
+  pdftitle={\TituloCorto},
+  pdfauthor={Andres Lino Montes Mamani, Cristian Cabana Sulca, Alessandro Pastor Mamani Mamani}
+}
+
+% ─── Encabezado y pie de página ──────────────────────────────────────────────
+\setlength{\headheight}{22pt}
+\addtolength{\topmargin}{-8pt}
+\makeatletter % páginas de solo flotantes: alinear arriba en vez de centrar
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{10pt plus 1fil}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{azulprimario}\textbf{Revisión Sistemática de la Literatura}}
+\fancyhead[R]{\small\color{gray}Datos sintéticos para clasificación de NFRs}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{azulprimario}\leaders\hrule height \headrulewidth\hfill}}
+
+\fancypagestyle{primera}{% primera página: solo número de página
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ─── Títulos de secciones ────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{azulprimario}}
+  {\thesection.}{0.6em}{}
+  [\vspace{-0.3em}\textcolor{azulprimario}{\rule{\linewidth}{0.6pt}}]
+\titleformat{name=\section, numberless}
+  {\large\bfseries\color{azulprimario}}
+  {}{0em}{}
+  [\vspace{-0.3em}\textcolor{azulprimario}{\rule{\linewidth}{0.6pt}}]
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{azulprimario!80!black}}
+  {\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{azulprimario!60!black}}
+  {\thesubsubsection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.2em}{0.4em}
+
+% ─── Leyendas de figuras y tablas ────────────────────────────────────────────
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+\captionsetup{
+  font=small, labelfont={bf,color=azulprimario},
+  labelsep=period, justification=centering, skip=6pt
+}
+\captionsetup[table]{position=above}
+
+% ─── Cajas (tcolorbox) ───────────────────────────────────────────────────────
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{cajaresumen}[1]{
+  enhanced, breakable,
+  colback=grisclaro, colframe=azulprimario,
+  coltitle=white, fonttitle=\bfseries\small, title={#1},
+  arc=3pt, boxrule=0.7pt,
+  left=8pt, right=8pt, top=4pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+
+\newtcolorbox{cajabrecha}[1]{
+  enhanced, breakable,
+  colback=verdeclaro!40, colframe=verdegap,
+  coltitle=white, fonttitle=\bfseries, title={#1},
+  arc=3pt, boxrule=0.7pt,
+  left=8pt, right=8pt, top=4pt, bottom=6pt,
+  before skip=10pt, after skip=10pt
+}
+
+% ─── Tablas: columnas y utilidades ───────────────────────────────────────────
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{E}[1]{>{\columncolor{azulclaro}\bfseries\raggedright\arraybackslash}p{#1}} % 1.ª columna sombreada
+
+\newcommand{\encabezado}{\color{white}\bfseries}
+\newcommand{\encabezadofila}{\rowcolor{azulprimario}\color{white}\bfseries} % solo en la 1.ª celda de la fila
+\newcommand{\cadena}[1]{\foreignlanguage{english}{\ttfamily\scriptsize #1}} % ecuaciones de búsqueda (inglés)
+\newcommand{\filaresaltada}{\rowcolor{verdeclaro}}
+\newcommand{\tablabase}{\small\singlespacing\renewcommand{\arraystretch}{1.3}\arrayrulecolor{azulmedio}}
+
+% ─── Figuras: si falta el archivo se dibuja un marcador, así compila igual ───
+\newcommand{\imagen}[2][0.85]{%
+  \IfFileExists{../recursos/#2}%
+    {\includegraphics[width=#1\linewidth]{../recursos/#2}}%
+    {\fcolorbox{naranjaacento}{rojoclaro}{%
+       \parbox[c][4.5cm][c]{\dimexpr#1\linewidth-2\fboxsep-2\fboxrule\relax}{\centering
+       \color{naranjaacento}\textbf{Imagen pendiente}\\[2pt]\ttfamily\small\detokenize{recursos/#2}}}}%
+}
+
+% ════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\thispagestyle{primera}
+
+% ─── Bloque de título ────────────────────────────────────────────────────────
+\begin{center}
+  {\small\color{azulprimario}\textsc{Universidad Peruana Unión}}\\[0.6em]
+  {\color{azulprimario}\rule{\linewidth}{2pt}}\\[0.9em]
+  {\LARGE\bfseries\color{azulprimario}\linespread{1.15}\selectfont \TituloES\par}
+  \vspace{0.9em}
+  {\color{azulprimario}\rule{\linewidth}{0.6pt}}\\[1em]
+  {\normalsize \Autores}\\[0.6em]
+  {\small\singlespacing \Afiliacion}\\[0.6em]
+  {\small\color{gray}Asesor: \Asesor}
+\end{center}
+\vspace{0.4em}
+
+% ─── Resumen (español) ───────────────────────────────────────────────────────
+\begin{cajaresumen}{Resumen}
+\small\singlespacing\justifying
+La clasificación automática de Requerimientos No Funcionales (NFRs) en documentos de Especificación de Requerimientos de Software (SRS) constituye una tarea crítica en la Ingeniería de Software. Un obstáculo persistente es el desbalance extremo de clases presente en datasets representativos como el PROMISE NFR, donde la razón entre la clase mayoritaria (Funcionalidad) y la más escasa (Portabilidad) alcanza 278.5:1. Este desequilibrio severo provoca que los modelos de aprendizaje automático, incluyendo arquitecturas basadas en transformers como BERT, desarrollen un sesgo estructural hacia las clases frecuentes, dejando categorías minoritarias como Mantenibilidad, Legal, Tolerancia a Fallos y Portabilidad sistemáticamente indetectables. Esta revisión sistemática de la literatura, fundamentada en la metodología PRISMA 2020, examina estudios publicados entre 2017 y 2025 en bases de datos de alto impacto para determinar el estado del arte en métodos de generación de datos sintéticos —EDA, SMOTE-Tomek, sobremuestreo basado en TextAttack (TAOS), e Inteligencia Artificial Generativa (modelos de lenguaje de gran escala)— aplicados a la clasificación de NFRs. Los resultados revelan cuatro brechas estructurales en la literatura: la comparación incompleta entre métodos de balanceo, la ausencia de EDA en clasificación multi-clase de NFRs, la falta de extensión de SMOTE-Tomek al contexto de 12 clases, y la falta de evaluación de la IA generativa como herramienta de sobremuestreo sobre las clases minoritarias en Ingeniería de Requerimientos. Estas brechas fundamentan empíricamente la necesidad de una comparación experimental controlada.
+\end{cajaresumen}
+
+% ─── Abstract (inglés) ───────────────────────────────────────────────────────
+\begin{otherlanguage}{english}
+\begin{cajaresumen}{Abstract}
+\small\singlespacing\justifying
+The automatic classification of Non-Functional Requirements (NFRs) in Software Requirement Specification (SRS) documents constitutes a critical task in Software Engineering. A persistent obstacle is the extreme class imbalance present in representative datasets such as PROMISE NFR, where the ratio between the majority class (Functionality) and the rarest class (Portability) reaches 278.5:1. This severe imbalance causes machine learning models, including transformer-based architectures such as BERT, to develop a structural bias toward majority classes, rendering minority categories like Maintainability, Legal, Fault Tolerance, and Portability systematically undetectable. This systematic literature review, based on PRISMA 2020 methodology, examines studies published between 2017 and 2025 in high-impact databases to determine the state of the art in synthetic data generation methods ---EDA, SMOTE-Tomek, TextAttack-based oversampling (TAOS), and Generative AI (large language models)--- applied to NFR classification. The results reveal four structural gaps in the literature: incomplete comparison between balancing methods, the absence of EDA in NFR multi-class classification, the lack of extension of SMOTE-Tomek to the 12-class context, and the lack of evaluation of generative AI as an oversampling tool on minority classes in Requirements Engineering. These gaps provide a solid empirical foundation for future controlled experimental comparisons in the field.
+\end{cajaresumen}
+\end{otherlanguage}
+
+%------------------------------------------------------------
+\section{Introducción}
+%------------------------------------------------------------
+
+La clasificación precisa de los Requerimientos No Funcionales (NFRs) en documentos de Especificación de Requerimientos de Software (SRS) constituye un desafío de alta complejidad técnica en la Ingeniería de Software (IS). Los NFRs —que abarcan dimensiones como seguridad, mantenibilidad, portabilidad y tolerancia a fallos— determinan en gran medida el éxito o fracaso de los proyectos de software, especialmente cuando no son identificados de forma oportuna durante las fases tempranas del ciclo de desarrollo.
+
+La clasificación automática de NFRs enfrenta un problema técnico persistente: el desbalance extremo de clases. En el dataset PROMISE NFR \citep{ClelandHuang2007-NFRdata} —en la versión de 1,534 requerimientos etiquetados en 12 categorías que emplean \citet{BenAmmar2025-TAOS}, cuya distribución original de entrenamiento (1,073 muestras) tiene 557 de Funcionalidad y solo 2 de Portabilidad— la relación entre la clase mayoritaria y la más escasa es de 278.5:1. Este desequilibrio severo provoca que incluso modelos basados en arquitecturas transformer avanzadas como BERT desarrollen un sesgo estructural hacia las clases frecuentes, resultando en la incapacidad sistemática de detectar categorías minoritarias críticas como Mantenibilidad (MN), Legal (L), Tolerancia a Fallos (FT) y Portabilidad (PO).
+
+El método TAOS \citep{BenAmmar2025-TAOS}, propuesto como el avance más reciente en el tratamiento de este problema, logró incrementar el F1-score ponderado de 0.75 a 0.93 mediante técnicas de aumentación de texto basadas en el framework TextAttack. Sin embargo, TAOS únicamente compara su método contra un baseline sin balanceo, sin incluir técnicas como EDA \citep{Wei2019-EDA}, SMOTE-Tomek \citep{Or2025-SMOTETomek}, ni los modelos de Inteligencia Artificial Generativa (IAG) de última generación como GPT-4 y Claude, cuya comparación directa con los métodos anteriores sobre las clases minoritarias del problema de 12 clases no ha sido reportada \citep{Qin2025-ChatNRC}.
+
+En este contexto, la presente revisión sistemática de la literatura (RSL) responde a la pregunta: \textit{¿Cuál es el estado del arte en métodos de generación y balanceo de datos sintéticos aplicados a la clasificación de Requerimientos No Funcionales, y qué brechas estructurales existen en la literatura que justifiquen una comparación experimental controlada entre EDA, SMOTE-Tomek, TAOS e IA Generativa?} Para ello, se sigue la metodología PRISMA 2020, asegurando rigurosidad en la selección, evaluación y síntesis de la evidencia disponible entre 2017 y 2025.
+
+
+%------------------------------------------------------------
+\section{Metodología}
+%------------------------------------------------------------
+
+\subsection{Diseño metodológico}
+
+Este estudio adopta un diseño de \textit{Revisión Sistemática de la Literatura} (RSL), siguiendo las directrices de la metodología PRISMA 2020 \citep{Page2021-PRISMA}, en línea con el enfoque de revisión sistemática aplicado por \citet{ToctoCano2020-MaturityModels}. El objetivo es identificar, evaluar y sintetizar la evidencia científica sobre métodos de generación de datos sintéticos aplicados a la clasificación de NFRs, determinando el estado del arte y las brechas que motivan la investigación experimental propuesta.
+
+%------------------------------------------------------------
+\subsection{Estructura PICO}
+
+Para guiar la formulación de la pregunta de investigación se empleó el esquema PICO, cuyos componentes se detallan en la Tabla~\ref{tab:pico}.
+
+\begin{table}[!htbp]
+\centering
+\caption{Estructura PICO de la revisión sistemática}
+\label{tab:pico}
+\tablabase
+\begin{tabularx}{\linewidth}{E{3.3cm} Y}
+\toprule
+\encabezadofila Elemento & \encabezado Descripción \\
+\midrule
+Población (P) & Sistemas de clasificación automática de Requerimientos No Funcionales (NFRs) con desbalance extremo de clases, aplicados sobre el dataset PROMISE NFR o datasets equivalentes de especificaciones SRS. \\ \hline
+Intervención (I) & Métodos de generación y balanceo de datos sintéticos: Easy Data Augmentation (EDA), SMOTE-Tomek, TextAttack Oversampling (TAOS) e Inteligencia Artificial Generativa (GPT-4, Claude y LLMs equivalentes). \\ \hline
+Comparador (C) & Clasificadores entrenados sobre datasets desbalanceados sin ningún tratamiento de oversampling (baseline), o comparaciones entre métodos de balanceo individuales sin perspectiva multi-método. \\ \hline
+Resultados (O) & Mejora en F1-score macro y ponderado, recuperación de clases minoritarias críticas (MN, L, FT, PO), calidad de los datos sintéticos generados (similitud coseno, TTR, Self-BLEU), y desempeño clasificatorio en contexto multi-clase (12 categorías). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Como se observa en la Tabla~\ref{tab:pico}, la estructura PICO delimita el alcance de la búsqueda a estudios que combinen técnicas de aumentación de datos con clasificación de NFRs, priorizando evidencia sobre el tratamiento del desbalance extremo de clases.
+
+%------------------------------------------------------------
+\subsection{Planificación}
+
+Se realizaron búsquedas sistemáticas en las bases de datos \textbf{Scopus}, \textbf{Web of Science (WoS)}, \textbf{IEEE Xplore} y \textbf{ACM Digital Library}, complementadas con \textbf{Google Scholar} y \textbf{Connected Papers} para identificar literatura relacionada no capturada en las cadenas de búsqueda iniciales.
+
+Las estrategias de búsqueda combinaron términos asociados a la \textit{clasificación de requerimientos}, la \textit{aumentación de datos en NLP} y el \textit{tratamiento del desbalance de clases}. La Tabla~\ref{tab:busqueda} presenta las ecuaciones de búsqueda adaptadas a cada base de datos.
+
+\begin{table}[!htbp]
+\centering
+\caption{Estrategias de búsqueda por base de datos}
+\label{tab:busqueda}
+\tablabase
+\begin{tabularx}{\linewidth}{E{3cm} Y}
+\toprule
+\encabezadofila Base de datos & \encabezado Ecuación de búsqueda \\
+\midrule
+Scopus &
+\cadena{TITLE-ABS-KEY(("Non-Functional Requirements" OR "NFR classification" OR "software requirements classification" OR "PROMISE NFR") AND ("data augmentation" OR "synthetic data generation" OR "oversampling" OR "class imbalance" OR "EDA" OR "SMOTE" OR "TextAttack" OR "TAOS" OR "large language model" OR "GPT-4" OR "generative AI") AND ("BERT" OR "transformer" OR "text classification" OR "NLP" OR "machine learning"))} \\ \hline
+
+Web of Science (WoS) &
+\cadena{TS=(("Non-Functional Requirements" OR "NFR" OR "software requirements" OR "requirements classification") AND ("data augmentation" OR "oversampling" OR "synthetic data" OR "class imbalance" OR "EDA" OR "SMOTE-Tomek" OR "TextAttack" OR "generative AI" OR "GPT" OR "LLM") AND ("BERT" OR "transformer" OR "deep learning" OR "classification"))} \\ \hline
+
+IEEE Xplore &
+\cadena{(("Non-Functional Requirements" OR "requirements classification") AND ("data augmentation" OR "synthetic data" OR "oversampling" OR "SMOTE" OR "EDA" OR "large language model") AND ("BERT" OR "transformer" OR "NLP" OR "text classification"))} \\ \hline
+
+ACM Digital Library &
+\cadena{("NFR classification" OR "non-functional requirements" OR "software requirements") AND ("data augmentation" OR "class imbalance" OR "oversampling" OR "synthetic data" OR "generative AI") AND ("BERT" OR "transformer" OR "NLP")} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Estas estrategias fueron diseñadas para capturar el máximo número de estudios relevantes mientras se mantenía la especificidad necesaria para responder a la pregunta de investigación. El período de búsqueda abarcó publicaciones entre 2017 y 2025.
+
+%------------------------------------------------------------
+\subsection{Preguntas de Investigación}
+
+Las preguntas de investigación guiaron la selección de estudios y la síntesis de evidencia. Se definieron cuatro preguntas específicas correspondientes a las cuatro brechas identificadas en la literatura:
+
+\begin{enumerate}[label=\textbf{\textcolor{azulprimario}{RQ\arabic*.}}, leftmargin=1.6cm, itemsep=0.3em]
+    \item \textit{¿Cuál es el estado del arte en métodos de aumentación de datos y balanceo de clases aplicados a la clasificación automática de Requerimientos No Funcionales?}
+    \item \textit{¿Ha sido EDA (Easy Data Augmentation) evaluado como método de balanceo en clasificación multi-clase de NFRs con BERT?}
+    \item \textit{¿Ha sido SMOTE-Tomek extendido al contexto de clasificación multi-clase de 12 categorías NFR con representaciones contextuales (BERT)?}
+    \item \textit{¿Existen estudios que utilicen modelos de IA Generativa (GPT-4, Claude u otros LLMs) como herramienta de sobremuestreo sintético en tareas de clasificación de requerimientos de software?}
+\end{enumerate}
+
+%------------------------------------------------------------
+\subsection{Criterios de Selección de Estudios}
+
+Los criterios de inclusión y exclusión se definieron para garantizar la rigurosidad y relevancia de los estudios seleccionados. La Tabla~\ref{tab:criterios} presenta estos criterios de manera detallada.
+
+\begin{table}[!htbp]
+\centering
+\caption{Criterios de inclusión y exclusión de la revisión sistemática}
+\label{tab:criterios}
+\tablabase
+\begin{tabularx}{\linewidth}{E{3cm} Y}
+\toprule
+\encabezadofila Categoría & \encabezado Descripción \\
+\midrule
+Criterios de Inclusión &
+\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt,partopsep=0pt]
+  \item Estudios publicados entre 2017 y 2025 en revistas o conferencias indexadas (Scopus, WoS, IEEE, ACM).
+  \item Artículos que aborden clasificación de NFRs o requerimientos de software con técnicas de NLP o aprendizaje automático.
+  \item Estudios que apliquen métodos de aumentación de datos, sobremuestreo sintético o manejo de desbalance de clases en clasificación de texto.
+  \item Artículos con validación empírica sobre el dataset PROMISE NFR o datasets equivalentes de SRS.
+  \item Publicaciones en inglés o español con acceso a texto completo.
+\end{itemize} \\ \hline
+
+Criterios de Exclusión &
+\begin{itemize}[leftmargin=*,noitemsep,topsep=0pt,partopsep=0pt]
+  \item Revisiones teóricas, ensayos conceptuales o propuestas sin validación experimental cuantitativa.
+  \item Estudios de clasificación binaria (FR vs NFR) sin extensión a multi-clase.
+  \item Documentos no científicos (blogs, presentaciones, notas técnicas, tesis no publicadas).
+  \item Publicaciones sobre aumentación de datos en dominios ajenos a la Ingeniería de Software o el NLP técnico.
+  \item Estudios duplicados (se conserva la versión más completa o la publicada en revista).
+  \item Artículos sin reporte de métricas de desempeño por clase (recall, F1 por clase).
+\end{itemize} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------
+\subsection{Proceso de Selección de Estudios}
+
+Los registros obtenidos fueron exportados en formato BibTeX/CSV e importados a la plataforma \textbf{Rayyan QCRI} para la eliminación de duplicados, etiquetado y cribado colaborativo.
+
+El proceso de selección se desarrolló en dos fases:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Cribado inicial:} revisión de títulos y resúmenes para descartar estudios irrelevantes o duplicados.
+    \item \textbf{Elegibilidad:} lectura a texto completo para evaluar la pertinencia frente a los criterios PICO y de inclusión/exclusión.
+\end{enumerate}
+
+Dos revisores realizaron el proceso de forma independiente; las discrepancias fueron resueltas por consenso o mediante un tercer revisor. Se calculó el índice kappa de Cohen ($\kappa$) para medir la concordancia entre revisores.
+
+Como se observa en la Figura~\ref{fig:prisma}, el proceso PRISMA permitió una selección sistemática y transparente de los estudios, garantizando la calidad y relevancia de la evidencia incluida en esta revisión.
+
+\begin{figure}[!htbp]
+    \centering
+    \imagen{prisma_nfr.png}
+    \caption{Diagrama de flujo PRISMA para el proceso de selección de estudios.}
+    \label{fig:prisma}
+\end{figure}
+
+%------------------------------------------------------------
+\subsection{Extracción y síntesis de datos}
+
+Se utilizó un formulario estandarizado para extraer las siguientes variables de cada estudio incluido:
+\begin{itemize}
+    \item Método de clasificación y arquitectura de modelo empleados.
+    \item Método de aumentación de datos o tratamiento del desbalance aplicado.
+    \item Dataset utilizado (PROMISE NFR u otro) y distribución de clases.
+    \item Métricas de desempeño reportadas (F1-score macro, ponderado, por clase).
+    \item Recuperación de clases minoritarias críticas (MN, L, FT, PO).
+    \item Limitaciones metodológicas y brechas identificadas por los autores.
+\end{itemize}
+
+Los artículos finales se organizaron en una matriz de síntesis (Tabla~\ref{tab:matriz}) que permite la comparación directa entre estudios.
+
+%------------------------------------------------------------
+\subsection{Resultados priorizados}
+
+\noindent\textbf{Primarios:}
+\begin{itemize}
+    \item Mejora en F1-score sobre el dataset PROMISE NFR con 12 clases.
+    \item Recuperación de las cuatro clases minoritarias críticas (MN, L, FT, PO).
+\end{itemize}
+
+\noindent\textbf{Secundarios:}
+\begin{itemize}
+    \item Calidad de los datos sintéticos generados (diversidad léxica, coherencia semántica).
+    \item Comparabilidad metodológica entre estudios (mismo dataset, mismo clasificador).
+    \item Brechas explícitamente reconocidas por los autores de los estudios primarios.
+\end{itemize}
+
+
+%------------------------------------------------------------
+\section{Resultados}
+%------------------------------------------------------------
+
+\subsection{Brechas de conocimiento identificadas}
+
+A partir de la revisión sistemática de los estudios incluidos, se identificaron cuatro brechas estructurales que ningún trabajo ha cerrado de manera integral:
+
+\begin{cajabrecha}{Primera brecha — Comparación incompleta entre métodos de balanceo}
+El estudio de \citet{BenAmmar2025-TAOS} representa el avance más reciente en clasificación multi-clase de NFRs, logrando un F1-score ponderado de 0.93. Sin embargo, este trabajo únicamente compara TAOS contra un baseline sin balanceo. No incluye EDA, SMOTE-Tomek ni IA Generativa como competidores, lo que impide afirmar con rigor que TAOS es el mejor método disponible. Esta comparación incompleta limita la validez externa de sus conclusiones sobre superioridad metodológica.
+\end{cajabrecha}
+
+\begin{cajabrecha}{Segunda brecha — EDA no evaluado en clasificación multi-clase de NFRs}
+EDA \citep{Wei2019-EDA} es una referencia ampliamente citada de aumentación de texto en NLP, con implementaciones probadas en múltiples dominios de clasificación de texto. Sin embargo, en las fuentes revisadas no se identificó ningún estudio que aplique EDA específicamente para balancear clases en clasificación multi-clase de NFRs sobre el dataset PROMISE NFR con BERT como clasificador. Esta brecha es especialmente relevante dado que EDA constituye el competidor metodológico más directo para cualquier método de aumentación de texto.
+\end{cajabrecha}
+
+\begin{cajabrecha}{Tercera brecha — SMOTE-Tomek no evaluado en contexto multi-clase de NFRs}
+\citet{Or2025-SMOTETomek} aplicó SMOTE-Tomek con validación cruzada estratificada en clasificación \textit{binaria} (FR vs NFR) sobre el conjunto PROMISE de 969 requerimientos, y \citet{Rubaidi2023-SMOTETomek} abordaron el desbalance en la misma tarea binaria. Sin embargo, estos trabajos no extienden el método al problema multi-clase de 12 categorías del dataset PROMISE NFR. La pregunta de si SMOTE-Tomek puede recuperar clases críticas como PO, FT, L y MN en un contexto de desbalance extremo con representaciones contextuales de BERT permanece sin respuesta en la literatura.
+\end{cajabrecha}
+
+\begin{cajabrecha}{Cuarta brecha — IA Generativa sin evaluar sobre las clases minoritarias ni frente a otros métodos}
+Los Modelos de Lenguaje de Gran Escala (LLMs) han sido usados como herramienta de aumentación de datos en NLP general \citep{Dai2023-AugGPT,Moller2023-Parrot}. En Ingeniería de Requerimientos, \citet{Qin2025-ChatNRC} propusieron ChatNRC, que genera NFRs con un LLM y los filtra con un LLM discriminador, con un F1 ponderado de 0.96 en cuatro categorías de PROMISE-NFR (seguridad, desempeño, usabilidad y operación), y \citet{Aldhafer2026-Adaptive} (2026, fuera del periodo de búsqueda) reportan mejoras con aumentación basada en modelos transformer sobre un clasificador BiGRU. La brecha, por tanto, no es total: lo que permanece sin evaluar es el desempeño de los NFRs generados con LLMs sobre las clases minoritarias del problema de 12 clases (PO, FT, L, MN) y su comparación con métodos automáticos como TAOS, EDA o SMOTE-Tomek bajo un mismo protocolo.
+\end{cajabrecha}
+
+%------------------------------------------------------------
+\subsection{Estado del arte: síntesis por fase de desarrollo}
+
+La investigación en clasificación automática de requerimientos de software ha evolucionado a través de cuatro fases diferenciadas (2017–2025):
+
+\textbf{\textcolor{azulprimario}{Fase 1 — Aprendizaje Automático Clásico (2017–2020).}} Los estudios pioneros emplearon clasificadores como SVM, MNB y kNN combinados con representaciones TF-IDF o \textit{word embeddings}. \citet{Kurtanovic2017-SupervisedML} demostraron la viabilidad de la clasificación supervisada automática de requerimientos funcionales y no funcionales.
+
+\textbf{\textcolor{azulprimario}{Fase 2 — Deep Learning y Arquitecturas Híbridas (2021–2023).}} \citet{Rahimi2021-TwoPhase} propusieron un ensemble de una y dos fases combinando LSTM, BiLSTM, GRU y CNN, logrando 93.4\% de \textit{accuracy} en multi-clase (17 clases). \citet{Rubaidi2023-SMOTETomek} abordaron el desbalance en la clasificación binaria FR/NFR con algoritmos de aprendizaje automático, sin extender el análisis al contexto multi-clase.
+
+\textbf{\textcolor{azulprimario}{Fase 3 — Modelos Transformer y Aumentación con TAOS (2025).}} \citet{BenAmmar2025-TAOS} presentaron TAOS, que combina aumentación multi-nivel con el framework TextAttack y BERT base uncased, logrando el mejor F1-score reportado en la literatura (0.93 ponderado, 0.89 macro) sobre el dataset PROMISE NFR de 12 clases. Sin embargo, TAOS compara exclusivamente contra un baseline sin balanceo, lo que limita la validez comparativa de sus resultados. Ese mismo año, \citet{Or2025-SMOTETomek} aplicó SMOTE-Tomek a la clasificación binaria sobre PROMISE (969 requerimientos) y \citet{Qin2025-ChatNRC} incorporaron LLMs para generar NFRs.
+
+\textbf{\textcolor{azulprimario}{Fase 4 — Frontera emergente: IA Generativa en NLP técnico (2023–2025).}} GPT-4 y Claude han demostrado capacidad para generar texto técnico especializado de alta calidad semántica mediante prompting estructurado. Trabajos recientes han validado su uso como herramienta de aumentación de datos en NLP \citep{Dai2023-AugGPT,Moller2023-Parrot}, y su transferencia a la Ingeniería de Requerimientos apenas comienza \citep{Qin2025-ChatNRC}. Su evaluación sobre las clases minoritarias y frente a otros métodos es la brecha más relevante que la investigación propuesta se dispone a cerrar.
+
+%------------------------------------------------------------
+\subsection{Matriz de síntesis de la literatura}
+
+La Tabla~\ref{tab:matriz} resume los estudios más relevantes incluidos en esta RSL, destacando el método empleado, los resultados clave, la brecha identificada y el grado en que la investigación propuesta cierra cada vacío.
+
+\begin{table}[!htbp]
+\centering
+\caption{Matriz de síntesis expandida de la literatura y brechas identificadas}
+\label{tab:matriz}
+\tablabase\footnotesize
+\begin{tabularx}{\linewidth}{E{2.4cm} Y Y Y Y}
+\toprule
+\encabezadofila Autor(es) & \encabezado Método / Enfoque & \encabezado Resultado clave & \encabezado Brecha (GAP) & \encabezado Qué cierra esta tesis \\
+\midrule
+
+Ben Ammar \& Almatrafi (2025) — TAOS &
+TextAttack Oversampling + BERT multi-clase NFRs &
+F1: 0.75 → 0.93 (+24\%). Recupera 4 clases indetectables &
+Solo compara vs. baseline; EDA, SMOTE, IAG nunca probados &
+Extiende la comparación incluyendo 4 competidores adicionales \\ \hline
+
+Wei \& Zou (2019) — EDA &
+Easy Data Augmentation: SR, RI, RS, RD sobre texto &
+Referencia ampliamente citada en NLP. Probado en múltiples dominios &
+No se identificó su aplicación en NFR multi-clase con BERT &
+Evaluación de EDA en NFR multi-clase \\ \hline
+
+Or (2025) — SMOTE-Tomek &
+SMOTE-Tomek + validación cruzada estratificada (FR vs NFR, 969 req.) &
+Exactitud 76.16\% (RL) frente a 59.85\% base &
+Solo clasificación binaria; no evaluado en 12 clases con BERT &
+Extendido a multi-clase con BERT. Evaluación en 12 clases NFR \\ \hline
+
+Rubaidi et al. (2025) &
+Algoritmos de ML con manejo de desbalance, FR vs NFR &
+Resultados no verificados (resumen no accesible) &
+Solo clasificación binaria &
+Referencia del tratamiento del desbalance en tarea binaria \\ \hline
+
+Rahimi et al. (2021) — DL Ensemble &
+Ensemble BiLSTM, GRU, CNN en dos fases &
+95.7\% binario, 93.4\% multi-clase (17 clases) &
+El resumen no menciona tratamiento del desbalance &
+Sirve como referencia histórica de arquitectura \\ \hline
+
+Qin \& Peng (2025) — ChatNRC &
+Generación de NFRs con LLM + LLM discriminador + LLM clasificador &
+F1 ponderado 0.96 en 4 categorías de PROMISE-NFR &
+No evalúa las clases minoritarias ni compara con TextAttack, EDA o SMOTE-Tomek &
+Evalúa la generación con LLM sobre las 12 clases y frente a los demás métodos \\ \hline
+
+\filaresaltada
+\textbf{Propuesta de tesis} &
+Comparación controlada: Baseline vs EDA vs SMOTE-Tomek vs TAOS vs IAG (GPT-4 + Claude) con BERT sobre PROMISE NFR &
+Determinación empírica del método óptimo para clasificación multi-clase de NFRs con desbalance extremo &
+Cierra las 4 brechas identificadas &
+Comparación exhaustiva y reproducible en el dominio \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%------------------------------------------------------------
+\subsection{Análisis de los estudios incluidos}
+
+\textbf{Calidad metodológica.} La mayoría de los estudios incluidos reportan métricas de desempeño global (accuracy, F1 ponderado), pero pocos desagregan los resultados por clase minoritaria. Este patrón es especialmente problemático en el contexto del desbalance extremo, donde una alta accuracy global puede coexistir con una incapacidad total para detectar las clases más relevantes desde el punto de vista de la Ingeniería de Requerimientos.
+
+\textbf{Reproducibilidad.} \citet{BenAmmar2025-TAOS} publica el código fuente y los datos en un repositorio público (\texttt{\nolinkurl{github.com/boulbaba1981/TAOS}}), lo que facilita la replicación directa de sus experimentos como baseline para la investigación propuesta.
+
+\textbf{Comparabilidad entre estudios.} La heterogeneidad en los datasets utilizados, las métricas reportadas y las configuraciones de entrenamiento dificulta la comparación directa entre los estudios incluidos. Esta heterogeneidad refuerza la necesidad de un estudio de comparación controlada que mantenga constantes el dataset (PROMISE NFR), el clasificador (BERT base uncased) y el protocolo de evaluación, variando únicamente el método de generación de datos.
+
+
+%------------------------------------------------------------
+\section{Discusión}
+%------------------------------------------------------------
+
+Los hallazgos de esta revisión sistemática evidencian que la clasificación multi-clase de NFRs con desbalance extremo sigue siendo un problema abierto en la literatura, a pesar de los avances significativos logrados por TAOS \citep{BenAmmar2025-TAOS}. La principal limitación del estado del arte no es la ausencia de métodos efectivos, sino la falta de una comparación sistemática y controlada que permita determinar cuál de los métodos disponibles —EDA, SMOTE-Tomek, TAOS o IA Generativa— es el más adecuado para cada contexto de desbalance.
+
+La ausencia de EDA como punto de comparación en los estudios de clasificación de NFRs es particularmente llamativa, dado su alto nivel de adopción en NLP general \citep{Wei2019-EDA}. Su simplicidad de implementación y su eficacia demostrada en datasets pequeños lo convierten en un competidor natural para TAOS. De manera similar, la no extensión de SMOTE-Tomek al contexto multi-clase \citep{Or2025-SMOTETomek} deja sin responder preguntas sobre su capacidad para recuperar clases con tan pocos ejemplos originales como PO (2 muestras).
+
+La incorporación de IA Generativa como herramienta de sobremuestreo representa la brecha más innovadora. Los LLMs de última generación podrían aportar una comprensión semántica del dominio de software que los métodos de perturbación léxica no tienen; ChatNRC \citep{Qin2025-ChatNRC} es un primer indicio en esa dirección. Su capacidad para generar requerimientos técnicamente coherentes mediante prompting few-shot plantea la hipótesis de que los datos sintéticos generados con GPT-4 o Claude podrían ser cualitativamente superiores a los producidos por métodos de perturbación léxica como EDA o TAOS.
+
+Asimismo, la mayoría de los estudios revisados evalúan el desempeño clasificatorio global, pero omiten el análisis de interpretabilidad del modelo. La aplicación de técnicas como LIME y SHAP permitiría comprender qué patrones lingüísticos caracterizan cada categoría NFR y por qué el modelo comete errores sistemáticos en las clases minoritarias, transformando la caja negra en conocimiento accionable para la Ingeniería de Requerimientos.
+
+
+%------------------------------------------------------------
+\section{Conclusiones}
+%------------------------------------------------------------
+
+Esta revisión sistemática, fundamentada en la metodología PRISMA 2020, ha identificado el estado del arte y las brechas estructurales en el campo de la generación de datos sintéticos para la clasificación de Requerimientos No Funcionales. Los hallazgos se resumen en tres conclusiones principales:
+
+\textbf{\textcolor{azulprimario}{Primera conclusión.}} TAOS \citep{BenAmmar2025-TAOS} representa el avance más significativo en la literatura, logrando recuperar cuatro clases minoritarias previamente indetectables y mejorando el F1-score ponderado en un 24\%. Sin embargo, al no compararse con EDA, SMOTE-Tomek ni IA Generativa, no puede afirmarse que sea el método óptimo con evidencia empírica suficiente.
+
+\textbf{\textcolor{azulprimario}{Segunda conclusión.}} Se identificaron cuatro brechas estructurales: (a) la comparación incompleta entre métodos de balanceo, (b) la ausencia de EDA en clasificación multi-clase de NFRs, (c) la no extensión de SMOTE-Tomek al contexto de 12 clases con BERT, y (d) la falta de evaluación de la IA Generativa como herramienta de sobremuestreo sobre las clases minoritarias y frente a otros métodos. Estas cuatro brechas fundamentan empíricamente la pertinencia de la comparación experimental controlada propuesta en esta tesis.
+
+\textbf{\textcolor{azulprimario}{Tercera conclusión.}} La heterogeneidad metodológica en los estudios revisados —distintos datasets, clasificadores y métricas— impide comparaciones válidas entre trabajos previos. Esta limitación estructural del campo refuerza la necesidad de diseños experimentales que mantengan constantes todas las variables excepto el método de generación de datos, como el propuesto en esta investigación.
+
+En síntesis, la literatura actual sobre clasificación de NFRs con desbalance extremo requiere una comparación experimental exhaustiva, reproducible y controlada que evalúe simultáneamente EDA, SMOTE-Tomek, TAOS e IA Generativa sobre el mismo dataset, con el mismo clasificador y el mismo protocolo de evaluación. Esta RSL establece la base empírica que justifica y motiva dicha comparación.
+
+\subsection{Recomendaciones para investigaciones futuras}
+
+Con base en los hallazgos de esta revisión, se sugieren las siguientes líneas de investigación prioritarias:
+
+\begin{itemize}
+    \item Realizar una comparación experimental controlada entre EDA, SMOTE-Tomek, TAOS e IA Generativa (GPT-4, Claude) sobre el dataset PROMISE NFR con BERT base uncased como clasificador de referencia constante.
+    \item Diseñar protocolos de prompting reproducibles para la generación de NFRs sintéticos mediante LLMs, con énfasis en las clases con menor número de muestras originales (PO: 2, FT: 15, L: 17, MN: 29).
+    \item Aplicar técnicas de interpretabilidad (LIME, SHAP) sobre el mejor modelo identificado para explicar qué patrones lingüísticos caracterizan cada categoría NFR.
+    \item Desarrollar métricas de evaluación de calidad específicas para datos sintéticos en el dominio de Ingeniería de Requerimientos, complementando las métricas de diversidad léxica (TTR, Self-BLEU) con evaluación semántica mediante modelos de paráfrasis.
+    \item Extender la comparación a otros datasets de requerimientos de software más allá del PROMISE NFR para evaluar la generalización de los métodos.
+\end{itemize}
+
+
+%------------------------------------------------------------
+\section{Limitaciones del estudio}
+%------------------------------------------------------------
+
+A pesar del rigor metodológico aplicado, es necesario reconocer las siguientes limitaciones que pueden afectar la interpretación de los resultados:
+
+\textbf{Restricción temporal:} La búsqueda abarcó publicaciones entre 2017 y 2025. Estudios anteriores a 2017 sobre clasificación de requerimientos con técnicas más simples pudieron no haber sido incluidos, aunque su relevancia metodológica directa para el problema del desbalance extremo con modelos transformer es limitada.
+
+\textbf{Restricción de idioma:} La búsqueda se limitó a artículos en inglés y español, lo que podría excluir trabajos relevantes publicados en otros idiomas, especialmente del ámbito asiático donde la investigación en NLP para ingeniería de software tiene presencia creciente.
+
+\textbf{Heterogeneidad de estudios:} La diversidad en métricas de evaluación reportadas (algunos estudios solo reportan accuracy global sin desagregar por clase) dificultó la comparación directa y la construcción de una síntesis cuantitativa (meta-análisis).
+
+\textbf{Sesgo de publicación:} Existe la posibilidad de sesgo hacia estudios con resultados positivos. Las investigaciones que aplicaron técnicas de balanceo sin mejora significativa tienden a no ser publicadas, lo que podría sobreestimar la efectividad aparente de los métodos revisados.
+
+\textbf{Cobertura del dominio IAG:} Los estudios sobre IA Generativa como herramienta de sobremuestreo en NLP general evolucionan muy rápidamente. Dado que la aplicación en RE es muy reciente (por ejemplo, \citet{Aldhafer2026-Adaptive}, de 2026 y fuera del periodo de búsqueda), es posible que algunos preprints o trabajos muy recientes no hayan sido capturados por las cadenas de búsqueda utilizadas.
+
+
+%------------------------------------------------------------
+\section*{Agradecimientos}
+%------------------------------------------------------------
+
+Los autores agradecen a la Universidad Peruana Unión por el apoyo institucional brindado para la realización de esta investigación. Se reconoce la orientación del asesor, Mg. Esteban Tocto Cano, en el diseño metodológico de esta revisión sistemática.
+
+
+%------------------------------------------------------------
+\section*{Conflicto de intereses}
+%------------------------------------------------------------
+
+Los autores declaran que no existe ningún conflicto de intereses en relación con la publicación de este artículo.
+
+
+%------------------------------------------------------------
+% REFERENCIAS
+%------------------------------------------------------------
+\printbibliography[title={Referencias}]
+
+
+%------------------------------------------------------------
+\newpage
+\section*{Anexos}
+%------------------------------------------------------------
+
+\subsection*{Anexo A: Evidencias del proceso de selección en Rayyan}
+
+A continuación se presentan las evidencias visuales del proceso de selección de estudios mediante la plataforma Rayyan QCRI.
+
+\begin{figure}[!htbp]
+    \centering
+    \imagen{rayyan_filtros.png}
+    \caption{Aplicación de filtros de selección en Rayyan QCRI durante el proceso de cribado inicial.}
+    \label{fig:filtro}
+\end{figure}
+
+La Figura~\ref{fig:filtro} muestra la interfaz de Rayyan durante la aplicación de los criterios de inclusión y exclusión establecidos en la Tabla~\ref{tab:criterios}, permitiendo el etiquetado sistemático de los estudios identificados.
+
+\begin{figure}[!htbp]
+    \centering
+    \imagen{rayyan_total_articulos.png}
+    \caption{Distribución total de artículos identificados en las bases de datos consultadas.}
+    \label{fig:totalarticulos}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \imagen{rayyan_duplicados.png}
+    \caption{Proceso de identificación y eliminación de registros duplicados en Rayyan QCRI.}
+    \label{fig:duplicados}
+\end{figure}
+
+La Figura~\ref{fig:duplicados} documenta el proceso de detección de duplicados, etapa crucial para garantizar que cada estudio fuera evaluado una única vez, tal como se especifica en el diagrama PRISMA de la Figura~\ref{fig:prisma}.
+
+%------------------------------------------------------------
+\subsection*{Anexo B: Listado de estudios incluidos}
+
+A continuación se presenta la lista de los estudios incluidos en esta revisión sistemática tras aplicar todos los criterios de selección:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Ben Ammar \& Almatrafi (2025) — Classification of Requirements from Software Requirement Specification Documents: TAOS: A Novel TextAttack Oversampling Approach for Fine-Grained Classification of Software Requirements
+    \item Wei \& Zou (2019) — EDA: Easy Data Augmentation Techniques for Boosting Performance on Text Classification Tasks
+    \item Rubaidi et al. (2025; presentado en 2023) — Handling Imbalance Functional and Non-Functional Software Requirement Classification Based on Machine Learning Algorithms
+    \item Rahimi et al. (2021) — One- and Two-Phase Software Requirement Classification Using Ensemble Deep Learning
+    \item Kurtanović \& Maalej (2017) — Automatically Classifying Functional and Non-functional Requirements Using Supervised Machine Learning
+    \item Cleland-Huang et al. (2007) — Automated Classification of Non-Functional Requirements (dataset PROMISE NFR)
+\end{enumerate}
+
+Durante la verificación bibliográfica se identificaron, además, los siguientes estudios, pendientes de pasar por el cribado en Rayyan: Or (2025), \textit{Improving Requirements Classification with SMOTE-Tomek Preprocessing}; Qin \& Peng (2025), \textit{ChatNRC}; Limaylla-Lunarejo et al. (2025), sobre balanceo de NFR en español; y Aldhafer et al. (2026), publicado fuera del periodo 2017--2025 y considerado solo como evidencia adicional.
+
+%------------------------------------------------------------
+\subsection*{Anexo C: Matriz de extracción de datos}
+
+Los datos extraídos de cada estudio se organizaron en una matriz estructurada con las siguientes variables:
+
+\begin{itemize}
+    \item \textbf{Identificación:} Autor(es), año, título, fuente de publicación, DOI
+    \item \textbf{Metodología:} Diseño del estudio, dataset utilizado, distribución de clases
+    \item \textbf{Método de balanceo/aumentación:} Técnica aplicada y configuración
+    \item \textbf{Clasificador:} Modelo downstream utilizado (BERT, SVM, ensemble, etc.)
+    \item \textbf{Resultados:} F1-score macro, F1-score ponderado, recall por clase
+    \item \textbf{Clases minoritarias:} Reporte explícito de resultados para MN, L, FT, PO
+    \item \textbf{Brechas:} Limitaciones metodológicas reconocidas por los autores
+\end{itemize}
+
+\subsection*{Anexo D: Cadenas de búsqueda completas}
+
+Las cadenas de búsqueda utilizadas en cada base de datos están disponibles en el repositorio de la investigación. Se incluyen las versiones completas con operadores booleanos, truncamientos y filtros por año de publicación aplicados en Scopus, Web of Science, IEEE Xplore y ACM Digital Library.
+
+\end{document}

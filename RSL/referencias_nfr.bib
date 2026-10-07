@@ -1,0 +1,326 @@
+% ─────────────────────────────────────────────────────────────────────────────
+% referencias_nfr.bib — bibliografía compartida (RSL y Estado del Arte)
+%
+% Cada entrada fue verificada contra su fuente (Crossref / DOI / ACL Anthology /
+% arXiv / texto completo del artículo). Cuando la lista de autores no se pudo
+% confirmar completa se usa "and others" (se imprime "et al.").
+% Las entradas marcadas [SIN ABSTRACT] solo tienen metadatos verificados: no se
+% pudo leer su resumen, así que no se afirma nada de su contenido en el texto.
+% ─────────────────────────────────────────────────────────────────────────────
+
+% ══ Dataset y clasificación de NFR ═══════════════════════════════════════════
+@article{ClelandHuang2007-NFR,
+  author  = {Cleland-Huang, Jane and Settimi, Raffaella and Zou, Xuchang and Solc, Peter},
+  title   = {Automated classification of non-functional requirements},
+  journal = {Requirements Engineering},
+  year    = {2007},
+  volume  = {12},
+  number  = {2},
+  pages   = {103--120},
+  doi     = {10.1007/s00766-007-0045-1},
+}
+
+@misc{ClelandHuang2007-NFRdata,
+  author       = {Cleland-Huang, Jane and Mazrouee, Sepideh and Liguo, Huang and Port, Dan},
+  title        = {{nfr}},
+  year         = {2007},
+  howpublished = {Zenodo dataset},
+  doi          = {10.5281/zenodo.268542},
+}
+
+@inproceedings{Kurtanovic2017-SupervisedML,
+  author    = {Kurtanovi{\'c}, Zijad and Maalej, Walid},
+  title     = {Automatically classifying functional and non-functional requirements using supervised machine learning},
+  booktitle = {2017 IEEE 25th International Requirements Engineering Conference (RE)},
+  year      = {2017},
+  pages     = {490--495},
+  doi       = {10.1109/RE.2017.82},
+}
+
+@inproceedings{Dalpiaz2019-Interpretable,
+  author    = {Dalpiaz, Fabiano and Dell'Anna, Davide and Aydemir, Fatma Basak and others},
+  title     = {Requirements classification with interpretable machine learning and dependency parsing},
+  booktitle = {2019 IEEE 27th International Requirements Engineering Conference (RE)},
+  year      = {2019},
+  pages     = {142--152},
+  doi       = {10.1109/RE.2019.00025},
+}
+
+@inproceedings{Hey2020-NoRBERT,
+  author    = {Hey, Tobias and Keim, Jan and Koziolek, Anne and others},
+  title     = {{NoRBERT}: Transfer learning for requirements classification},
+  booktitle = {2020 IEEE 28th International Requirements Engineering Conference (RE)},
+  year      = {2020},
+  pages     = {169--179},
+  doi       = {10.1109/RE48521.2020.00028},
+}
+
+@article{Rahimi2021-TwoPhase,
+  author  = {Rahimi, Nouf and Eassa, Fathy and Elrefaei, Lamiaa},
+  title   = {One- and two-phase software requirement classification using ensemble deep learning},
+  journal = {Entropy},
+  year    = {2021},
+  volume  = {23},
+  number  = {10},
+  pages   = {1264},
+  doi     = {10.3390/e23101264},
+}
+
+@article{Binkhonain2019-Review,
+  author  = {Binkhonain, Manal and Zhao, Liping},
+  title   = {A review of machine learning algorithms for identification and classification of non-functional requirements},
+  journal = {Expert Systems with Applications: X},
+  year    = {2019},
+  volume  = {1},
+  pages   = {100001},
+  doi     = {10.1016/j.eswax.2019.100001},
+}
+
+% ══ Desbalance de clases y sobremuestreo ═════════════════════════════════════
+@article{Chawla2002-SMOTE,
+  author  = {Chawla, Nitesh V. and Bowyer, Kevin W. and Hall, Lawrence O. and Kegelmeyer, W. Philip},
+  title   = {{SMOTE}: Synthetic minority over-sampling technique},
+  journal = {Journal of Artificial Intelligence Research},
+  year    = {2002},
+  volume  = {16},
+  pages   = {321--357},
+  doi     = {10.1613/jair.953},
+}
+
+@article{Batista2004-SMOTETomek,
+  author  = {Batista, Gustavo E. A. P. A. and Prati, Ronaldo C. and Monard, Maria Carolina},
+  title   = {A study of the behavior of several methods for balancing machine learning training data},
+  journal = {ACM SIGKDD Explorations Newsletter},
+  year    = {2004},
+  volume  = {6},
+  number  = {1},
+  pages   = {20--29},
+  doi     = {10.1145/1007730.1007735},
+}
+
+@article{Johnson2019-Imbalance,
+  author  = {Johnson, Justin M. and Khoshgoftaar, Taghi M.},
+  title   = {Survey on deep learning with class imbalance},
+  journal = {Journal of Big Data},
+  year    = {2019},
+  volume  = {6},
+  doi     = {10.1186/s40537-019-0192-5},
+}
+
+@misc{Or2025-SMOTETomek,
+  author       = {Or, Barak},
+  title        = {Improving requirements classification with {SMOTE-Tomek} preprocessing},
+  year         = {2025},
+  howpublished = {arXiv:2501.06491},
+}
+
+% [SIN ABSTRACT] Capítulo de Springer (LNNS); presentado en la Int. Conf. on Health
+% Information Science 2023 según Semantic Scholar, publicado en línea el 2025-07-15.
+@incollection{Rubaidi2023-SMOTETomek,
+  author    = {Rubaidi, Zainab Saad and Ben Ammar, Boulbaba and Ben Aouicha, Mohamed},
+  title     = {Handling imbalance functional and non-functional software requirement classification based on machine learning algorithms},
+  booktitle = {Lecture Notes in Networks and Systems},
+  publisher = {Springer Nature Switzerland},
+  year      = {2025},
+  pages     = {199--209},
+  doi       = {10.1007/978-3-031-78934-2_19},
+}
+
+% ══ Aumentación de texto ═════════════════════════════════════════════════════
+@inproceedings{Wei2019-EDA,
+  author    = {Wei, Jason and Zou, Kai},
+  title     = {{EDA}: Easy data augmentation techniques for boosting performance on text classification tasks},
+  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},
+  year      = {2019},
+  pages     = {6382--6388},
+  doi       = {10.18653/v1/D19-1670},
+}
+
+@inproceedings{Morris2020-TextAttack,
+  author    = {Morris, John and Lifland, Eli and Yoo, Jin Yong and Grigsby, Jake and Jin, Di and Qi, Yanjun},
+  title     = {{TextAttack}: A framework for adversarial attacks, data augmentation, and adversarial training in {NLP}},
+  booktitle = {Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations},
+  year      = {2020},
+  pages     = {119--126},
+  doi       = {10.18653/v1/2020.emnlp-demos.16},
+}
+
+@inproceedings{Feng2021-DASurvey,
+  author    = {Feng, Steven Y. and Gangal, Varun and Wei, Jason and others},
+  title     = {A survey of data augmentation approaches for {NLP}},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021},
+  year      = {2021},
+  pages     = {968--988},
+  doi       = {10.18653/v1/2021.findings-acl.84},
+}
+
+@article{Bayer2022-DASurvey,
+  author  = {Bayer, Markus and Kaufhold, Marc-Andr{\'e} and Reuter, Christian},
+  title   = {A survey on data augmentation for text classification},
+  journal = {ACM Computing Surveys},
+  year    = {2022},
+  volume  = {55},
+  number  = {7},
+  doi     = {10.1145/3544558},
+}
+
+@inproceedings{Devlin2019-BERT,
+  author    = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and Toutanova, Kristina},
+  title     = {{BERT}: Pre-training of deep bidirectional transformers for language understanding},
+  booktitle = {Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT)},
+  year      = {2019},
+  pages     = {4171--4186},
+  doi       = {10.18653/v1/N19-1423},
+}
+
+% ══ Aumentación / clasificación con LLM ══════════════════════════════════════
+@misc{Dai2023-AugGPT,
+  author       = {Dai, Haixing and others},
+  title        = {{AugGPT}: Leveraging {ChatGPT} for text data augmentation},
+  year         = {2023},
+  howpublished = {arXiv:2302.13007},
+}
+
+@misc{Moller2023-Parrot,
+  author       = {M{\o}ller, Anders Giovanni and Dalsgaard, Jacob Aarup and Pera, Arianna and Aiello, Luca Maria},
+  title        = {The parrot dilemma: Human-labeled vs. {LLM}-augmented data in classification tasks},
+  year         = {2023},
+  howpublished = {arXiv:2304.13861},
+}
+
+@misc{Alhoshan2025-GenLLM,
+  author       = {Alhoshan, Waad and Ferrari, Alessio and Zhao, Liping},
+  title        = {How effective are generative large language models in performing requirements classification?},
+  year         = {2025},
+  howpublished = {arXiv:2504.16768},
+}
+
+@inproceedings{Qin2025-ChatNRC,
+  author    = {Qin, Yuman and Peng, Rong},
+  title     = {{ChatNRC}: A non-functional requirement classification framework based on a generative and discriminative mechanism},
+  booktitle = {2025 32nd Asia-Pacific Software Engineering Conference (APSEC)},
+  year      = {2025},
+  pages     = {467--478},
+  doi       = {10.1109/APSEC66846.2025.00052},
+}
+
+% [SIN ABSTRACT] Solo metadatos verificados (Crossref).
+@inproceedings{Kassab2025-EnsembleLLM,
+  author    = {Kassab, Mohamad and Belbach, Walid},
+  title     = {Automating requirements classification: A systematic literature review and ensemble {LLM}-based approach},
+  booktitle = {Proceedings of the 2025 29th International Conference on Evaluation and Assessment in Software Engineering (EASE) Companion},
+  year      = {2025},
+  pages     = {82--90},
+  doi       = {10.1145/3727967.3756825},
+}
+
+% ══ Aumentación / balanceo aplicado a NFR ════════════════════════════════════
+@article{BenAmmar2025-TAOS,
+  author  = {Ben Ammar, Boulbaba and Almatrafi, Noura F.},
+  title   = {Classification of requirements from software requirement specification documents: {TAOS}: A novel {TextAttack} oversampling approach for fine-grained classification of software requirements},
+  journal = {Engineering, Technology \& Applied Science Research},
+  year    = {2025},
+  volume  = {15},
+  number  = {6},
+  pages   = {29872--29879},
+  doi     = {10.48084/etasr.14313},
+}
+
+@article{Limaylla2025-Spanish,
+  author  = {Limaylla-Lunarejo, M. and Condori-Fernandez, N. and Rodr{\'\i}guez Luaces, M. and Karras, O.},
+  title   = {Improving the multi-class classification of non-functional requirements in {Spanish}: A study of dataset balancing and performance},
+  journal = {Empirical Software Engineering},
+  year    = {2025},
+  volume  = {31},
+  doi     = {10.1007/s10664-025-10736-9},
+}
+
+% [SIN ABSTRACT COMPLETO] Resumen leído vía Semantic Scholar; texto completo no revisado.
+@article{Aldhafer2026-Adaptive,
+  author  = {Aldhafer, Osamah Q. and Alsadiq, Hussain A. and Alshaboti, Mohammed and others},
+  title   = {Adaptive data augmentation techniques for software requirements classification using deep learning},
+  journal = {IEEE Access},
+  year    = {2026},
+  volume  = {14},
+  pages   = {43841--43854},
+  doi     = {10.1109/ACCESS.2026.3673382},
+}
+
+% ══ Metodología ══════════════════════════════════════════════════════════════
+@article{Page2021-PRISMA,
+  author  = {Page, Matthew J. and McKenzie, Joanne E. and Bossuyt, Patrick M. and others},
+  title   = {The {PRISMA} 2020 statement: An updated guideline for reporting systematic reviews},
+  journal = {BMJ},
+  year    = {2021},
+  volume  = {372},
+  pages   = {n71},
+  doi     = {10.1136/bmj.n71},
+}
+
+% Revisión sistemática del asesor (Mg. Esteban Tocto Cano); se cita como ejemplo del
+% enfoque de revisión sistemática. PRISMA 2020 se cita con Page2021-PRISMA.
+@article{ToctoCano2020-MaturityModels,
+  author  = {Tocto-Cano, Esteban and Paz Collado, Sandro and L{\'o}pez-Gonzales, Javier Linkolk and Turpo-Chaparro, Josu{\'e} E.},
+  title   = {A systematic review of the application of maturity models in universities},
+  journal = {Information},
+  year    = {2020},
+  volume  = {11},
+  number  = {10},
+  pages   = {466},
+  doi     = {10.3390/info11100466},
+}
+
+% ══ LLM como clasificador de requerimientos ══════════════════════════════════
+@misc{ElHajjami2023-ChatGPT,
+  author       = {El-Hajjami, Abdelkarim and Fafin, Nicolas and Salinesi, Camille},
+  title        = {Which {AI} technique is better to classify requirements? An experiment with {SVM}, {LSTM}, and {ChatGPT}},
+  year         = {2023},
+  howpublished = {arXiv:2311.11547},
+}
+
+@misc{Tang2025-FewShot,
+  author       = {Tang, Yongjian and Tuncel, Doruk and Koerner, Christian and Runkler, Thomas},
+  title        = {The few-shot dilemma: Over-prompting large language models},
+  year         = {2025},
+  howpublished = {arXiv:2509.13196},
+}
+
+@misc{Sakib2025-Benchmark,
+  author       = {Sakib, Esrat Ebtida and Akib, MD Ahnaf and Mazumder, Md Muktadir and others},
+  title        = {A benchmark dataset and {LLMs} comparison for {NFR} classification with explainable {AI}},
+  year         = {2025},
+  howpublished = {arXiv:2510.18096},
+}
+
+% ══ Datos de GitHub y ampliación del dataset ═════════════════════════════════
+% [SIN TEXTO COMPLETO] Preprint de junio de 2026; solo se leyó el resumen.
+@misc{Kamal2026-GitReq,
+  author       = {Kamal, Farha and Kabir, Md Humaun and Islam, Md Rakibul and others},
+  title        = {{GitReq}: A gold standard dataset for software quality requirements},
+  year         = {2026},
+  howpublished = {arXiv:2606.21810},
+}
+
+% [SIN ABSTRACT] Solo metadatos verificados (Crossref).
+@article{PerezVerdejo2021-GitHubIssues,
+  author  = {P{\'e}rez-Verdejo, J. Manuel and S{\'a}nchez-Garc{\'\i}a, {\'A}. J. and Ochar{\'a}n-Hern{\'a}ndez, J. O.},
+  title   = {Requirements and {GitHub} issues: An automated approach for quality requirements classification},
+  journal = {Programming and Computer Software},
+  year    = {2021},
+  volume  = {47},
+  number  = {8},
+  pages   = {704--721},
+  doi     = {10.1134/S0361768821080193},
+}
+
+% Aprendizaje semi-supervisado aplicado a NFR (metadatos verificados en Crossref).
+@article{Casamayor2010-SemiSupervised,
+  author  = {Casamayor, Agustin and Godoy, Daniela and Campo, Marcelo},
+  title   = {Identification of non-functional requirements in textual specifications: A semi-supervised learning approach},
+  journal = {Information and Software Technology},
+  year    = {2010},
+  volume  = {52},
+  number  = {4},
+  pages   = {436--445},
+  doi     = {10.1016/j.infsof.2009.10.010},
+}
