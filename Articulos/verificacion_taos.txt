@@ -1,0 +1,20 @@
+Entrenamiento: 1073  Prueba: 461
+Prueba con texto idéntico en entrenamiento: 2
+Prueba con el mismo requerimiento en entrenamiento (normalizado): 240 (52.1%); con la misma etiqueta: 238
+  por clase: {'F': 87, 'US': 23, 'SE': 28, 'PE': 24, 'O': 28, 'LF': 17, 'SC': 8, 'A': 8, 'MN': 9, 'L': 3, 'FT': 4, 'PO': 1}
+
+Requerimientos distintos en las 1534 filas: 988 (546 filas duplicadas); con etiquetas contradictorias: 1
+Clase  Con duplicados  Sin duplicados
+F                782             572
+US               133              71
+SE               125              70
+PE               112              57
+O                124              71
+LF                74              40
+SC                46              25
+A                 46              28
+MN                38              21
+L                 26              16
+FT                23              13
+PO                 5               4
+Razón F:PO  con duplicados (solo entrenamiento) = 278.5:1  |  sin duplicados = 143.0:1

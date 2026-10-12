@@ -5,13 +5,13 @@ Si falta un archivo, el PDF se genera igual con un recuadro "Imagen pendiente".
 Guarda cada imagen con EXACTAMENTE estos nombres (PNG o cambia la extensión en el .tex):
 
 IMPRESCINDIBLES
-  prisma_nfr.png              Diagrama de flujo PRISMA 2020 con tus conteos reales
-                              (identificados, duplicados, cribados, elegibles, incluidos).
+  (PRISMA)                    Ya se dibuja en LaTeX (Fig. 2). Al terminar el cribado en
+                              Rayyan, reemplazar "por completar" con los conteos reales.
   rayyan_filtros.png          Captura de Rayyan aplicando los criterios de inclusión/exclusión.
   rayyan_total_articulos.png  Captura de Rayyan con el total de artículos importados.
   rayyan_duplicados.png       Captura de Rayyan con la detección/eliminación de duplicados.
-  mapa_literatura.png         Grafo de Connected Papers / Litmaps / ResearchRabbit
-                              a partir de un artículo semilla (TAOS o EDA).
+  mapa_literatura.pdf/.png    YA GENERADO: mapa de co-citación con los artículos semilla.
+                              Se regenera con: python Articulos/analisis_scopus.py
 
 OPCIONALES
   busquedas_bases.png         Capturas de Scopus / WoS / IEEE / ACM con la ecuación y el

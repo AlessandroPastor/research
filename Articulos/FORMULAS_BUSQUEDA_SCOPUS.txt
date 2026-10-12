@@ -1,0 +1,45 @@
+FÓRMULAS DE BÚSQUEDA PARA SCOPUS (versión 2, 2026-10-08)
+Dónde pegarlas: scopus.com -> Search -> Advanced document search -> pegar -> Search
+Copiar cada fórmula completa, desde TITLE-ABS-KEY hasta el último paréntesis.
+Explicación y justificación: Articulos/busqueda_scopus.md
+
+=====================================================================
+BÚSQUEDA 1 (S1) - AUMENTACIÓN DE DATOS Y DESBALANCE (TAOS, EDA, SMOTE-Tomek)
+=====================================================================
+TITLE-ABS-KEY ( ( ( "non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs ) W/3 requirement* ) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR" OR "PROMISE_exp" ) AND TITLE-ABS-KEY ( classif* OR categori* ) AND TITLE-ABS-KEY ( "data augmentation" OR "text augmentation" OR "easy data augmentation" OR TextAttack OR TAOS OR "synthetic data" OR "synthetic sample*" OR oversampl* OR "over-sampling" OR resampl* OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data*" OR "imbalanced class*" OR "minority class*" OR "back translation" OR paraphras* ) AND PUBYEAR > 2016 AND PUBYEAR < 2027 AND ( LIMIT-TO ( DOCTYPE,"ar" ) OR LIMIT-TO ( DOCTYPE,"cp" ) OR LIMIT-TO ( DOCTYPE,"re" ) OR LIMIT-TO ( DOCTYPE,"ch" ) ) AND ( LIMIT-TO ( LANGUAGE,"English" ) OR LIMIT-TO ( LANGUAGE,"Spanish" ) )
+
+=====================================================================
+BÚSQUEDA 2 (S2) - BERT Y TRANSFORMERS
+=====================================================================
+TITLE-ABS-KEY ( ( ( "non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs ) W/3 requirement* ) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR" OR "PROMISE_exp" ) AND TITLE-ABS-KEY ( classif* OR categori* ) AND TITLE-ABS-KEY ( BERT OR RoBERTa OR DistilBERT OR NoRBERT OR transformer* OR "pre-trained language model*" OR "pretrained language model*" OR "transfer learning" OR "fine tun*" ) AND PUBYEAR > 2016 AND PUBYEAR < 2027 AND ( LIMIT-TO ( DOCTYPE,"ar" ) OR LIMIT-TO ( DOCTYPE,"cp" ) OR LIMIT-TO ( DOCTYPE,"re" ) OR LIMIT-TO ( DOCTYPE,"ch" ) ) AND ( LIMIT-TO ( LANGUAGE,"English" ) OR LIMIT-TO ( LANGUAGE,"Spanish" ) )
+
+=====================================================================
+BÚSQUEDA 3 (S3) - LLM COMO CLASIFICADOR
+=====================================================================
+TITLE-ABS-KEY ( ( ( "non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs ) W/3 requirement* ) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR" OR "PROMISE_exp" ) AND TITLE-ABS-KEY ( classif* OR categori* ) AND TITLE-ABS-KEY ( "large language model*" OR LLM OR LLMs OR GPT* OR ChatGPT OR "generative AI" OR Llama OR Gemma OR Mistral OR Claude OR "zero-shot" OR "few-shot" OR "in-context learning" OR prompt* ) AND PUBYEAR > 2016 AND PUBYEAR < 2027 AND ( LIMIT-TO ( DOCTYPE,"ar" ) OR LIMIT-TO ( DOCTYPE,"cp" ) OR LIMIT-TO ( DOCTYPE,"re" ) OR LIMIT-TO ( DOCTYPE,"ch" ) ) AND ( LIMIT-TO ( LANGUAGE,"English" ) OR LIMIT-TO ( LANGUAGE,"Spanish" ) )
+
+=====================================================================
+BÚSQUEDA 4 (S4) - AMPLIACIÓN CON GITHUB Y AUTO-ETIQUETADO
+=====================================================================
+TITLE-ABS-KEY ( ( ( "non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs ) W/3 requirement* ) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR" OR "PROMISE_exp" ) AND TITLE-ABS-KEY ( classif* OR categori* ) AND TITLE-ABS-KEY ( GitHub OR "issue tracker*" OR "issue report*" OR "open source" OR "open-source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning" OR "weak supervision" OR "dataset construction" OR "gold standard" ) AND PUBYEAR > 2016 AND PUBYEAR < 2027 AND ( LIMIT-TO ( DOCTYPE,"ar" ) OR LIMIT-TO ( DOCTYPE,"cp" ) OR LIMIT-TO ( DOCTYPE,"re" ) OR LIMIT-TO ( DOCTYPE,"ch" ) ) AND ( LIMIT-TO ( LANGUAGE,"English" ) OR LIMIT-TO ( LANGUAGE,"Spanish" ) )
+
+=====================================================================
+PASOS (EN ORDEN)
+=====================================================================
+1. Pegar y ejecutar S1. Anotar el número de resultados.
+2. Repetir con S2, S3 y S4. Anotar cada número.
+3. Ir a "Search history" (historial, abajo en la página de búsqueda avanzada).
+   Ahí cada búsqueda tiene un número: #1, #2, #3, #4.
+4. En el cuadro de combinar escribir:      #1 OR #2 OR #3 OR #4
+   -> Este es el total sin repetidos. ANOTAR EL NÚMERO (va en el PRISMA).
+5. Exportar ese resultado: Export -> CSV -> marcar TODOS los campos,
+   incluido "References" -> Export.
+6. (Competidores directos) En el historial combinar:   #1 AND ( #2 OR #3 )
+   Anotar el número y exportar también en CSV.
+7. Mover los CSV viejos a Articulos/SCUPUS/v1_2026-10-02/
+   y guardar los nuevos en Articulos/SCUPUS/
+
+Tabla para anotar:
+  S1 = ______   S2 = ______   S3 = ______   S4 = ______
+  #1 OR #2 OR #3 OR #4 = ______      #1 AND (#2 OR #3) = ______
+  Fecha de la búsqueda: ____________

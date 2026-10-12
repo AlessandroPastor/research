@@ -13,4 +13,7 @@
 
 # Private / third-party data (not public)
 Articulos/SCUPUS/boleta_*.pdf
-Articulos/SCUPUS/*.csv
+Articulos/SCUPUS/**/*.csv
+
+# PDFs de editoriales (derechos de terceros)
+Articulos/ARTICULOS SEMILLA/
