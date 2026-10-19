@@ -55,8 +55,9 @@
 
 % Acuerdo del cribado entre revisores: reemplazar por los valores que imprime
 %   python Articulos/validacion_cribado.py kappa
-\newcommand{\kappaFleiss}{\textit{por calcular}}
-\newcommand{\kappaCohen}{\textit{por calcular}}
+\newcommand{\pendiente}[1]{\textcolor{red}{[#1]}}
+\newcommand{\kappaFleiss}{\pendiente{por completar}}
+\newcommand{\kappaCohen}{\pendiente{por completar}}
 
 \begin{document}
 
@@ -82,11 +83,11 @@ requerimientos no funcionales, desbalance de clases, aumentación de datos, BERT
 %==============================================================================
 \section{Introducción}
 %==============================================================================
-Los requerimientos no funcionales (NFR) describen atributos de calidad como la seguridad, el desempeño, la mantenibilidad o la portabilidad, y conviene identificarlos temprano en los documentos de especificación (SRS). Cleland-Huang et al.~\cite{ClelandHuang2007-NFR} propusieron uno de los primeros enfoques de clasificación automática de NFR y publicaron el conjunto PROMISE NFR~\cite{ClelandHuang2007-NFRdata}, que sigue siendo la referencia del área. Desde entonces, la tarea se ha abordado con aprendizaje automático, aprendizaje profundo, transformers y, recientemente, modelos de lenguaje de gran escala (LLM).
+Los requerimientos no funcionales (NFR) describen atributos de calidad como la seguridad, el desempeño, la mantenibilidad o la portabilidad, y su identificación temprana en los documentos de especificación (SRS). Cleland-Huang et al.~\cite{ClelandHuang2007-NFR} propusieron uno de los primeros enfoques de clasificación automática de NFR y publicaron el conjunto PROMISE NFR~\cite{ClelandHuang2007-NFRdata}, que sigue siendo la referencia del área. Desde entonces, la tarea se ha abordado con aprendizaje automático, aprendizaje profundo, transformers y, recientemente, modelos de lenguaje de gran escala (LLM).
 
 El problema que persiste es el desbalance de clases. En la partición de entrenamiento que reportan Ben Ammar y Almatrafi~\cite{BenAmmar2025-TAOS}, la clase funcional (F) tiene 557 muestras y portabilidad (PO) solo 2. Con tan pocos ejemplos, un clasificador favorece las clases frecuentes y no reconoce las minoritarias.
 
-Este artículo revisa la literatura que sustenta una tesis con tres objetivos: comparar tres métodos de aumentación de datos (TAOS, EDA y SMOTE-Tomek) entrenando BERT con cada uno; contrastar esos modelos con LLM usados como clasificadores; y ampliar después el conjunto con requerimientos de GitHub. La revisión responde cuatro preguntas:
+Este artículo revisa la literatura que fundamenta una investigación con tres objetivos: comparar tres métodos de aumentación de datos (TAOS, EDA y SMOTE-Tomek) entrenando BERT con cada uno; contrastar esos modelos con LLM usados como clasificadores; y ampliar después el conjunto con requerimientos de GitHub. La revisión responde cuatro preguntas:
 \begin{itemize}
   \item \textbf{PR1.} ¿Cómo ha evolucionado la clasificación automática de NFR y qué enfoques predominan?
   \item \textbf{PR2.} ¿Qué técnicas se usan contra el desbalance y la escasez de datos, y con qué clasificadores?
@@ -94,7 +95,7 @@ Este artículo revisa la literatura que sustenta una tesis con tres objetivos: c
   \item \textbf{PR4.} ¿Qué fuentes de datos se usan y cómo se amplían los conjuntos?
 \end{itemize}
 
-La Fig.~\ref{fig:bloques} organiza los bloques temáticos de la revisión. La Sección~\ref{sec:metodo} describe el método, la~\ref{sec:panorama} el panorama bibliométrico, la~\ref{sec:evolucion} la evolución de los clasificadores (PR1 y PR3), la~\ref{sec:aumentacion} el desbalance y la aumentación (PR2) y la~\ref{sec:ampliacion} la ampliación de conjuntos (PR4). Las Secciones~\ref{sec:comparativo} a~\ref{sec:propuesta} presentan la comparación de estudios, la discusión de cada pregunta, las brechas y sus implicaciones para la tesis.
+La Fig.~\ref{fig:bloques} organiza los bloques temáticos de la revisión. La Sección~\ref{sec:metodo} describe el método, la~\ref{sec:panorama} el panorama bibliométrico, la~\ref{sec:evolucion} la evolución de los clasificadores (PR1 y PR3), la~\ref{sec:aumentacion} el desbalance y la aumentación (PR2) y la~\ref{sec:ampliacion} la ampliación de conjuntos (PR4). Las Secciones~\ref{sec:comparativo} a~\ref{sec:propuesta} presentan la comparación de estudios, la discusión de cada pregunta, las brechas y sus implicaciones para la investigación propuesta.
 
 \begin{figure}[!t]
 \centering
@@ -120,18 +121,18 @@ La Fig.~\ref{fig:bloques} organiza los bloques temáticos de la revisión. La Se
 %==============================================================================
 \section{Método de revisión}\label{sec:metodo}
 %==============================================================================
-La revisión sigue las etapas de identificación y cribado de PRISMA 2020~\cite{Page2021-PRISMA}. Todos los conteos se pueden reproducir con el script \texttt{Articulos/analisis\_scopus.py} del repositorio de la tesis. Ese script lee las exportaciones de Scopus, aplica las decisiones de cribado registradas y genera las figuras de este artículo.
+La revisión sigue las etapas de identificación, cribado e inclusión de la declaración PRISMA 2020~\cite{Page2021-PRISMA}.
 
-\subsection{Fuentes y ecuaciones de búsqueda}
-Se buscó en Scopus el 9 de octubre de 2026 con cuatro ecuaciones (Tabla~\ref{tab:busquedas}). Todas comparten un bloque núcleo: requerimientos no funcionales, de calidad o de software, combinados con el término clasificación. Para no capturar siglas ambiguas como SRS o EDA, el bloque usa operadores de proximidad (\texttt{W/3}). Cada ecuación añade uno de los ejes de la tesis. Los filtros fueron los mismos en las cuatro: años 2017--2026, inglés o español, y artículos, ponencias, revisiones y capítulos. Las ecuaciones completas están en \texttt{Articulos/FORMULAS\_BUSQUEDA\_SCOPUS.txt}.
+\subsection{Fuentes y cadenas de búsqueda}
+La búsqueda se realizó en Scopus en octubre de 2026 mediante cuatro cadenas (Tabla~\ref{tab:busquedas}). Las cuatro comparten un bloque común que combina los términos referidos a requerimientos no funcionales, de calidad o de software con el concepto de clasificación. Para evitar siglas ambiguas como SRS o EDA, ese bloque emplea operadores de proximidad. Cada cadena añade uno de los ejes temáticos de la revisión. En todas se aplicaron los mismos filtros: publicaciones de 2017 a 2026, en inglés o español, de tipo artículo, ponencia, revisión o capítulo de libro.
 
 \begin{table}[!t]
-\caption{Búsquedas en Scopus (9 de octubre de 2026)}
+\caption{Cadenas de búsqueda aplicadas en Scopus}
 \label{tab:busquedas}
 \centering\footnotesize
 \begin{tabularx}{\columnwidth}{@{}p{0.6cm} Y r@{}}
 \toprule
-\textbf{ID} & \textbf{Eje añadido al bloque núcleo} & \textbf{Registros} \\
+\textbf{ID} & \textbf{Eje añadido al bloque común} & \textbf{Registros} \\
 \midrule
 S1 & Aumentación y desbalance: \emph{data augmentation}, SMOTE, Tomek, \emph{oversampling}, TextAttack, TAOS, \emph{back translation}\ldots & 84 \\
 S2 & BERT y transformers: BERT, RoBERTa, \emph{transformer}, \emph{pre-trained language model}, \emph{fine-tuning}\ldots & 214 \\
@@ -144,7 +145,7 @@ S4 & Ampliación: GitHub, \emph{issue}, \emph{open source}, semi-supervisado, \e
 \end{table}
 
 \subsection{Criterios de inclusión y exclusión}
-La Tabla~\ref{tab:criterios} define los criterios. Un estudio se incluye si cumple los cuatro criterios de inclusión (CI) y se excluye si cumple cualquiera de exclusión (CE). Si el título y el resumen no bastan para decidir, el estudio pasa a la lectura del texto completo. El texto de usuarios (reseñas, solicitudes, issues) solo se incluye cuando las clases son tipos de requerimiento o atributos de calidad, no cuando son categorías como \emph{bug} o \emph{feature request}.
+La Tabla~\ref{tab:criterios} define los criterios. Un estudio se incluye si cumple los cuatro criterios de inclusión (CI) y se excluye si cumple cualquiera de exclusión (CE). Cuando el título y el resumen no bastaban para decidir, el estudio se incluyó de forma conservadora. El texto de usuarios (reseñas, solicitudes, issues) solo se incluye cuando las clases son tipos de requerimiento o atributos de calidad, no cuando son categorías como \emph{bug} o \emph{feature request}.
 
 \begin{table}[!t]
 \caption{Criterios de inclusión (CI) y exclusión (CE)}
@@ -169,7 +170,9 @@ CE5 & Duplicado, o versión resumida o extendida de otro registro. \\
 \end{table}
 
 \subsection{Selección de estudios}
-La Fig.~\ref{fig:prisma} resume la selección. De los 565 registros se eliminaron 131 duplicados entre búsquedas. Los 434 restantes se cribaron por título y resumen. El cribado inicial se hizo con asistencia de un modelo de lenguaje, y cada decisión quedó registrada con su criterio en el repositorio. El grupo más grande de excluidos fue CE1, con 142 registros: muestra que el término \emph{quality requirement} arrastra mucho ruido de otras áreas. Le siguieron CE2 (129), CE3 (4) y CE5 (2). Quedaron 12 estudios secundarios como contexto y 145 estudios primarios para la síntesis. Para validarlo, dos autores revisan a ciegas y por separado una muestra con los 145 incluidos y el 20\,\% de los excluidos (58). Cada uno trabaja con su propia planilla, en un orden aleatorio distinto y sin conocer las decisiones del cribado inicial ni las del otro revisor. El acuerdo se mide con el kappa de Fleiss entre los tres evaluadores ($\kappa$ = \kappaFleiss) y con el kappa de Cohen entre cada par (rango: \kappaCohen). Los desacuerdos se resuelven por mayoría y se discuten entre los autores. La lectura del texto completo está en curso; por eso los resultados numéricos de este artículo provienen de los resúmenes, salvo los de TAOS~\cite{BenAmmar2025-TAOS}, que se leyó completo.
+La Fig.~\ref{fig:prisma} resume el proceso de selección. De los 565 registros identificados se eliminaron 131 duplicados entre cadenas, y los 434 restantes se cribaron por título y resumen. El cribado inicial se realizó con apoyo de un modelo de lenguaje, y cada decisión se documentó junto con el criterio aplicado. El grupo más numeroso de excluidos corresponde a CE1 (142 registros), lo que indica que el término \emph{quality requirement} recupera numerosos trabajos de otras disciplinas. Le siguen CE2 (129), CE3 (4) y CE5 (2). Se conservaron 12 estudios secundarios como contexto y 145 estudios primarios para la síntesis.
+
+La fiabilidad del cribado se evaluó con dos autores, que revisaron de forma independiente y ciega una muestra formada por los 145 estudios incluidos y el 20\,\% de los excluidos (58). Ninguno conocía las decisiones del cribado inicial ni las del otro revisor. El acuerdo entre los tres evaluadores, medido con el kappa de Fleiss, fue de $\kappa$ = \kappaFleiss, y el kappa de Cohen entre pares osciló en \kappaCohen. Los desacuerdos se resolvieron por mayoría y discusión entre los autores. Los resultados que se citan de cada estudio provienen de sus resúmenes, salvo los de TAOS~\cite{BenAmmar2025-TAOS}, cuyo texto completo se analizó.
 
 \begin{figure}[!t]
 \centering
@@ -182,30 +185,28 @@ La Fig.~\ref{fig:prisma} resume la selección. De los 565 registros se eliminaro
   arr/.style={-{Latex[length=1.8mm]}, thick}]
   \node[caja] (id)  {Registros de Scopus\\S1 84 · S2 214 · S3 173 · S4 94\\$n = 565$};
   \node[caja, below=6mm of id] (un)  {Registros cribados por\\título y resumen\\$n = 434$};
-  \node[caja, below=6mm of un, fill=blue!15] (inc) {Estudios primarios para\\texto completo\\$n = 145$};
-  \node[pend, below=6mm of inc] (sin) {Incluidos en la síntesis\\final $n =$ en curso};
+  \node[caja, below=6mm of un, fill=blue!15] (inc) {Estudios primarios incluidos\\en la síntesis\\$n = 145$};
   \node[excl, right=6mm of id]  (e1) {Duplicados entre\\búsquedas: 131};
   \node[excl, right=6mm of un]  (e2) {Excluidos: 277\\CE1 otro dominio: 142\\CE2 otra tarea: 129\\CE3 sin evaluación: 4\\CE5 duplicado: 2};
   \node[excl, right=6mm of inc] (e3) {CE4 estudios secundarios\\(contexto): 12};
-  \node[excl, right=6mm of sin, dashed, fill=white] (e4) {Excluidos en texto\\completo: en curso};
-  \draw[arr] (id) -- (un); \draw[arr] (un) -- (inc); \draw[arr, dashed] (inc) -- (sin);
-  \draw[arr] (id) -- (e1); \draw[arr] (un) -- (e2); \draw[arr] (inc) -- (e3); \draw[arr, dashed] (sin) -- (e4);
+  \draw[arr] (id) -- (un); \draw[arr] (un) -- (inc);
+  \draw[arr] (id) -- (e1); \draw[arr] (un) -- (e2); \draw[arr] (inc) -- (e3);
   \node[etapa, left=2mm of id.west, anchor=south] {Identificación};
   \node[etapa, left=2mm of un.west, anchor=south] {Cribado};
-  \node[etapa, left=2mm of sin.west, anchor=south] {Inclusión};
+  \node[etapa, left=2mm of inc.west, anchor=south] {Inclusión};
 \end{tikzpicture}}
-\caption{Diagrama PRISMA 2020 de la selección. Las cajas punteadas corresponden a la lectura del texto completo, en curso.}
+\caption{Diagrama de flujo PRISMA 2020 de la selección de estudios.}
 \label{fig:prisma}
 \end{figure}
 
 \subsection{Extracción y codificación}
-De cada estudio incluido se registraron el año, el enfoque principal (ML clásico, aprendizaje profundo, transformer o LLM), las técnicas contra el desbalance, la fuente del texto y los conjuntos de datos mencionados. Una primera codificación automática por palabras clave se corrigió a mano en los casos dudosos. Por ejemplo, PRCBERT~\cite{Luo2022-PRCBERT} usa \emph{prompts}, pero es un transformer ajustado y no un LLM. Esa codificación solo describe el panorama: no se usó para incluir ni excluir.
+De cada estudio incluido se registraron el año, el enfoque principal (ML clásico, aprendizaje profundo, transformer o LLM), las técnicas contra el desbalance, la fuente del texto y los conjuntos de datos mencionados. Una primera codificación automática por palabras clave se verificó manualmente en los casos dudosos. Por ejemplo, PRCBERT~\cite{Luo2022-PRCBERT} usa \emph{prompts}, pero es un transformer ajustado y no un LLM. Esa codificación solo describe el panorama: no se usó para incluir ni excluir.
 
 \subsection{Artículos semilla y mapa de la literatura}
 Para elegir los artículos semilla se usaron dos criterios. El primero es la co-citación: los trabajos que más citan los 145 estudios. Los más citados del dominio son Kurtanović y Maalej~\cite{Kurtanovic2017-SupervisedML} (71), NoRBERT~\cite{Hey2020-NoRBERT} (65) y Cleland-Huang et al.~\cite{ClelandHuang2007-NFR} (48). El segundo es la cobertura: un estudio reciente y revisado por pares por cada eje del experimento (Tabla~\ref{tab:semillas}). La Fig.~\ref{fig:mapalit} ubica a cada estudio incluido según los trabajos base que cita.
 
 \begin{table}[!t]
-\caption{Artículos semilla por eje de la tesis}
+\caption{Artículos semilla por eje temático}
 \label{tab:semillas}
 \centering\footnotesize
 \begin{tabularx}{\columnwidth}{@{}p{1.45cm} Y p{1.2cm}@{}}
@@ -232,7 +233,7 @@ Base co-citada & Kurtanović y Maalej~\cite{Kurtanovic2017-SupervisedML}; NoRBER
 \section{Panorama bibliométrico}\label{sec:panorama}
 %==============================================================================
 \subsection{Evolución temporal y enfoques}
-La producción es reciente y crece rápido: 90 de los 145 estudios (62\,\%) son de 2025 o 2026, y 2026 solo llega hasta octubre (Fig.~\ref{fig:evolucion}). La figura también muestra el relevo de enfoques. El aprendizaje automático clásico está presente en todo el periodo, pero en menor proporción cada año. Los transformers aparecen en 2020 con NoRBERT~\cite{Hey2020-NoRBERT} y son el enfoque principal de 68 estudios. Los LLM entran en 2022 y suman 45 estudios, 37 de ellos de 2025--2026. El aprendizaje profundo sin transformers queda en 10 estudios.
+La producción es reciente y crece rápido: 90 de los 145 estudios (62\,\%) son de 2025 o 2026, aunque los datos de 2026 son parciales (Fig.~\ref{fig:evolucion}). La figura también muestra el relevo de enfoques. El aprendizaje automático clásico está presente en todo el periodo, pero en menor proporción cada año. Los transformers aparecen en 2020 con NoRBERT~\cite{Hey2020-NoRBERT} y son el enfoque principal de 68 estudios. Los LLM entran en 2022 y suman 45 estudios, 37 de ellos de 2025--2026. El aprendizaje profundo sin transformers queda en 10 estudios.
 
 \begin{figure}[!t]
 \centering
@@ -254,7 +255,7 @@ La producción es reciente y crece rápido: 90 de los 145 estudios (62\,\%) son 
 \legend{ML clásico, Aprendizaje profundo, Transformer, LLM}
 \end{axis}
 \end{tikzpicture}
-\caption{Estudios incluidos por año y enfoque principal ($n=145$). *2026 hasta el 9 de octubre.}
+\caption{Estudios incluidos por año y enfoque principal ($n=145$). *Datos parciales de 2026.}
 \label{fig:evolucion}
 \end{figure}
 
@@ -285,7 +286,7 @@ Predomina el texto de especificaciones: 107 estudios trabajan con SRS o conjunto
 \end{figure}
 
 \subsection{Desbalance y aumentación}
-Solo 46 de los 145 estudios (32\,\%) mencionan el desbalance, la escasez de datos o alguna técnica para tratarlos (Fig.~\ref{fig:metodos}). Entre las técnicas identificables predominan el remuestreo tipo SMOTE (10 estudios) y la generación de muestras con LLM (6). Les siguen la aumentación léxica tipo EDA (2), los ajustes en la función de pérdida (2) y la aumentación con GAN, con TextAttack y por retrotraducción (1 cada una). Otros 5 estudios usan aumentaciones propias o no especifican el método. Las familias de los tres métodos que compara la tesis (remuestreo, aumentación léxica y TextAttack) suman 13 apariciones, pero ningún estudio combina dos de ellas.
+Solo 46 de los 145 estudios (32\,\%) mencionan el desbalance, la escasez de datos o alguna técnica para tratarlos (Fig.~\ref{fig:metodos}). Entre las técnicas identificables predominan el remuestreo tipo SMOTE (10 estudios) y la generación de muestras con LLM (6). Les siguen la aumentación léxica tipo EDA (2), los ajustes en la función de pérdida (2) y la aumentación con GAN, con TextAttack y por retrotraducción (1 cada una). Otros 5 estudios usan aumentaciones propias o no especifican el método. Las familias de los tres métodos que compara esta investigación (remuestreo, aumentación léxica y TextAttack) suman 13 apariciones, pero ningún estudio combina dos de ellas.
 
 \begin{figure}[!t]
 \centering
@@ -303,7 +304,7 @@ Solo 46 de los 145 estudios (32\,\%) mencionan el desbalance, la escasez de dato
   xmajorgrids, grid style={gray!25}, enlarge y limits=0.07]
 \addplot[fill=cTesis!70, draw=cTesis] coordinates {(10,smote) (2,eda) (1,taos)};
 \addplot[fill=cML, draw=cML!80!black] coordinates {(6,llm) (5,otra) (2,loss) (1,gan) (1,bt)};
-\legend{Familias que compara la tesis, Otras técnicas}
+\legend{Familias comparadas en esta investigación, Otras técnicas}
 \end{axis}
 \end{tikzpicture}
 \caption{Técnicas contra el desbalance en los estudios incluidos (un estudio puede usar más de una).}
@@ -382,7 +383,7 @@ También hay ensambles de varios LLM~\cite{Kassab2025-EnsembleLLM} y evaluacione
 \centering\footnotesize
 \begin{tabularx}{\textwidth}{@{}L{2.6cm} L{0.75cm} Y Y Y Y@{}}
 \toprule
-\textbf{Estudio} & \textbf{Año} & \textbf{Técnica contra el desbalance} & \textbf{Clasificador y datos} & \textbf{Resultado reportado} & \textbf{Límite respecto a la tesis} \\
+\textbf{Estudio} & \textbf{Año} & \textbf{Técnica contra el desbalance} & \textbf{Clasificador y datos} & \textbf{Resultado reportado} & \textbf{Limitación para esta investigación} \\
 \midrule
 Hakim et al.~\cite{Hakim2018-Oversampling} & 2018 & SMOTE & RF, k-NN, SVM; 1,366 req. FR/NFR & SVM, el mejor en la clase minoritaria & Binaria; sin BERT \\
 Sabir et al.~\cite{Sabir2021-DeepLearning,Sabir2022-Custom} & 2021--22 & Aumentación propia frente a EDA & ANN, CNN, LSTM, GRU; 5 clases NFR & CNN: 60\,\%\,$\rightarrow$\,96\,\% de exactitud; diferencia marginal con EDA & Sin BERT; 5 clases \\
@@ -406,7 +407,7 @@ Limaylla-Lunarejo et al.~\cite{Limaylla2025-Spanish} & 2026 & Sobre- y submuestr
 \centering\footnotesize
 \begin{tabularx}{\textwidth}{@{}L{2.6cm} L{0.75cm} Y Y Y Y@{}}
 \toprule
-\textbf{Estudio} & \textbf{Año} & \textbf{Enfoque} & \textbf{Datos y tarea} & \textbf{Resultado reportado} & \textbf{Límite respecto a la tesis} \\
+\textbf{Estudio} & \textbf{Año} & \textbf{Enfoque} & \textbf{Datos y tarea} & \textbf{Resultado reportado} & \textbf{Limitación para esta investigación} \\
 \midrule
 Alhaizaey y Al-Mashari~\cite{Alhaizaey2025-AgilePLM} & 2025 & BERT, RoBERTa, XLNet, DistilBERT con \emph{Focal Loss} & $>$10\,000 historias de usuario & BERT: F1 93.4\,\% & Desbalance tratado en la pérdida \\
 Ayed et al.~\cite{Ayed2025-Benchmarking} & 2025 & BERT ajustado & 5 conjuntos, multiclase & Errores sistemáticos en FT y PO & Sin aumentación; la recomienda \\
@@ -442,9 +443,9 @@ EDA~\cite{Wei2019-EDA} genera variantes de una oración con cuatro operaciones: 
 TextAttack~\cite{Morris2020-TextAttack} ofrece recetas de aumentación además de ataques adversarios. TAOS~\cite{BenAmmar2025-TAOS} lo usa con BERT base uncased, con 1,073 requerimientos de entrenamiento y 461 de prueba en 12 clases. Con TAOS, el F1 ponderado sube de 0.75 a 0.93 y el F1 macro de 0.44 a 0.89. Las clases MN, L, FT y PO, que el modelo base no reconocía, alcanzan valores de F1 de 0.50 a 1.00. Su lectura tiene dos límites:
 \begin{itemize}
   \item TAOS solo se compara con un BERT sin aumentación.
-  \item Su Tabla~III deja PO en 10 muestras frente a 782 de F (Fig.~\ref{fig:dist}), así que el balanceo es parcial.
+  \item Su Tabla~III deja PO en 10 muestras frente a 782 de F (Fig.~\ref{fig:dist}), por lo que el balanceo es parcial.
 \end{itemize}
-Para esta revisión se analizaron los archivos de entrenamiento y prueba del repositorio público de TAOS (consultado el 9 de octubre de 2026; script \texttt{Articulos/verificacion\_taos.py}). Los conteos de la Tabla~III coinciden: el entrenamiento tiene 2 requerimientos de PO y la prueba, 3. Sin embargo, el análisis muestra que muchos requerimientos están repetidos. Aparecen una vez entre comillas simples y otra sin ellas, o con otros espacios. Al comparar los textos normalizados (minúsculas, sin puntuación ni espacios repetidos) se obtiene lo siguiente:
+Para esta revisión se analizaron los archivos de entrenamiento y prueba que los autores de TAOS publicaron en su repositorio. Los conteos coinciden con su Tabla~III: el entrenamiento contiene 2 requerimientos de PO y la prueba, 3. Sin embargo, numerosos requerimientos aparecen repetidos, una vez entre comillas simples y otra sin ellas, o con diferencias de espaciado. Al comparar los textos normalizados (minúsculas, sin puntuación ni espacios repetidos) se obtiene lo siguiente:
 \begin{itemize}
   \item 240 de los 461 requerimientos de prueba (52\,\%) también están en entrenamiento, 238 de ellos con la misma etiqueta.
   \item Las 1,534 filas corresponden a solo 988 requerimientos distintos.
@@ -484,12 +485,12 @@ La generación con LLM es la línea más reciente y creciente:
   \item NFRLT~\cite{Wang2025-Learning} combina muestras generadas por LLM con una pérdida ajustada a la distribución de cola larga.
   \item KANFR-LT~\cite{Peng2026-Knowledge} genera muestras de las clases de cola guiado por un grafo de conocimiento.
 \end{itemize}
-Synthline~\cite{ElHajjami2025-Synthline} y O3DG~\cite{Bishop2026-demand} sistematizan la generación de conjuntos sintéticos de requerimientos. Fuera del dominio, AugGPT~\cite{Dai2023-AugGPT} y Møller et al.~\cite{Moller2023-Parrot} documentan el mismo enfoque. En esta familia el LLM actúa como generador. Esa línea queda fuera del alcance de la tesis: en ella los LLM solo clasifican, y la aumentación se limita a SMOTE-Tomek, EDA y TAOS.
+Synthline~\cite{ElHajjami2025-Synthline} y O3DG~\cite{Bishop2026-demand} sistematizan la generación de conjuntos sintéticos de requerimientos. Fuera del dominio, AugGPT~\cite{Dai2023-AugGPT} y Møller et al.~\cite{Moller2023-Parrot} documentan el mismo enfoque. En esta familia el LLM actúa como generador. Esa línea queda fuera del alcance de esta investigación, en la que los LLM solo clasifican, y la aumentación se limita a SMOTE-Tomek, EDA y TAOS.
 
 %==============================================================================
 \section{Ampliación de conjuntos de datos}\label{sec:ampliacion}
 %==============================================================================
-Los conjuntos clásicos son pequeños, por lo que varios estudios buscan otras fuentes de texto. En reseñas de aplicaciones, MNoR-BERT~\cite{Kaur2023-MNoRBERT} clasifica 6,000 reseñas en cuatro NFR con un enfoque multietiqueta. En proyectos abiertos, Pérez-Verdejo et al.~\cite{PerezVerdejo2021-GitHubIssues} clasifican requerimientos de calidad a partir de issues de GitHub. Krasniqi y Cleland-Huang~\cite{Krasniqi2021-Analyzing} detectan preocupaciones de calidad en resúmenes de reportes de defectos de proyectos de código abierto. GitReq~\cite{Kamal2026-GitReq} es el conjunto más cercano a la tesis: reúne 6,302 requerimientos validados por expertos, minados de 55,588 candidatos en 4,080 repositorios. Usa ocho categorías alineadas con ISO/IEC 25010, con un acuerdo entre anotadores de $\kappa=0.72$. Como línea base, el mejor LLM \emph{zero-shot} (GPT-5.2) alcanzó un F1 macro de 0.641.
+Los conjuntos clásicos son pequeños, por lo que varios estudios buscan otras fuentes de texto. En reseñas de aplicaciones, MNoR-BERT~\cite{Kaur2023-MNoRBERT} clasifica 6,000 reseñas en cuatro NFR con un enfoque multietiqueta. En proyectos abiertos, Pérez-Verdejo et al.~\cite{PerezVerdejo2021-GitHubIssues} clasifican requerimientos de calidad a partir de issues de GitHub. Krasniqi y Cleland-Huang~\cite{Krasniqi2021-Analyzing} detectan preocupaciones de calidad en resúmenes de reportes de defectos de proyectos de código abierto. GitReq~\cite{Kamal2026-GitReq} es el conjunto más cercano al objeto de esta investigación: reúne 6,302 requerimientos validados por expertos, minados de 55,588 candidatos en 4,080 repositorios. Usa ocho categorías alineadas con ISO/IEC 25010, con un acuerdo entre anotadores de $\kappa=0.72$. Como línea base, el mejor LLM \emph{zero-shot} (GPT-5.2) alcanzó un F1 macro de 0.641.
 
 Otros estudios reducen el costo de etiquetar los datos nuevos:
 \begin{itemize}
@@ -498,12 +499,12 @@ Otros estudios reducen el costo de etiquetar los datos nuevos:
   \item Aprendizaje activo~\cite{Magalhaes2021-MAREActive,Zhang2022-Reducing}, incluso en un esquema federado~\cite{Alhoshan2026-SeqFAL}.
   \item Auto-aprendizaje con PRCBERT~\cite{Luo2022-PRCBERT}: transferido a datos sin etiquetas, logró un F1 \emph{zero-shot} de 53.27\,\% y 72.96\,\% en dos conjuntos.
 \end{itemize}
-Son las piezas para ampliar el conjunto con pseudo-etiquetas. Aun así, las etiquetas asignadas por el propio modelo pueden propagar sus errores, y la taxonomía de GitReq no coincide con las 12 clases de PROMISE.
+Estos métodos constituyen la base para ampliar un conjunto mediante pseudo-etiquetas. Aun así, las etiquetas asignadas por el propio modelo pueden propagar sus errores, y la taxonomía de GitReq no coincide con las 12 clases de PROMISE.
 
 %==============================================================================
 \section{Análisis comparativo}\label{sec:comparativo}
 %==============================================================================
-Las Tablas~\ref{tab:matriz-aum} y~\ref{tab:matriz-clas} resumen los estudios más cercanos a la tesis. En aumentación, cada estudio evalúa un único método, normalmente frente a un control sin aumentación. Además, la mayoría trabaja en la tarea binaria o con clasificadores distintos de BERT. En clasificación, los LLM se comparan con transformers ajustados o con ML clásico, nunca con un transformer entrenado con datos aumentados. Las cifras de ambas tablas no son comparables entre sí, porque cambian el conjunto, el número de clases, la partición y la métrica.
+Las Tablas~\ref{tab:matriz-aum} y~\ref{tab:matriz-clas} resumen los estudios más cercanos a esta investigación. En aumentación, cada estudio evalúa un único método, normalmente frente a un control sin aumentación. Además, la mayoría trabaja en la tarea binaria o con clasificadores distintos de BERT. En clasificación, los LLM se comparan con transformers ajustados o con ML clásico, nunca con un transformer entrenado con datos aumentados. Las cifras de ambas tablas no son comparables entre sí, porque cambian el conjunto, el número de clases, la partición y la métrica.
 
 %==============================================================================
 \section{Discusión}\label{sec:discusion}
@@ -512,9 +513,9 @@ Las Tablas~\ref{tab:matriz-aum} y~\ref{tab:matriz-clas} resumen los estudios má
 
 \textbf{PR2. Desbalance y aumentación.} Solo un tercio de los estudios (46) trata el desbalance o la escasez de datos. Cuando lo hacen, cada estudio evalúa una técnica aislada, frente a un control sin aumentación o frente a EDA. EDA es una referencia habitual en las revisiones de aumentación de texto~\cite{Feng2021-DASurvey,Bayer2022-DASurvey}, pero casi no se usa en NFR, y SMOTE se aplica sobre todo a vectores clásicos en la tarea binaria. También importa el protocolo. Sabir et al.~\cite{Sabir2022-Custom} observaron que aumentar también el conjunto de validación elevaba los resultados de la CNN en 10\,\%. Esto sugiere que, si la aumentación se aplica antes de dividir los datos, las métricas pueden inflarse. Una comparación justa debe aumentar solo la parte de entrenamiento de cada pliegue.
 
-\textbf{PR3. LLM como clasificadores.} Los LLM sin entrenamiento específico compiten con los modelos ajustados cuando hay pocos datos o cuando el texto viene de otra fuente~\cite{Wang2026-Machine,Kamal2025-Robust}. Con datos suficientes, el ajuste supervisado mantiene la ventaja, sobre todo en la tarea binaria~\cite{Shafikuzzaman2025-Effectiveness,Zhu2026-Prompt}. Además, los resultados de los LLM cambian con el número de ejemplos, la temperatura y el tamaño del lote~\cite{Tang2025-FewShot,Karlsson2025-Reliable,Can2025-OneSize}. Hay que fijar esos parámetros y reportarlos. La pregunta que queda abierta es si un LLM sigue siendo competitivo frente a un BERT que recibió el mejor tratamiento de datos disponible, y no solo frente a uno entrenado con los datos originales.
+\textbf{PR3. LLM como clasificadores.} Los LLM sin entrenamiento específico compiten con los modelos ajustados cuando hay pocos datos o cuando el texto viene de otra fuente~\cite{Wang2026-Machine,Kamal2025-Robust}. Con datos suficientes, el ajuste supervisado mantiene la ventaja, sobre todo en la tarea binaria~\cite{Shafikuzzaman2025-Effectiveness,Zhu2026-Prompt}. Además, los resultados de los LLM cambian con el número de ejemplos, la temperatura y el tamaño del lote~\cite{Tang2025-FewShot,Karlsson2025-Reliable,Can2025-OneSize}. Por ello, estos parámetros deben fijarse y reportarse. La pregunta que queda abierta es si un LLM sigue siendo competitivo frente a un BERT que recibió el mejor tratamiento de datos disponible, y no solo frente a uno entrenado con los datos originales.
 
-\textbf{PR4. Datos y ampliación.} PROMISE y sus variantes concentran la evaluación, lo que favorece la comparación pero limita la variedad y el tamaño de las clases raras. GitReq~\cite{Kamal2026-GitReq} aporta volumen y validación experta, pero usa otra taxonomía, así que para incorporarlo a las 12 clases hace falta un mapeo explícito. El aprendizaje semi-supervisado y el aprendizaje activo reducen el costo de etiquetar, pero las pseudo-etiquetas pueden repetir los errores del modelo. Por eso cada ampliación necesita validación humana por muestreo.
+\textbf{PR4. Datos y ampliación.} PROMISE y sus variantes concentran la evaluación, lo que favorece la comparación pero limita la variedad y el tamaño de las clases raras. GitReq~\cite{Kamal2026-GitReq} aporta volumen y validación experta, pero usa otra taxonomía, de modo que su incorporación a las 12 clases exige un mapeo explícito. El aprendizaje semi-supervisado y el aprendizaje activo reducen el costo de etiquetar, pero las pseudo-etiquetas pueden repetir los errores del modelo. Por eso cada ampliación necesita validación humana por muestreo.
 
 
 %==============================================================================
@@ -540,7 +541,7 @@ G5 & \textbf{Ampliación iterativa.} Existen un conjunto minado de GitHub con ot
 \end{table}
 
 %==============================================================================
-\section{Implicaciones para la tesis}\label{sec:propuesta}
+\section{Implicaciones para la investigación propuesta}\label{sec:propuesta}
 %==============================================================================
 La Fig.~\ref{fig:flujo} presenta el flujo experimental que responde a las brechas:
 \begin{itemize}
@@ -578,7 +579,7 @@ La Fig.~\ref{fig:flujo} presenta el flujo experimental que responde a las brecha
   \node[gap, right=1mm of c] {G3};
   \node[gap, right=1mm of g] {G5};
 \end{tikzpicture}}
-\caption{Flujo experimental de la tesis. En rojo, la brecha que aborda cada etapa.}
+\caption{Flujo experimental propuesto. En rojo, la brecha que aborda cada etapa.}
 \label{fig:flujo}
 \end{figure}
 
@@ -587,7 +588,9 @@ La Fig.~\ref{fig:flujo} presenta el flujo experimental que responde a las brecha
 %==============================================================================
 Sobre 145 estudios cribados en Scopus, la clasificación de NFR pasó del ML clásico a los transformers y, desde 2024, a los LLM. La mayor parte de la producción es de 2025--2026 (PR1). El desbalance se reconoce como un problema central, pero solo un tercio de los estudios lo trata. Cuando lo hacen, cada uno evalúa un único método: SMOTE en la tarea binaria, generación con LLM o aumentaciones propias (PR2). Los LLM se usan sobre todo como clasificadores \emph{zero-shot} y \emph{few-shot}, y su ventaja depende del escenario. Sin embargo, se comparan con transformers que no fueron entrenados con datos aumentados (PR3). La mayoría de los estudios usa PROMISE y sus variantes; GitReq y el aprendizaje semi-supervisado y activo abren el camino para ampliar los conjuntos (PR4). La comparación controlada de TAOS, EDA y SMOTE-Tomek con BERT, contrastada con LLM, ocupa un espacio que los estudios revisados dejan abierto. Esa comparación debe hacerse sobre el conjunto sin duplicados, porque la partición pública de TAOS mezcla entrenamiento y prueba.
 
-\textbf{Limitaciones.} La búsqueda se limitó a Scopus. El cribado inicial fue asistido por un modelo de lenguaje y se valida con dos autores sobre una muestra (Sección~\ref{sec:metodo}). Los resultados de los estudios, salvo TAOS, provienen de sus resúmenes. Las etiquetas del panorama se asignaron por palabras clave con corrección manual. Antes de defender las brechas hay que completar la lectura del texto completo y extender la búsqueda a Web of Science, IEEE Xplore y ACM DL.
+\textbf{Limitaciones.} La búsqueda se limitó a Scopus, por lo que pueden faltar estudios indexados solo en otras bases. El cribado inicial se realizó con apoyo de un modelo de lenguaje y se validó con dos autores sobre una muestra (Sección~\ref{sec:metodo}). Los resultados atribuidos a cada estudio, salvo los de TAOS, provienen de sus resúmenes, y las categorías del panorama se asignaron por palabras clave con verificación manual. La revisión sistemática asociada a esta investigación ampliará la búsqueda a Web of Science, IEEE Xplore y ACM Digital Library, y extraerá los datos del texto completo de cada estudio.
+
+\textbf{Disponibilidad de datos.} Las cadenas de búsqueda, las decisiones de cribado con el criterio aplicado y el código del análisis bibliométrico y de la verificación de TAOS están disponibles en el repositorio del proyecto (\url{https://github.com/AlessandroPastor/research}).
 
 \bibliographystyle{IEEEtran}
 \bibliography{../RSL/referencias_nfr}
