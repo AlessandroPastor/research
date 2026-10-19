@@ -1,0 +1,105 @@
+FÓRMULAS DE BÚSQUEDA PARA LA RSL: WEB OF SCIENCE, IEEE XPLORE Y ACM DIGITAL LIBRARY
+Equivalentes a las búsquedas S1–S4 de Scopus (FORMULAS_BUSQUEDA_SCOPUS.txt).
+Cada base tiene su sintaxis: copiar cada fórmula completa, tal cual.
+
+Ejes (los mismos que en Scopus):
+  1 = Aumentación de datos y desbalance (TAOS, EDA, SMOTE-Tomek)
+  2 = BERT y transformers
+  3 = LLM como clasificador
+  4 = Ampliación con GitHub y auto-etiquetado
+
+Hacer las búsquedas de las tres bases el MISMO DÍA y anotar la fecha y los conteos (tabla al final).
+
+=====================================================================================
+A. WEB OF SCIENCE (Core Collection)
+=====================================================================================
+Dónde: webofscience.com -> Search -> Web of Science Core Collection -> "Advanced search"
+       -> pegar la fórmula en "Query preview" -> Search
+Los filtros de año, tipo de documento e idioma ya van dentro de la fórmula.
+
+--- W1: Aumentación y desbalance ---
+TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=("data augmentation" OR "text augmentation" OR "easy data augmentation" OR TextAttack OR TAOS OR "synthetic data" OR "synthetic sample*" OR oversampl* OR "over-sampling" OR resampl* OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data*" OR "imbalanced class*" OR "minority class*" OR "back translation" OR paraphras*) AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)
+
+--- W2: BERT y transformers ---
+TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=(BERT OR RoBERTa OR DistilBERT OR NoRBERT OR transformer* OR "pre-trained language model*" OR "pretrained language model*" OR "transfer learning" OR "fine tun*") AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)
+
+--- W3: LLM como clasificador ---
+TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=("large language model*" OR LLM OR LLMs OR GPT* OR ChatGPT OR "generative AI" OR Llama OR Gemma OR Mistral OR Claude OR "zero-shot" OR "few-shot" OR "in-context learning" OR prompt*) AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)
+
+--- W4: GitHub y auto-etiquetado ---
+TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=(GitHub OR "issue tracker*" OR "issue report*" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning" OR "weak supervision" OR "dataset construction" OR "gold standard") AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)
+
+Exportar (cada búsqueda): Export -> "Excel" -> Records: "All records on page" o rango 1-1000
+  -> Record Content: "Full Record" (incluye el resumen) -> Export.
+  Guardar como:  Articulos/WOS/W1.xls  (W2.xls, W3.xls, W4.xls)
+
+=====================================================================================
+B. IEEE XPLORE
+=====================================================================================
+Dónde: ieeexplore.ieee.org -> "Advanced Search" -> pestaña "Command Search"
+       -> pegar la fórmula -> Search
+Luego, en la barra izquierda de resultados, aplicar los filtros:
+  Year: 2017 a 2026
+  Content Type: Conferences, Journals, Magazines, Books
+(Sin prefijo de campo, IEEE busca en "All Metadata": título, resumen y palabras clave.)
+
+--- I1: Aumentación y desbalance ---
+("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND ("data augmentation" OR "text augmentation" OR "synthetic data" OR oversampling OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data" OR TextAttack OR "back translation")
+
+--- I2: BERT y transformers ---
+("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND (BERT OR RoBERTa OR DistilBERT OR transformer* OR "pre-trained language model*" OR "transfer learning" OR "fine-tuning")
+
+--- I3: LLM como clasificador ---
+("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND ("large language model*" OR LLM* OR GPT* OR ChatGPT OR "generative AI" OR "zero-shot" OR "few-shot" OR prompt*)
+
+--- I4: GitHub y auto-etiquetado ---
+("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND (GitHub OR "issue report*" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning")
+
+Exportar (cada búsqueda): botón "Export" -> pestaña "Search Results"
+  -> Format: CSV -> Include: "Citation and Abstract" -> Export.
+  Guardar como:  Articulos/IEEE/I1.csv  (I2.csv, I3.csv, I4.csv)
+Si IEEE dice que la búsqueda tiene demasiados términos o comodines: quitar los términos del
+último paréntesis de uno en uno (empezando por el final) y anotar cuáles se quitaron.
+
+=====================================================================================
+C. ACM DIGITAL LIBRARY
+=====================================================================================
+Dónde: dl.acm.org -> ícono de búsqueda -> "Advanced Search"
+Se llenan TRES filas, todas con "Search Within: Abstract", unidas con AND.
+(En ACM no se usan comodines dentro de comillas; por eso van singular y plural.)
+Filtro: "Publication Date" -> Custom range: 2017 a 2026.
+
+  Fila 1 (Abstract):  "non-functional requirements" OR "non-functional requirement" OR "nonfunctional requirements" OR "quality requirements" OR "software requirements" OR "requirements classification" OR "requirements specification"
+  AND
+  Fila 2 (Abstract):  classification OR classify OR classifying OR categorization OR categorizing
+  AND
+  Fila 3 (Abstract):  cambia según el eje:
+
+--- A1: Aumentación y desbalance (Fila 3) ---
+"data augmentation" OR "text augmentation" OR "synthetic data" OR oversampling OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data" OR TextAttack OR "back translation"
+
+--- A2: BERT y transformers (Fila 3) ---
+BERT OR RoBERTa OR DistilBERT OR transformer OR transformers OR "pre-trained language model" OR "pretrained language model" OR "transfer learning" OR "fine-tuning"
+
+--- A3: LLM como clasificador (Fila 3) ---
+"large language model" OR "large language models" OR LLM OR LLMs OR GPT OR ChatGPT OR "generative AI" OR "zero-shot" OR "few-shot" OR prompting
+
+--- A4: GitHub y auto-etiquetado (Fila 3) ---
+GitHub OR "issue reports" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-labeling" OR "active learning"
+
+Exportar (cada búsqueda): en resultados, poner 50 por página -> marcar "Select All"
+  -> "Export Citations" -> formato BibTeX (incluye el resumen) -> Download.
+  Si hay más de una página, repetir en cada página y guardar con sufijo:
+  Articulos/ACM/A1.bib  (A1_p2.bib, A1_p3.bib ... ; luego A2.bib, A3.bib, A4.bib)
+
+=====================================================================================
+TABLA PARA ANOTAR (enviar junto con los archivos)
+=====================================================================================
+Fecha de búsqueda: ______________
+
+        Eje 1   Eje 2   Eje 3   Eje 4
+WoS     W1=___  W2=___  W3=___  W4=___
+IEEE    I1=___  I2=___  I3=___  I4=___
+ACM     A1=___  A2=___  A3=___  A4=___
+
+Si alguna fórmula da error de sintaxis, copiar el mensaje exacto del error.

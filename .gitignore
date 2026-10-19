@@ -17,3 +17,9 @@ Articulos/SCUPUS/**/*.csv
 
 # PDFs de editoriales (derechos de terceros)
 Articulos/ARTICULOS SEMILLA/
+
+# Exportaciones de bases de datos (licencia de terceros, no redistribuir)
+Articulos/WOS/*
+Articulos/IEEE/*
+Articulos/ACM/*
+!Articulos/*/LEEME.txt
