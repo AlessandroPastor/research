@@ -1,0 +1,89 @@
+% Borrador del método para la revisión sistemática (RSL).
+% Se retiró del estado del arte el 2026-10-19: un estado del arte presenta los trabajos,
+% no el protocolo de búsqueda y selección. Las macros \kappaFleiss y \kappaCohen
+% deben definirse en el documento de la RSL.
+
+%==============================================================================
+\section{Método de revisión}\label{sec:metodo}
+%==============================================================================
+La revisión sigue las etapas de identificación, cribado e inclusión de la declaración PRISMA 2020~\cite{Page2021-PRISMA}.
+
+\subsection{Fuentes y cadenas de búsqueda}
+La búsqueda se realizó en Scopus en octubre de 2026 mediante cuatro cadenas (Tabla~\ref{tab:busquedas}). Las cuatro comparten un bloque común que combina los términos referidos a requerimientos no funcionales, de calidad o de software con el concepto de clasificación. Para evitar siglas ambiguas como SRS o EDA, ese bloque emplea operadores de proximidad. Cada cadena añade uno de los ejes temáticos de la revisión. En todas se aplicaron los mismos filtros: publicaciones de 2017 a 2026, en inglés o español, de tipo artículo, ponencia, revisión o capítulo de libro.
+
+\begin{table}[!t]
+\caption{Cadenas de búsqueda aplicadas en Scopus}
+\label{tab:busquedas}
+\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}p{0.6cm} Y r@{}}
+\toprule
+\textbf{ID} & \textbf{Eje añadido al bloque común} & \textbf{Registros} \\
+\midrule
+S1 & Aumentación y desbalance: \emph{data augmentation}, SMOTE, Tomek, \emph{oversampling}, TextAttack, TAOS, \emph{back translation}\ldots & 84 \\
+S2 & BERT y transformers: BERT, RoBERTa, \emph{transformer}, \emph{pre-trained language model}, \emph{fine-tuning}\ldots & 214 \\
+S3 & LLM: \emph{large language model}, GPT, ChatGPT, Llama, \emph{zero-shot}, \emph{few-shot}, \emph{prompt}\ldots & 173 \\
+S4 & Ampliación: GitHub, \emph{issue}, \emph{open source}, semi-supervisado, \emph{self-training}, \emph{active learning}\ldots & 94 \\
+\midrule
+ & \textbf{Total (con duplicados entre búsquedas)} & \textbf{565} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Criterios de inclusión y exclusión}
+La Tabla~\ref{tab:criterios} define los criterios. Un estudio se incluye si cumple los cuatro criterios de inclusión (CI) y se excluye si cumple cualquiera de exclusión (CE). Cuando el título y el resumen no bastaban para decidir, el estudio se incluyó de forma conservadora. El texto de usuarios (reseñas, solicitudes, issues) solo se incluye cuando las clases son tipos de requerimiento o atributos de calidad, no cuando son categorías como \emph{bug} o \emph{feature request}.
+
+\begin{table}[!t]
+\caption{Criterios de inclusión (CI) y exclusión (CE)}
+\label{tab:criterios}
+\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}p{0.75cm} Y@{}}
+\toprule
+\textbf{Código} & \textbf{Criterio} \\
+\midrule
+CI1 & Estudio primario que clasifica automáticamente texto de requerimientos en tipos de requerimiento (FR/NFR o subclases de NFR) o en atributos de calidad (seguridad, privacidad, usabilidad\ldots). \\
+CI2 & Usa aprendizaje automático, aprendizaje profundo, transformers o LLM. \\
+CI3 & Reporta una evaluación empírica cuantitativa (exactitud, precisión, exhaustividad, F1\ldots). \\
+CI4 & Publicado entre 2017 y 2026, en inglés o español (filtro de la búsqueda). \\
+\midrule
+CE1 & Fuera del dominio de software: \emph{requirement} o \emph{quality} se usan con otro sentido (manufactura, medicina, redes). \\
+CE2 & Otra tarea de software o de ingeniería de requerimientos (ambigüedad, trazabilidad, generación, priorización, riesgo, bugs), o clases que no son tipos de requerimiento. \\
+CE3 & Sin evaluación empírica (visión, tutorial, conjunto de datos sin experimentos). \\
+CE4 & Estudio secundario: no entra en la síntesis, pero se usa como contexto. \\
+CE5 & Duplicado, o versión resumida o extendida de otro registro. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Selección de estudios}
+La Fig.~\ref{fig:prisma} resume el proceso de selección. De los 565 registros identificados se eliminaron 131 duplicados entre cadenas, y los 434 restantes se cribaron por título y resumen. El cribado inicial se realizó con apoyo de un modelo de lenguaje, y cada decisión se documentó junto con el criterio aplicado. El grupo más numeroso de excluidos corresponde a CE1 (142 registros), lo que indica que el término \emph{quality requirement} recupera numerosos trabajos de otras disciplinas. Le siguen CE2 (129), CE3 (4) y CE5 (2). Se conservaron 12 estudios secundarios como contexto y 145 estudios primarios para la síntesis.
+
+La fiabilidad del cribado se evaluó con dos autores, que revisaron de forma independiente y ciega una muestra formada por los 145 estudios incluidos y el 20\,\% de los excluidos (58). Ninguno conocía las decisiones del cribado inicial ni las del otro revisor. El acuerdo entre los tres evaluadores, medido con el kappa de Fleiss, fue de $\kappa$ = \kappaFleiss, y el kappa de Cohen entre pares osciló en \kappaCohen. Los desacuerdos se resolvieron por mayoría y discusión entre los autores. Los resultados que se citan de cada estudio provienen de sus resúmenes, salvo los de TAOS~\cite{BenAmmar2025-TAOS}, cuyo texto completo se analizó.
+
+\begin{figure}[!t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tikzpicture}[
+  caja/.style={draw, rounded corners=2pt, align=center, font=\footnotesize, text width=3.4cm, inner sep=3pt, fill=blue!6},
+  excl/.style={draw, rounded corners=2pt, align=left, font=\scriptsize, text width=3.6cm, inner sep=3pt, fill=gray!8},
+  pend/.style={caja, fill=white, dashed},
+  etapa/.style={font=\scriptsize\bfseries, rotate=90, anchor=south},
+  arr/.style={-{Latex[length=1.8mm]}, thick}]
+  \node[caja] (id)  {Registros de Scopus\\S1 84 · S2 214 · S3 173 · S4 94\\$n = 565$};
+  \node[caja, below=6mm of id] (un)  {Registros cribados por\\título y resumen\\$n = 434$};
+  \node[caja, below=6mm of un, fill=blue!15] (inc) {Estudios primarios incluidos\\en la síntesis\\$n = 145$};
+  \node[excl, right=6mm of id]  (e1) {Duplicados entre\\búsquedas: 131};
+  \node[excl, right=6mm of un]  (e2) {Excluidos: 277\\CE1 otro dominio: 142\\CE2 otra tarea: 129\\CE3 sin evaluación: 4\\CE5 duplicado: 2};
+  \node[excl, right=6mm of inc] (e3) {CE4 estudios secundarios\\(contexto): 12};
+  \draw[arr] (id) -- (un); \draw[arr] (un) -- (inc);
+  \draw[arr] (id) -- (e1); \draw[arr] (un) -- (e2); \draw[arr] (inc) -- (e3);
+  \node[etapa, left=2mm of id.west, anchor=south] {Identificación};
+  \node[etapa, left=2mm of un.west, anchor=south] {Cribado};
+  \node[etapa, left=2mm of inc.west, anchor=south] {Inclusión};
+\end{tikzpicture}}
+\caption{Diagrama de flujo PRISMA 2020 de la selección de estudios.}
+\label{fig:prisma}
+\end{figure}
+
+\subsection{Extracción y codificación}
+De cada estudio incluido se registraron el año, el enfoque principal (ML clásico, aprendizaje profundo, transformer o LLM), las técnicas contra el desbalance, la fuente del texto y los conjuntos de datos mencionados. Una primera codificación automática por palabras clave se verificó manualmente en los casos dudosos. Por ejemplo, PRCBERT~\cite{Luo2022-PRCBERT} usa \emph{prompts}, pero es un transformer ajustado y no un LLM. Esa codificación solo describe el panorama: no se usó para incluir ni excluir.
+
