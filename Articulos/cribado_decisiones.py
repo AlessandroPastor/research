@@ -28,6 +28,6 @@ ENFOQUE_MANUAL = {83: "Transformer", 110: "Transformer", 139: "Transformer", 193
                   267: "Transformer", 312: "Transformer", 322: "Transformer", 332: "Transformer",
                   403: "ML clásico", 407: "Transformer", 430: "Transformer"}
 AUMENTO_MANUAL = {182: [], 250: ["TextAttack / TAOS"], 273: [], 296: [], 381: [], 386: [], 411: [],
-                  422: [], 432: [], 344: ["Generación con LLM"], 242: ["Otra / no especificada"],
+                  422: [], 432: [], 344: ["Otra / no especificada"], 242: ["Otra / no especificada"],
                   267: ["Otra / no especificada"], 400: ["Otra / no especificada"],
                   408: ["Otra / no especificada"]}

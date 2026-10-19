@@ -44,12 +44,13 @@ Las decisiones registro por registro están en `cribado.csv`, generado por `anal
 confirmar en el texto completo los que pasaron por la regla de duda. En el PRISMA se anotan los que no se
 puedan obtener y los excluidos en esta etapa.
 
-**Validación (sin Rayyan):** un segundo autor revisa a ciegas la planilla
-`validacion_cribado_revisor2.xlsx`, que tiene los 145 incluidos y el 20 % de los excluidos (58) en orden
-aleatorio y sin las decisiones del primer revisor. Para generarla y calcular el acuerdo:
+**Validación (sin Rayyan), con dos revisores:** Andrés y Cristian revisan a ciegas y por separado
+su propia planilla (`validacion_cribado_andres.xlsx` y `validacion_cribado_cristian.xlsx`). Cada una tiene
+los 145 incluidos y el 20 % de los excluidos (58), en un orden aleatorio distinto y sin las decisiones del
+cribado inicial (asistido por IA). Cuando ambos terminen:
 
-    python Articulos/validacion_cribado.py generar   # crea la planilla (ya está creada)
-    python Articulos/validacion_cribado.py kappa     # calcula el kappa de Cohen y lista los desacuerdos
+    python Articulos/validacion_cribado.py kappa
 
-Los desacuerdos (`desacuerdos_cribado.csv`) se resuelven por consenso. El valor de kappa se copia en
-`\kappaCribado` al inicio de `EstadoArte/EstadoArte_NFR.tex`.
+El script calcula el kappa de Cohen por pares y el kappa de Fleiss de los tres evaluadores, y guarda los
+desacuerdos con la decisión por mayoría en `desacuerdos_cribado.csv`. Los valores se copian en
+`\kappaFleiss` y `\kappaCohen` al inicio de `EstadoArte/EstadoArte_NFR.tex`.

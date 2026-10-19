@@ -10,7 +10,7 @@ incluidos por año: [('2017', 2), ('2018', 3), ('2019', 2), ('2020', 1), ('2021'
   ML clásico             [2, 3, 2, 0, 3, 3, 2, 1, 3, 3]
 enfoque principal: [('Transformer', 68), ('LLM', 45), ('ML clásico', 22), ('Aprendizaje profundo', 10)]
 tratan desbalance/aumentación: 46
-métodos de aumentación: [('SMOTE / remuestreo', 10), ('Generación con LLM', 7), ('Otra / no especificada', 4), ('EDA / léxica', 2), ('Pérdida / pesos', 2), ('GAN', 1), ('TextAttack / TAOS', 1), ('Retrotraducción', 1)]
+métodos de aumentación: [('SMOTE / remuestreo', 10), ('Generación con LLM', 6), ('Otra / no especificada', 5), ('EDA / léxica', 2), ('Pérdida / pesos', 2), ('GAN', 1), ('TextAttack / TAOS', 1), ('Retrotraducción', 1)]
 fuente de datos: [('SRS / PROMISE', 107), ('Reseñas / feedback', 19), ('Issues / GitHub', 16), ('Historias de usuario', 3)]
 datasets: [('PROMISE', 38), ('PROMISE_exp', 12), ('PURE', 8), ('SecReq', 5), ('Mendeley FR_NFR', 1)]
 multietiqueta: 17 | binaria FR/NFR: 48
