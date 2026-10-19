@@ -350,7 +350,7 @@ SMOTE~\cite{Chawla2002-SMOTE} sintetiza vectores de la clase minoritaria por int
   \item Or~\cite{Or2025-SMOTETomek} (preprint) aplicó SMOTE-Tomek a 969 requerimientos de PROMISE: la regresión logística pasó de 59.85\,\% a 76.16\,\% de exactitud.
   \item Rubaidi et al.~\cite{Rubaidi2023-SMOTETomek} abordaron el desbalance FR/NFR con algoritmos de ML.
 \end{itemize}
-Limaylla-Lunarejo et al.~\cite{Limaylla2025-Spanish} combinaron sobre- y submuestreo en PROMISE\_exp traducido al español: las clases raras mejoraron, aunque el desempeño global bajó. Como SMOTE opera sobre vectores, no produce requerimientos legibles. En los estudios cribados no se identificó su aplicación sobre representaciones de BERT para las 12 clases.
+Limaylla-Lunarejo et al.~\cite{Limaylla2025-Spanish} combinaron sobre- y submuestreo en PROMISE\_exp traducido al español: las clases raras mejoraron, aunque el desempeño global bajó. Como SMOTE opera sobre vectores, no produce requerimientos legibles. En los estudios revisados no se identificó su aplicación sobre representaciones de BERT para las 12 clases.
 
 \subsection{Aumentación léxica: EDA y variantes}
 EDA~\cite{Wei2019-EDA} genera variantes de una oración con cuatro operaciones: reemplazo por sinónimos, inserción, intercambio y eliminación aleatorios. En NFR aparece sobre todo como línea base. Sabir et al.~\cite{Sabir2021-DeepLearning,Sabir2022-Custom} compararon una aumentación propia, que concatena oraciones de la misma clase, con EDA y con un control sin aumentación. Al aumentar solo el conjunto de entrenamiento, la diferencia frente a EDA fue marginal. Ninguno de los dos estudios usó BERT.
