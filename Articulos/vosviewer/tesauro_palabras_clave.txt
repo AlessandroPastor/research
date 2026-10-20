@@ -1,0 +1,112 @@
+label	replace by
+requirement engineering	requirements engineering
+requirements engineering (re)	requirements engineering
+non-functional requirement	non-functional requirements
+nonfunctional requirements	non-functional requirements
+nonfunctional requirement	non-functional requirements
+non functional requirements	non-functional requirements
+nfr	non-functional requirements
+nfrs	non-functional requirements
+non-functional	non-functional requirements
+quality requirements	non-functional requirements
+quality requirement	non-functional requirements
+requirements classifications	requirements classification
+requirement classification	requirements classification
+software requirement classification	requirements classification
+software requirements classification	requirements classification
+requirements classification (rc)	requirements classification
+non-functional requirements classification	requirements classification
+nfr classification	requirements classification
+software requirement	software requirements
+requirements	software requirements
+software requirements specifications	software requirements
+software requirements specification	software requirements
+specifications	software requirements
+srs	software requirements
+functional requirement	functional requirements
+functionals	functional requirements
+machine-learning	machine learning
+learning systems	machine learning
+learning algorithms	machine learning
+supervised learning	machine learning
+supervised machine learning	machine learning
+learning approach	machine learning
+natural language processing systems	natural language processing
+nlp	natural language processing
+language processing	natural language processing
+natural languages	natural language processing
+computational linguistics	natural language processing
+text processing	natural language processing
+deep neural networks	deep learning
+neural networks	deep learning
+deep learning models	deep learning
+large language model	large language models
+llm	large language models
+llms	large language models
+language model	large language models
+language models	large language models
+generative ai	large language models
+generative artificial intelligence	large language models
+bert model	bert
+bidirectional encoder representations from transformers	bert
+transformer	transformers
+transformer modeling	transformers
+transformer models	transformers
+transformer model	transformers
+zero-shot	zero-shot learning
+zero shot learning	zero-shot learning
+few-shot	few-shot learning
+few shot learning	few-shot learning
+text augmentation	data augmentation
+data augmentations	data augmentation
+imbalanced data	class imbalance
+imbalanced datasets	class imbalance
+data imbalance	class imbalance
+class imbalance problem	class imbalance
+multi-label classifications	multi-label classification
+multi-labels	multi-label classification
+multilabel classification	multi-label classification
+multiclass classification	multi-class classification
+convolutional neural networks	convolutional neural network
+cnn	convolutional neural network
+lstm	long short-term memory
+bilstm	long short-term memory
+support vector machines	support vector machine
+svm	support vector machine
+prompting	prompt engineering
+prompt	prompt engineering
+user reviews	user feedback
+app reviews	user feedback
+online user feedback	user feedback
+promise	promise dataset
+promise nfr	promise dataset
+classification (of information)	
+classification	
+computer software selection and evaluation	
+application programs	
+computer software	
+macros	
+search engines	
+open systems	
+information systems	
+information retrieval systems	
+engineering education	
+f1 scores	
+performance	
+semantics	
+automation	
+benchmarking	
+classification tasks	
+large datasets	
+labeled data	
+decision making	
+decision trees	
+nearest neighbor search	
+functional programming	
+learning	
+state of the art	
+data mining	
+software design	
+artificial intelligence	
+computer aided software engineering	
+requirement analysis	
