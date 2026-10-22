@@ -83,16 +83,25 @@ Errores o cambios en alguna fórmula (copiar el mensaje exacto):
 
 ---
 
-## 5. PDF de texto completo — *responsables: los tres* (**esperar la lista**)
+## 5. PDF de texto completo — *responsables: los tres*
 
-No descargar nada todavía. Primero Claude descarga los de acceso abierto y deja en
-`Articulos\PDF\FALTANTES.csv` la lista de los que faltan (ID, título, DOI y enlace).
+Claude ya descargó los de acceso abierto que permiten descarga automática (33) en
+`Articulos\PDF_semillas` … `07_revisiones`. Faltan **135**, listados en
+**`Articulos\PDF\FALTANTES.xlsx`** (con enlaces clicables):
 
-| ✔ | Archivo | Carpeta |
+| Acceso | Cuántos | Cómo |
 |---|---|---|
-| [ ] | Cada PDF faltante, nombrado con su ID (ejemplo: `250.pdf`) | `Articulos\PDF\` |
+| Abierto | 55 | Clic en "Abrir" → botón PDF. Gratis, sin cuenta. **Empezar por estos.** |
+| De pago | 74 | Entrar primero con la cuenta de la biblioteca de la UPeU y luego "Abrir". |
+| Sin DOI | 6 | El enlace abre Google Scholar con el título. |
 
----
+| ✔ | Qué | Dónde |
+|---|---|---|
+| [ ] | Cada PDF guardado en la carpeta y con el **nombre exacto** que indica el Excel | `Articulos\PDF\<carpeta>\` |
+| [ ] | Columna "¿Descargado?" marcada en el Excel | `Articulos\PDF\FALTANTES.xlsx` |
+
+Sugerencia para repartir: Alessandro → `03_aumentacion`, `01_semillas`, `02_trabajos_base`;
+Andrés → `04_bert_transformers`; Cristian → `05_llm`, `06_ml_dl_clasico`, `07_revisiones`.
 
 ## Resumen de responsables
 

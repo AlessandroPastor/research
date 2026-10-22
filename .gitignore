@@ -28,3 +28,4 @@ Articulos/vosviewer/*.png
 Articulos/PDF/*
 !Articulos/PDF/LEEME.txt
 !Articulos/PDF/FALTANTES.csv
+!Articulos/PDF/FALTANTES.xlsx
