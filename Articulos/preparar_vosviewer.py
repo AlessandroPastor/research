@@ -74,15 +74,26 @@ DESCARTAR = ["classification (of information)", "classification", "computer soft
              "performance", "semantics", "automation", "benchmarking", "classification tasks", "large datasets",
              "labeled data", "decision making", "decision trees", "nearest neighbor search", "functional programming",
              "learning", "state of the art", "data mining", "software design", "artificial intelligence",
-             "computer aided software engineering", "requirement analysis"]
+             "computer aided software engineering", "requirement analysis",
+             # términos de la propia búsqueda o ajenos al tema (excluidos tras revisar el primer mapa)
+             "requirements engineering", "software engineering", "statistical tests", "network security",
+             "software reliability"]
+
+# Si un término destino se descarta, sus sinónimos también se descartan (VOSviewer no admite que un
+# término aparezca a la vez como "label" y como "replace by").
+reglas = {}
+for destino, sinonimos in UNIR.items():
+    for s in sinonimos:
+        reglas[s] = "" if destino in DESCARTAR else destino
+for d in DESCARTAR:
+    reglas[d] = ""
+conflictos = set(reglas) & {v for v in reglas.values() if v}
+assert not conflictos, f"Términos a la vez en LABEL y en REPLACE BY: {conflictos}"
 
 with open(os.path.join(SALIDA, "tesauro_palabras_clave.txt"), "w", encoding="utf-8") as fh:
     fh.write("label\treplace by\n")
-    for destino, sinonimos in UNIR.items():
-        for s in sinonimos:
-            fh.write(f"{s}\t{destino}\n")
-    for d in DESCARTAR:
-        fh.write(f"{d}\t\n")
+    for label, destino in reglas.items():
+        fh.write(f"{label}\t{destino}\n")
 
 print(f"{len(filas)} estudios -> Articulos/vosviewer/incluidos_scopus.csv")
 print("tesauro -> Articulos/vosviewer/tesauro_palabras_clave.txt")

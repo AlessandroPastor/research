@@ -1,6 +1,6 @@
 label	replace by
-requirement engineering	requirements engineering
-requirements engineering (re)	requirements engineering
+requirement engineering	
+requirements engineering (re)	
 non-functional requirement	non-functional requirements
 nonfunctional requirements	non-functional requirements
 nonfunctional requirement	non-functional requirements
@@ -110,3 +110,8 @@ software design
 artificial intelligence	
 computer aided software engineering	
 requirement analysis	
+requirements engineering	
+software engineering	
+statistical tests	
+network security	
+software reliability	

@@ -63,7 +63,7 @@
 \IEEEauthorblockA{Escuela Profesional de Ingeniería de Sistemas\\
 Universidad Peruana Unión, Juliaca, Perú\\
 Asesor: Mg. Esteban Tocto Cano}
-}
+}   
 
 \maketitle
 
@@ -90,14 +90,6 @@ Este artículo revisa la literatura que fundamenta una investigación con tres o
   \item \textbf{PR4.} ¿Qué fuentes de datos se usan y cómo se amplían los conjuntos?
 \end{itemize}
 
-% El mapa (figura a doble columna) se declara aquí para que aparezca en la página 2.
-\begin{figure*}[!t]
-\centering
-\imagen[0.78\textwidth]{mapa_literatura.pdf}
-\caption{Mapa de co-citación de los estudios incluidos. Los cuadrados son los trabajos base y su número indica cuántos estudios los citan; los círculos son los estudios incluidos, ubicados entre los trabajos base que citan y coloreados según su enfoque. Los estudios con LLM (naranja) se concentran entre NoRBERT, PRCBERT y Alhoshan et al.~\cite{Alhoshan2023-ZeroShot}. SMOTE (6 citas) y EDA (5) quedan en la periferia.}
-\label{fig:mapalit}
-\end{figure*}
-
 La Fig.~\ref{fig:bloques} organiza los bloques temáticos de la revisión. La Sección~\ref{sec:alcance} delimita el alcance, la~\ref{sec:panorama} el panorama bibliométrico, la~\ref{sec:evolucion} la evolución de los clasificadores (PR1 y PR3), la~\ref{sec:aumentacion} el desbalance y la aumentación (PR2) y la~\ref{sec:ampliacion} la ampliación de conjuntos (PR4). Las Secciones~\ref{sec:comparativo} a~\ref{sec:propuesta} presentan la comparación de estudios, la discusión de cada pregunta, las brechas y sus implicaciones para la investigación propuesta.
 
 \begin{figure}[!t]
@@ -121,12 +113,27 @@ La Fig.~\ref{fig:bloques} organiza los bloques temáticos de la revisión. La Se
 \label{fig:bloques}
 \end{figure}
 
+% Mapas de VOSviewer (doble columna): se declaran aquí para que aparezcan en las páginas 2 y 3.
+\begin{figure*}[!t]
+\centering
+\imagen[0.86\textwidth]{vos_palabras_red.png}
+\caption{Mapa de co-ocurrencia de palabras clave de los 145 estudios revisados, elaborado con VOSviewer~\cite{VanEck2010-VOSviewer}. Se muestran las 29 palabras clave con al menos cinco apariciones, tras unir sinónimos y excluir términos genéricos. El tamaño de cada nodo es proporcional al número de estudios que usan la palabra, las líneas indican co-ocurrencia y los colores identifican los cuatro clústeres.}
+\label{fig:mapalit}
+\end{figure*}
+
+\begin{figure*}[!t]
+\centering
+\imagen[0.86\textwidth]{vos_palabras_anios.png}
+\caption{Mapa de la Fig.~\ref{fig:mapalit} coloreado según el año promedio de publicación de los estudios que usan cada palabra clave, elaborado con VOSviewer~\cite{VanEck2010-VOSviewer}. Los valores fuera de 2022--2025 se muestran en el extremo de la escala.}
+\label{fig:mapaanios}
+\end{figure*}
+
 %==============================================================================
 \section{Alcance de la revisión}\label{sec:alcance}
 %==============================================================================
 La revisión abarca los estudios primarios, publicados entre 2017 y 2026, que clasifican automáticamente requerimientos de software en tipos o en atributos de calidad mediante aprendizaje automático, aprendizaje profundo, transformers o LLM. Se analizaron 145 estudios, seleccionados en Scopus con criterios explícitos de inclusión y exclusión; el protocolo completo de búsqueda y selección se presenta en la revisión sistemática asociada a esta investigación. Cada estudio se caracterizó según su enfoque principal, las técnicas que emplea contra el desbalance, la fuente del texto que clasifica y los conjuntos de datos que utiliza.
 
-El análisis se organizó en torno a dos grupos de trabajos. El primero lo forman los trabajos base que más citan los 145 estudios. Los más citados del dominio son Kurtanović y Maalej~\cite{Kurtanovic2017-SupervisedML} (71), NoRBERT~\cite{Hey2020-NoRBERT} (65) y Cleland-Huang et al.~\cite{ClelandHuang2007-NFR} (48). El segundo lo forman tres estudios recientes, uno por cada eje temático, que sirvieron como artículos semilla (Tabla~\ref{tab:semillas}). La Fig.~\ref{fig:mapalit} ubica a cada estudio incluido según los trabajos base que cita.
+El análisis se organizó en torno a dos grupos de trabajos. El primero lo forman los trabajos base que más citan los 145 estudios. Los más citados del dominio son Kurtanović y Maalej~\cite{Kurtanovic2017-SupervisedML} (71), NoRBERT~\cite{Hey2020-NoRBERT} (65) y Cleland-Huang et al.~\cite{ClelandHuang2007-NFR} (48). El segundo lo forman tres estudios recientes, uno por cada eje temático, que sirvieron como artículos semilla (Tabla~\ref{tab:semillas}).
 
 \begin{table}[!t]
 \caption{Artículos semilla por eje temático}
@@ -148,6 +155,16 @@ Base co-citada & Kurtanović y Maalej~\cite{Kurtanovic2017-SupervisedML}; NoRBER
 %==============================================================================
 \section{Panorama bibliométrico}\label{sec:panorama}
 %==============================================================================
+\subsection{Estructura temática}
+El mapa de co-ocurrencia de palabras clave (Fig.~\ref{fig:mapalit}) agrupa el campo en cuatro clústeres:
+\begin{itemize}
+  \item \textbf{Aprendizaje profundo y BERT} (verde): \emph{non-functional requirements}, \emph{deep learning}, BERT, \emph{transfer learning}, LSTM, SVM y CNN. Reúne la línea de clasificadores supervisados sobre especificaciones.
+  \item \textbf{Aprendizaje automático y LLM aplicados} (rojo): \emph{machine learning}, \emph{natural language processing}, \emph{large language models}, \emph{software quality}, \emph{user feedback} y \emph{open source software}. Concentra los estudios sobre texto de usuarios y proyectos abiertos.
+  \item \textbf{Clasificación con transformers y \emph{zero-shot}} (azul): \emph{requirements classification}, \emph{transformers}, \emph{zero-shot learning}, \emph{multi-label classification}, \emph{security requirements}, \emph{prompt engineering} y \emph{explainability}.
+  \item \textbf{Desbalance y aumentación} (amarillo): \emph{functional requirements}, \emph{class imbalance}, \emph{text classification} y \emph{data augmentation}. Es el clúster más pequeño y se ubica en la periferia del mapa.
+\end{itemize}
+La vista por año (Fig.~\ref{fig:mapaanios}) muestra el desplazamiento del campo. Los términos con menor año promedio son \emph{class imbalance} (2021.7), CNN (2022.8) y \emph{domain knowledge} (2023.0). Los más recientes son \emph{prompt engineering} (2025.2), \emph{software quality} (2025.0) y \emph{large language models}, \emph{transformers}, \emph{explainability} y \emph{security requirements} (2024.8). Es decir, el desbalance se estudió sobre todo con las técnicas anteriores, y la línea más reciente, centrada en los LLM, apenas lo retoma.
+
 \subsection{Evolución temporal y enfoques}
 La producción es reciente y crece rápido: 90 de los 145 estudios (62\,\%) son de 2025 o 2026, aunque los datos de 2026 son parciales (Fig.~\ref{fig:evolucion}). La figura también muestra el relevo de enfoques. El aprendizaje automático clásico está presente en todo el periodo, pero en menor proporción cada año. Los transformers aparecen en 2020 con NoRBERT~\cite{Hey2020-NoRBERT} y son el enfoque principal de 68 estudios. Los LLM entran en 2022 y suman 45 estudios, 37 de ellos de 2025--2026. El aprendizaje profundo sin transformers queda en 10 estudios.
 

@@ -1,0 +1,30 @@
+id	label	x	y	cluster	weight<Links>	weight<Occurrences>	weight<Total link strength>	score<Avg. pub. year>
+3	active learning	0.2805	0.7162	1	11.0	5.0	21.0	2023.2
+61	bert	-0.5526	0.3532	2	20.0	22.0	89.0	2023.8636
+95	class imbalance	-0.8721	-0.7392	4	11.0	7.0	22.0	2022
+146	convolutional neural network	-0.9426	0.407	2	15.0	6.0	29.0	2022.8333
+171	data augmentation	-1.027	-0.2774	4	14.0	6.0	25.0	2024.1667
+189	deep learning	-0.6906	0.1008	2	25.0	36.0	174.0	2023.9167
+212	domain knowledge	-0.3784	0.834	2	13.0	6.0	26.0	2023.0
+224	embeddings	-0.2352	0.2773	1	22.0	12.0	71.0	2024.25
+255	explainability	1.0331	0.1552	3	13.0	5.0	22.0	2024.8
+283	functional requirements	-0.1974	-0.7603	4	23.0	31.0	147.0	2024.3226
+389	large language models	0.4349	-0.3582	1	26.0	46.0	200.0	2024.8478
+413	long short-term memory	-0.7115	0.6361	2	17.0	11.0	50.0	2024.1818
+419	machine learning	-0.0039	-0.3277	1	28.0	70.0	293.0	2023.9286
+462	multi-class classification	0.7331	0.7034	3	13.0	5.0	19.0	2024.0
+464	multi-label classification	0.4459	0.1353	3	19.0	11.0	54.0	2024.9091
+484	natural language processing	-0.1336	-0.0287	1	28.0	61.0	265.0	2024.1967
+496	non-functional requirements	-0.2648	-0.3921	2	26.0	67.0	273.0	2023.791
+514	open source software	0.3855	-0.9852	1	12.0	8.0	33.0	2023.5
+562	prompt engineering	1.0383	-0.4022	3	12.0	6.0	21.0	2025
+601	requirements classification	0.0889	0.2054	3	28.0	86.0	349.0	2024.3256
+633	security requirements	0.7669	0.4099	3	17.0	11.0	48.0	2024.8182
+684	software quality	0.2647	-0.5823	1	23.0	21.0	100.0	2024.9524
+692	software requirements	0.1494	-0.1102	1	28.0	69.0	284.0	2024.5072
+722	support vector machine	-0.4933	-0.1787	2	17.0	7.0	34.0	2024.2857
+747	text classification	-0.701	-0.3771	4	14.0	6.0	25.0	2023.3333
+760	transfer learning	-0.0831	0.6065	2	22.0	17.0	97.0	2023.7059
+770	transformers	0.3554	0.4487	3	20.0	16.0	80.0	2024.8125
+786	user feedback	0.6711	-0.4471	1	18.0	10.0	42.0	2024.9
+811	zero-shot learning	0.6394	-0.0225	3	21.0	13.0	71.0	2024.1538
