@@ -86,7 +86,7 @@ Errores o cambios en alguna fórmula (copiar el mensaje exacto):
 ## 5. PDF de texto completo — *responsables: los tres*
 
 Claude ya descargó los de acceso abierto que permiten descarga automática (33) en
-`Articulos\PDF_semillas` … `07_revisiones`. Faltan **135**, listados en
+`Articulos\PDF_semillas` … `07_revisiones`. Faltan **135**, listados en
 **`Articulos\PDF\FALTANTES.xlsx`** (con enlaces clicables):
 
 | Acceso | Cuántos | Cómo |
