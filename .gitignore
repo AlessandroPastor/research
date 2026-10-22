@@ -25,3 +25,6 @@ Articulos/ACM/*
 !Articulos/*/LEEME.txt
 Articulos/vosviewer/*.csv
 Articulos/vosviewer/*.png
+Articulos/PDF/*
+!Articulos/PDF/LEEME.txt
+!Articulos/PDF/FALTANTES.csv
