@@ -1,0 +1,117 @@
+{
+  "273": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE (625: 254 FR, 371 NFR); además PURE, REQuestA y Aerospace (otras tareas)", "Idioma": "Inglés",
+    "N.º de requerimientos": "625", "Tarea": "Otra", "N.º de clases": "No se precisa en el texto revisado (comparan contra el estado del arte en PROMISE)",
+    "¿Reporta la distribución de clases?": "Parcial", "Técnica contra el desbalance": "Ninguna", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "ChatGPT y Gemini con prompts de tres niveles de conocimiento experto", "Uso del LLM": "Clasificador zero-shot",
+    "Protocolo de evaluación": "Solo los conjuntos de prueba de las particiones estándar; cinco particiones aleatorias promediadas", "¿Controla duplicados entre entrenamiento y prueba?": "No se indica",
+    "Métricas reportadas": "Precisión, exhaustividad, F1 y promedio ponderado", "F1 macro": "", "F1 ponderado": "ChatGPT y Gemini 0.78 frente a 0.96 del mejor predictor específico",
+    "F1 de clases minoritarias": "No se reporta", "Línea base comparada": "Predictores de ML/DL específicos de la tarea y modelos de lenguaje tradicionales", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No", "Limitaciones declaradas": "Inestabilidad de las predicciones entre iteraciones del mismo prompt", "Aporte a la PR": "PR3",
+    "Notas del revisor": "Los LLM generativos quedan 18 puntos por debajo de los modelos ajustados en clasificación. Señalan que los LLM tienen dificultades con el equilibrio entre precisión y exhaustividad.",
+    "calidad": {"QA1": 1, "QA2": 0.5, "QA3": 0.5, "QA4": 0.5, "QA5": 1, "QA6": 0.5, "QA7": 0, "QA8": 1},
+    "obs_calidad": "QA2 parcial: las clases de PROMISE no se precisan. QA6 parcial: promedio de cinco particiones, sin pruebas."
+  },
+  "284": {
+    "Elegible tras texto completo": "No", "Motivo si no es elegible": "CE2",
+    "Notas del revisor": "Clasificación multietiqueta de 377 requerimientos industriales en taxonomías jerárquicas de dominio (1968 etiquetas, 6 espacios de salida) para trazabilidad; las clases no son tipos de requerimiento. Mismo grupo y tarea que el estudio 181."
+  },
+  "323": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE original; PROMISE reetiquetado según ISO/IEC 25010 (por los autores); PURE", "Idioma": "Inglés",
+    "N.º de requerimientos": "625 (PROMISE); PURE", "Tarea": "Otra", "N.º de clases": "Binaria FR/NFR; multiclase de NFR (original y reetiquetada)",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Selección estratificada de ejemplos few-shot", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "GPT-4o, GPT-3.5-turbo, DeepSeek-V3, Gemma-3, LLaMA-3.1, LLaMA-3.2, Mistral", "Uso del LLM": "Clasificador few-shot",
+    "Protocolo de evaluación": "Partición 80/20; ejemplos few-shot elegidos al azar, por embeddings o por TF-IDF, en cantidad creciente", "¿Controla duplicados entre entrenamiento y prueba?": "No se indica",
+    "Métricas reportadas": "F1 ponderado y F1 macro; precisión y exhaustividad por clase", "F1 macro": "PROMISE original multiclase: 0.60–0.80 según el modelo",
+    "F1 ponderado": "Binaria: LLaMA-3.1-8B 0.95 (supera el estado del arte en 1 punto); multiclase original: DeepSeek-V3 0.92; reetiquetado: GPT-4o 0.905",
+    "F1 de clases minoritarias": "El F1 macro es menor que el ponderado en todos los modelos", "Línea base comparada": "Estado del arte en PROMISE y modelos ajustados", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No se indica", "Limitaciones declaradas": "Parcial", "Aporte a la PR": "PR2, PR3, PR5",
+    "Notas del revisor": "Sobre-prompting: más ejemplos pueden empeorar el resultado. Los autores concluyen que los LLM se concentran en las clases dominantes y descuidan las menos frecuentes (macro < ponderado).",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 0.5, "QA4": 1, "QA5": 1, "QA6": 0, "QA7": 0, "QA8": 0.5},
+    "obs_calidad": "QA4 completo: reporta F1 macro y ponderado. Sin repositorio identificado."
+  },
+  "13": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE NFR (sin el único ejemplo de portabilidad)", "Idioma": "Inglés",
+    "N.º de requerimientos": "624", "Tarea": "Multiclase FR+NFR", "N.º de clases": "11",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Ninguna (elimina la clase con un solo ejemplo)", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "12 clasificadores de scikit-learn (NB, SVM, RL, DT, ET, KNN, MLP, propagación de etiquetas)", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Validación cruzada K-fold repetida", "¿Controla duplicados entre entrenamiento y prueba?": "No",
+    "Métricas reportadas": "Precisión, exhaustividad y F1 promediados por clase; varianza; tiempo de ejecución", "F1 macro": "RL 0.76 y SVM entre los mejores (F1 calculado con P y R promediados por clase)",
+    "F1 ponderado": "", "F1 de clases minoritarias": "No se reporta por clase", "Línea base comparada": "Comparación entre clasificadores", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No", "Limitaciones declaradas": "No se identificó una sección de limitaciones", "Aporte a la PR": "PR1, PR4",
+    "Notas del revisor": "Los autores eliminan la clase PO por tener un solo ejemplo. Proponen como trabajo futuro aumentar los ejemplos con oraciones de Internet.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 0.5, "QA4": 0.5, "QA5": 0.5, "QA6": 0.5, "QA7": 0, "QA8": 0},
+    "obs_calidad": "QA4 parcial: F1 derivado de P y R promediados por clase. QA6 parcial: reporta varianza."
+  },
+  "172": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE_exp", "Idioma": "Inglés",
+    "N.º de requerimientos": "969", "Tarea": "Multiclase NFR", "N.º de clases": "Subclases de NFR de PROMISE_exp",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Sobremuestreo (imbalanced-learn)", "¿Aumenta solo el entrenamiento?": "No",
+    "Clasificador(es)": "SVM, RL, KNN, NB, votación; Bi-LSTM; híbrido Bi-LSTM + SVM", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Validación cruzada estratificada de 10 pliegues sobre el conjunto ya sobremuestreado", "¿Controla duplicados entre entrenamiento y prueba?": "No",
+    "Métricas reportadas": "Exactitud, precisión, exhaustividad y F1 por pliegue", "F1 macro": "", "F1 ponderado": "Híbrido ≈ 0.98–0.99 en todos los pliegues",
+    "F1 de clases minoritarias": "No se reporta por clase", "Línea base comparada": "Modelos propios de ML y DL", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No", "Limitaciones declaradas": "No se identificó una sección de limitaciones", "Aporte a la PR": "PR2, PR5",
+    "Notas del revisor": "El sobremuestreo se aplica a todo el conjunto (Fig. 2, 'oversampled dataset') antes de la validación cruzada, así que las copias de un mismo requerimiento pueden quedar en entrenamiento y prueba. Las exactitudes > 0.98 son consistentes con esa fuga.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 0, "QA4": 0.5, "QA5": 0.5, "QA6": 0.5, "QA7": 0, "QA8": 0},
+    "obs_calidad": "QA3 = 0: remuestreo previo a la partición (riesgo de fuga). QA6 parcial: resultados por pliegue."
+  },
+  "19": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE NFR", "Idioma": "Inglés",
+    "N.º de requerimientos": "625", "Tarea": "Multiclase FR+NFR", "N.º de clases": "12",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Ninguna", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "NFRId: similitud semántica con Word2Vec y palabras clave (sin entrenamiento supervisado)", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Aplicación directa sobre todo el conjunto con umbral λ = 0.5", "¿Controla duplicados entre entrenamiento y prueba?": "No aplica",
+    "Métricas reportadas": "Precisión, exhaustividad y F1 por clase (TP, FP, FN)", "F1 macro": "",
+    "F1 ponderado": "Precisión media 0.53 y exhaustividad 0.83", "F1 de clases minoritarias": "PO 0.00; FT 0.12; MN 0.18; US 0.67",
+    "Línea base comparada": "Cleland-Huang et al. y Slankas y Williams", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No", "Limitaciones declaradas": "Precisión baja", "Aporte a la PR": "PR1, PR4",
+    "Notas del revisor": "Las clases raras (PO, FT, MN) quedan con F1 cercano a cero, incluso sin entrenamiento supervisado.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 0.5, "QA4": 1, "QA5": 1, "QA6": 0, "QA7": 0, "QA8": 0.5},
+    "obs_calidad": "QA4 completo: tabla por clase. Sin entrenamiento, por lo que no hay partición que evaluar."
+  },
+  "226": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "Software Requirements Dataset de Kaggle (977 filas; 976 tras quitar duplicados)", "Idioma": "Inglés",
+    "N.º de requerimientos": "976", "Tarea": "Multiclase FR+NFR", "N.º de clases": "No se precisa en el texto revisado",
+    "¿Reporta la distribución de clases?": "No", "Técnica contra el desbalance": "Ninguna", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "Prototypical Networks, Matching Networks, MAML (aprendizaje few-shot)", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Partición 80/20; los autores escriben que 'es probable' que se haya usado muestreo estratificado", "¿Controla duplicados entre entrenamiento y prueba?": "Sí",
+    "Métricas reportadas": "Exactitud, precisión y exhaustividad", "F1 macro": "", "F1 ponderado": "Exactitud: Prototypical 0.82; MAML 0.769",
+    "F1 de clases minoritarias": "No se reporta", "Línea base comparada": "Comparación entre algoritmos few-shot", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "Parcial", "Limitaciones declaradas": "No se identificó una sección de limitaciones", "Aporte a la PR": "PR4",
+    "Notas del revisor": "Quita duplicados antes de partir (buena práctica). El protocolo de partición no está descrito con certeza por los propios autores.",
+    "calidad": {"QA1": 1, "QA2": 0.5, "QA3": 0.5, "QA4": 0, "QA5": 0.5, "QA6": 0, "QA7": 0, "QA8": 0},
+    "obs_calidad": "QA4 = 0: solo exactitud, precisión y exhaustividad globales."
+  },
+  "237": {
+    "Elegible tras texto completo": "No", "Motivo si no es elegible": "CE2",
+    "Notas del revisor": "Réplica de Mekala et al. (RE 2021): clasifica reseñas de apps en útiles o inútiles para requerimientos (Helpful/Useless), no por tipo de requerimiento."
+  },
+  "2": {
+    "Fuente del texto": "Reseñas/feedback", "Conjunto(s) de datos": "300 reseñas de la App Store etiquetadas por los autores (de 932 388 reseñas de 40 apps)", "Idioma": "Inglés",
+    "N.º de requerimientos": "300", "Tarea": "Binaria FR/NFR", "N.º de clases": "2 (150 y 150)",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Ninguna (muestra balanceada por diseño)", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "Autoetiquetado semisupervisado (self-training y otros) con k-NN, C4.5, NB y SVM", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Validación cruzada estratificada de 10 pliegues (DOB-SCV)", "¿Controla duplicados entre entrenamiento y prueba?": "No se indica",
+    "Métricas reportadas": "Exactitud transductiva e inductiva", "F1 macro": "", "F1 ponderado": "",
+    "F1 de clases minoritarias": "No aplica", "Línea base comparada": "Clasificación supervisada clásica", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "No", "Limitaciones declaradas": "Sección de amenazas a la validez", "Aporte a la PR": "PR4",
+    "Notas del revisor": "Muestra pequeña balanceada artificialmente; útil como antecedente del aprendizaje semisupervisado, no del desbalance.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 1, "QA4": 0, "QA5": 0.5, "QA6": 0, "QA7": 0, "QA8": 1},
+    "obs_calidad": "QA4 = 0: solo exactitud."
+  },
+  "98": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE_exp", "Idioma": "Inglés",
+    "N.º de requerimientos": "969", "Tarea": "Multiclase FR+NFR", "N.º de clases": "12",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Descomposición del entrenamiento en dos subconjuntos balanceados y clasificación jerárquica (HC4RC)", "¿Aumenta solo el entrenamiento?": "Sí",
+    "Clasificador(es)": "HC4RC (SVM con selección de rasgos por roles semánticos); K&M, Yin y NoRBERT reimplementados", "Uso del LLM": "No usa LLM",
+    "Protocolo de evaluación": "Validación cruzada de 10 pliegues y por proyecto (p-fold)", "¿Controla duplicados entre entrenamiento y prueba?": "No",
+    "Métricas reportadas": "Precisión, exhaustividad y F1 por clase; promedios macro y micro", "F1 macro": "HC4RC 0.51 (10-fold) y 0.50 (p-fold); K&M 0.44 / 0.39; Yin 0.47 / 0.22; NoRBERT el más alto",
+    "F1 ponderado": "Micro: HC4RC 0.63 / 0.64; K&M 0.58 / 0.61", "F1 de clases minoritarias": "Por clase; HC4RC gana en A, MN y L; NoRBERT en FT y PO",
+    "Línea base comparada": "Kurtanović y Maalej, Yin et al., NoRBERT", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "Sí", "Limitaciones declaradas": "Sección de amenazas a la validez", "Aporte a la PR": "PR1, PR2, PR5",
+    "Notas del revisor": "Critica que NoRBERT reporte F1 ponderado, que favorece a las clases mayoritarias, y defiende el F1 macro. Argumenta que el sobremuestreo puede sobreajustar a las clases minoritarias. Código en Zenodo.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 1, "QA4": 1, "QA5": 1, "QA6": 0, "QA7": 1, "QA8": 1},
+    "obs_calidad": "QA4 completo: macro, micro y por clase. Sin prueba estadística."
+  }
+}

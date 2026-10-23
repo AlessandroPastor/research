@@ -2,7 +2,7 @@
 
 \addcontentsline{toc}{section}{Anexo A. Cadenas de búsqueda completas}
 
-\subsection*{Scopus (Advanced document search)}
+Las cuatro cadenas se ejecutaron en Scopus (\emph{Advanced document search}) en octubre de 2026. Los registros de las cuatro se unieron y se eliminaron los duplicados entre cadenas.
 
 \textbf{S1: aumentación y desbalance.}
 
@@ -19,69 +19,3 @@
 \textbf{S4: GitHub y auto-etiquetado.}
 
 \begin{flushleft}\ttfamily\scriptsize\detokenize{TITLE-ABS-KEY ( ( ( "non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs ) W/3 requirement* ) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR" OR "PROMISE_exp" ) AND TITLE-ABS-KEY ( classif* OR categori* ) AND TITLE-ABS-KEY ( GitHub OR "issue tracker*" OR "issue report*" OR "open source" OR "open-source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning" OR "weak supervision" OR "dataset construction" OR "gold standard" ) AND PUBYEAR > 2016 AND PUBYEAR < 2027 AND ( LIMIT-TO ( DOCTYPE,"ar" ) OR LIMIT-TO ( DOCTYPE,"cp" ) OR LIMIT-TO ( DOCTYPE,"re" ) OR LIMIT-TO ( DOCTYPE,"ch" ) ) AND ( LIMIT-TO ( LANGUAGE,"English" ) OR LIMIT-TO ( LANGUAGE,"Spanish" ) )}\end{flushleft}
-
-\subsection*{Web of Science Core Collection (Advanced search)}
-
-\textbf{W1: aumentación y desbalance.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=("data augmentation" OR "text augmentation" OR "easy data augmentation" OR TextAttack OR TAOS OR "synthetic data" OR "synthetic sample*" OR oversampl* OR "over-sampling" OR resampl* OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data*" OR "imbalanced class*" OR "minority class*" OR "back translation" OR paraphras*) AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)}\end{flushleft}
-
-\textbf{W2: BERT y transformers.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=(BERT OR RoBERTa OR DistilBERT OR NoRBERT OR transformer* OR "pre-trained language model*" OR "pretrained language model*" OR "transfer learning" OR "fine tun*") AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)}\end{flushleft}
-
-\textbf{W3: LLM como clasificador.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=("large language model*" OR LLM OR LLMs OR GPT* OR ChatGPT OR "generative AI" OR Llama OR Gemma OR Mistral OR Claude OR "zero-shot" OR "few-shot" OR "in-context learning" OR prompt*) AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)}\end{flushleft}
-
-\textbf{W4: GitHub y auto-etiquetado.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{TS=((("non-functional" OR "non functional" OR nonfunctional OR quality OR NFR OR NFRs) NEAR/3 requirement*) OR "software requirement*" OR "requirements specification*" OR "requirement* classification" OR "PROMISE NFR") AND TS=(classif* OR categori*) AND TS=(GitHub OR "issue tracker*" OR "issue report*" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning" OR "weak supervision" OR "dataset construction" OR "gold standard") AND PY=(2017-2026) AND DT=(Article OR "Proceedings Paper" OR Review OR "Book Chapter") AND LA=(English OR Spanish)}\end{flushleft}
-
-\subsection*{IEEE Xplore (Command Search)}
-
-Filtros aplicados en la interfaz: años 2017--2026; tipo de contenido: conferencias, revistas, magazines y libros.
-
-\textbf{I1: aumentación y desbalance.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND ("data augmentation" OR "text augmentation" OR "synthetic data" OR oversampling OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data" OR TextAttack OR "back translation")}\end{flushleft}
-
-\textbf{I2: BERT y transformers.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND (BERT OR RoBERTa OR DistilBERT OR transformer* OR "pre-trained language model*" OR "transfer learning" OR "fine-tuning")}\end{flushleft}
-
-\textbf{I3: LLM como clasificador.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND ("large language model*" OR LLM* OR GPT* OR ChatGPT OR "generative AI" OR "zero-shot" OR "few-shot" OR prompt*)}\end{flushleft}
-
-\textbf{I4: GitHub y auto-etiquetado.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{("non-functional requirement*" OR "nonfunctional requirement*" OR "quality requirement*" OR "software requirement*" OR "requirements specification*" OR "requirements classification") AND (classif* OR categori*) AND (GitHub OR "issue report*" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-label*" OR "active learning")}\end{flushleft}
-
-\subsection*{ACM Digital Library (Advanced Search, campo \emph{Abstract})}
-
-Las tres filas se combinan con AND. Filtro de fecha de publicación: 2017--2026.
-
-\textbf{Fila 1 (común):}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{"non-functional requirements" OR "non-functional requirement" OR "nonfunctional requirements" OR "quality requirements" OR "software requirements" OR "requirements classification" OR "requirements specification"}\end{flushleft}
-
-\textbf{Fila 2 (común):}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{classification OR classify OR classifying OR categorization OR categorizing}\end{flushleft}
-
-\textbf{A1 --- Fila 3: aumentación y desbalance.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{"data augmentation" OR "text augmentation" OR "synthetic data" OR oversampling OR SMOTE OR Tomek OR "class imbalance" OR "imbalanced data" OR TextAttack OR "back translation"}\end{flushleft}
-
-\textbf{A2 --- Fila 3: BERT y transformers.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{BERT OR RoBERTa OR DistilBERT OR transformer OR transformers OR "pre-trained language model" OR "pretrained language model" OR "transfer learning" OR "fine-tuning"}\end{flushleft}
-
-\textbf{A3 --- Fila 3: LLM como clasificador.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{"large language model" OR "large language models" OR LLM OR LLMs OR GPT OR ChatGPT OR "generative AI" OR "zero-shot" OR "few-shot" OR prompting}\end{flushleft}
-
-\textbf{A4 --- Fila 3: GitHub y auto-etiquetado.}
-
-\begin{flushleft}\ttfamily\scriptsize\detokenize{GitHub OR "issue reports" OR "open source" OR "semi-supervised" OR "self-training" OR "pseudo-labeling" OR "active learning"}\end{flushleft}

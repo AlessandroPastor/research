@@ -1,0 +1,148 @@
+% Archivo generado por Articulos/resultados_rsl.py. No editar a mano.
+
+\newcommand{\nS}{84 / 214 / 173 / 94}
+\newcommand{\nIdent}{565}
+\newcommand{\nDup}{131}
+\newcommand{\nCrib}{434}
+\newcommand{\nExclCrib}{277}
+\newcommand{\nCEuno}{142}
+\newcommand{\nCEdos}{129}
+\newcommand{\nCEtres}{4}
+\newcommand{\nCEcinco}{2}
+\newcommand{\nSec}{12}
+\newcommand{\nBuscados}{145}
+\newcommand{\nRecuperados}{31}
+\newcommand{\nSinAcceso}{114}
+\newcommand{\nExclTC}{5}
+\newcommand{\nSintesis}{26}
+\newcommand{\nMapeo}{140}
+\newcommand{\nTecnica}{10}
+\newcommand{\nSoloEnt}{5}
+\newcommand{\nNoEnt}{1}
+\newcommand{\nEntNoIndica}{2}
+\newcommand{\nMacro}{9}
+\newcommand{\nDupSi}{4}
+\newcommand{\nDupNo}{5}
+\newcommand{\nDupNoIndica}{13}
+\newcommand{\nEstad}{7}
+\newcommand{\nCodigo}{8}
+\newcommand{\nLLMclas}{9}
+\newcommand{\nLLMgen}{1}
+\newcommand{\qMedia}{5.5}
+\newcommand{\qMin}{2.5}
+\newcommand{\qMax}{7.5}
+\newcommand{\nCalidadAlta}{12}
+\newcommand{\nCalidadBaja}{2}
+
+\newcommand{\tablaMapeo}{%
+\begin{table}[!t]
+\caption{Estudios del mapeo por enfoque principal y periodo ($n=\nMapeo$)}
+\label{tab:mapeo}
+\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y rrr r@{}}
+\toprule
+\textbf{Enfoque} & \textbf{2017--2020} & \textbf{2021--2023} & \textbf{2024--2026} & \textbf{Total} \\
+\midrule
+ML clásico & 7 & 8 & 7 & 22 \\
+Aprendizaje profundo & 0 & 6 & 3 & 9 \\
+Transformers (BERT y variantes) & 1 & 17 & 50 & 68 \\
+LLM & 0 & 2 & 39 & 41 \\
+\midrule
+\textbf{Total} & 8 & 33 & 99 & 140 \\
+Mencionan el desbalance & 4 & 7 & 34 & 45 \\
+\bottomrule
+\end{tabularx}
+\end{table}}
+
+\newcommand{\nMapeoTecnica}{27}
+\newcommand{\nMapeoDesbalance}{45}
+\newcommand{\nMapeoPROMISE}{104}
+\newcommand{\nMapeoResenas}{17}
+\newcommand{\nMapeoIssues}{16}
+\newcommand{\nMapeoHistorias}{3}
+\newcommand{\nMapeoBinaria}{47}
+\newcommand{\nMapeoMultiet}{15}
+\newcommand{\tablaTecnicas}{%
+\begin{table}[!t]
+\caption{Técnicas contra el desbalance identificadas en los resúmenes del mapeo}
+\label{tab:tecnicas}
+\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y r@{}}
+\toprule
+\textbf{Técnica} & \textbf{Estudios} \\
+\midrule
+SMOTE / remuestreo & 10 \\
+Generación con LLM & 5 \\
+Otra / no especificada & 5 \\
+EDA / léxica & 2 \\
+Pérdida / pesos & 2 \\
+GAN & 1 \\
+TextAttack / TAOS & 1 \\
+Retrotraducción & 1 \\
+\midrule
+\textbf{Total} & 27 \\
+\bottomrule
+\end{tabularx}
+\end{table}}
+
+\newcommand{\tablaSintesis}{%
+\begin{table*}[!t]
+\caption{Estudios analizados con el texto completo ($n=\nSintesis$)}
+\label{tab:sintesis}
+\centering\scriptsize
+\begin{tabularx}{\textwidth}{@{}L{2.3cm} L{1.3cm} L{2.0cm} L{3.4cm} Y L{1.4cm} c c c c@{}}
+\toprule
+\textbf{Estudio} & \textbf{Tarea} & \textbf{Datos} & \textbf{Tratamiento del desbalance} & \textbf{Clasificador} & \textbf{F1 macro} & \textbf{Dup.} & \textbf{Est.} & \textbf{Cód.} & \textbf{QA} \\
+\midrule
+\cite{Deocadez2017-Automatically} (2017) & Bin. & 300 reseñas & Ninguna (muestra balanceada) & Semisupervisado (NB, SVM) & -- & ? & -- & -- & 4.5 \\
+\cite{Toth2018-Study} (2018) & MC 11 & PROMISE & Elimina PO & 12 clasificadores ML & 0.76$^a$ & -- & -- & -- & 4 \\
+\cite{Younas2019-Automated} (2019) & MC 12 & PROMISE & Ninguna & Similitud Word2Vec & -- & n/a & -- & -- & 5 \\
+\cite{Hey2020-NoRBERT} (2020) & Bin./NFR & PROMISE & ROS/RUS (entren.) & BERT & -- & -- & \checkmark & \checkmark & 7.5 \\
+\cite{Li2022-Automatic} (2022) & Bin./4 NFR & PROMISE reetiq. & Omite clases raras & BERT + GAT & -- & \checkmark & -- & -- & 5.5 \\
+\cite{Binkhonain2023-Machine} (2023) & MC 12 & PROMISE\_exp & Descomposición (entren.) & SVM jerárquico & 0.51 & -- & -- & \checkmark & 7 \\
+\cite{Alhoshan2023-ZeroShot} (2023) & Bin./NFR & PROMISE, SecReq & Ninguna & Zero-shot (SBERT) & -- & n/a & \checkmark & \checkmark & 7.5 \\
+\cite{Metu2024-Hybrid} (2024) & NFR & PROMISE\_exp & Sobremuestreo previo$^b$ & Bi-LSTM + SVM & -- & -- & -- & -- & 3.5 \\
+\cite{Fazelnia2024-Lessons} (2024) & MC 12 & PROMISE & ROS/RUS (entren.) & NLI, ChatGPT & -- & ? & -- & p & 6 \\
+\cite{Saleem2024-Mlr} (2024) & Multiet. & PROMISE, EHR & Ninguna & BM25 + RL & +13\,\% & ? & -- & -- & 4.5 \\
+\cite{Saleem2025-Analyzing} (2025) & MC & Kaggle (976) & Ninguna & Few-shot (redes prot.) & -- & \checkmark & -- & p & 2.5 \\
+\cite{Binkhonain2025-Prompts} (2025) & Bin./NFR & PROMISE, SecReq & Ninguna & 5 LLM few-shot & 0.92--0.94 & ? & \checkmark & p & 7 \\
+\cite{BenAmmar2025-TAOS} (2025) & MC 12 & PROMISE deriv. & TAOS (entren.) & BERT & 0.89$^c$ & -- & -- & \checkmark & 6 \\
+\cite{Groen2025-Classification} (2025) & Calidad ISO & 1,000 reseñas & Ninguna & Patrones, crowd, ChatGPT & -- & n/a & \checkmark & p & 7 \\
+\cite{Chaudhary2025-Exploring} (2025) & FR/NFR & 1,880 reseñas & Ninguna & GPT-4o mini & -- & ? & -- & \checkmark & 5.5 \\
+\cite{Pham2025-Generating} (2025) & NFR 11 & PROMISE, PURE & Generación GPT-4o (entren.) & SVM, NB, BERT & -- & \checkmark & -- & \checkmark & 6 \\
+\cite{Saleem2025-Generative} (2025) & FR/NFR & PROMISE & Ninguna & ChatGPT, Gemini & -- & ? & -- & -- & 5 \\
+\cite{Alsaleh2025-Hybrid} (2025) & Usab. 3 & Reseñas & Ninguna & BERT-BiLSTM-CNN & -- & ? & -- & p & 4.5 \\
+\cite{Shreda2025-Identifying} (2025) & NFR 5 & PURE & SMOTE + RUS & ML, CNN, BERT & -- & ? & \checkmark & -- & 4.5 \\
+\cite{Aryan2025-Multi} (2025) & Jerárq. & PROMISE(\_exp) & Ninguna & BERT, RoBERTa & 0.34--0.55 & ? & -- & \checkmark & 6 \\
+\cite{Tang2025-FewShot} (2025) & Bin./NFR & PROMISE, PURE & Ejemplos estratificados & 7 LLM few-shot & 0.60--0.80 & ? & -- & ? & 5 \\
+\cite{Kiani2026-DeepLearning} (2026) & FR 6 & PROMISE, propio & Sobremuestreo & Ensamble BERT & -- & ? & \checkmark & -- & 6.5 \\
+\cite{Khayashi2026-Deep} (2026) & Bin. & PURE (4,661) & Ninguna & CNN, LSTM, GRU & -- & ? & -- & -- & 4 \\
+\cite{Kamal2026-GitReq} (2026) & MC 8 & GitReq (6,302 issues) & Ninguna & 4 LLM zero-shot & 0.64 & \checkmark & -- & \checkmark & 6.5 \\
+\cite{Nagaraju2026-Hierarchical} (2026) & Jerárq. & PROMISE\_exp & Pesos, Focal Loss & ML, DL, BERT & 0.66 & ? & -- & -- & 5 \\
+\cite{Wellhausen2026-UserReviews} (2026) & Usab. bin. & 300 reseñas & Ninguna & GPT-4.1 & -- & n/a & \checkmark & p & 6 \\
+\bottomrule
+\end{tabularx}
+\\[2pt]\parbox{\textwidth}{\scriptsize Bin.: binaria FR/NFR; MC: multiclase con FR y NFR (número de clases); Multiet.: multietiqueta; Jerárq.: jerárquica; ROS/RUS: sobremuestreo y submuestreo aleatorios; (entren.): aplicado solo al entrenamiento. Dup.: controla duplicados entre entrenamiento y prueba; Est.: prueba estadística; Cód.: código o datos disponibles; \checkmark{} sí, -- no, ? no se indica, n/a no aplica, p parcial. QA: puntuación de calidad sobre 8. $^a$F1 calculado con la precisión y la exhaustividad promedio por clase. $^b$El sobremuestreo se aplica antes de la validación cruzada. $^c$Con fuga entre entrenamiento y prueba (Sección~\ref{sec:pr5}).}
+\end{table*}}
+
+\newcommand{\tablaCalidad}{%
+\begin{table}[!t]
+\caption{Resultado de la evaluación de calidad ($n=\nSintesis$)}
+\label{tab:calidadres}
+\centering\footnotesize
+\begin{tabularx}{\columnwidth}{@{}Y rrr r@{}}
+\toprule
+\textbf{Criterio} & \textbf{Sí} & \textbf{Parcial} & \textbf{No} & \textbf{Media} \\
+\midrule
+QA1 Objetivos & 26 & 0 & 0 & 1.00 \\
+QA2 Datos descritos & 22 & 4 & 0 & 0.92 \\
+QA3 Protocolo sin fuga & 8 & 17 & 1 & 0.63 \\
+QA4 Métricas para desbalance & 10 & 12 & 4 & 0.62 \\
+QA5 Línea base & 16 & 10 & 0 & 0.81 \\
+QA6 Variabilidad o pruebas & 6 & 6 & 14 & 0.35 \\
+QA7 Reproducibilidad & 8 & 5 & 13 & 0.40 \\
+QA8 Limitaciones & 17 & 4 & 5 & 0.73 \\
+\bottomrule
+\end{tabularx}
+\end{table}}
+

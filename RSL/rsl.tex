@@ -2,7 +2,10 @@
 % Revisión Sistemática de la Literatura (RSL) — Clasificación de requerimientos
 % no funcionales con desbalance de clases: aumentación de datos, BERT y LLM.
 % Formato: IEEEtran (conference). Bibliografía: referencias_nfr.bib
-% Anexo de cadenas: anexo_cadenas.tex (python Articulos/anexo_cadenas.py)
+%
+% Archivos generados (no editar a mano):
+%   anexo_cadenas.tex    python Articulos/anexo_cadenas.py
+%   resultados_auto.tex  python Articulos/resultados_rsl.py  (cifras y tablas)
 %
 % Los datos que aún no existen se marcan con \pendiente{...} (texto en rojo).
 %
@@ -16,6 +19,7 @@
 \usepackage[spanish]{babel}
 \usepackage{cite}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tabularx}
@@ -39,6 +43,9 @@
 \newcommand{\kappaFleiss}{\pendiente{por completar}}
 \newcommand{\kappaCohen}{\pendiente{por completar}}
 
+% Cifras y tablas calculadas a partir del cribado y del formulario de extracción
+\input{resultados_auto}
+
 \begin{document}
 
 \title{Revisión Sistemática de la Literatura sobre la Clasificación de Requerimientos No Funcionales con Desbalance de Clases: Aumentación de Datos, BERT y Modelos de Lenguaje de Gran Escala}
@@ -53,7 +60,7 @@ Asesor: Mg. Esteban Tocto Cano}
 \maketitle
 
 \begin{abstract}
-\textbf{Contexto.} La clasificación automática de requerimientos no funcionales (NFR) está limitada por el desbalance extremo de clases, y la literatura ofrece técnicas de aumentación de datos, clasificadores basados en BERT y modelos de lenguaje de gran escala (LLM) sin compararlos de forma controlada. \textbf{Objetivo.} Identificar, evaluar y sintetizar la evidencia sobre las técnicas contra el desbalance en la clasificación de NFR, los clasificadores con los que se combinan, el uso de LLM como clasificadores, las fuentes de datos y el rigor con que se evalúan. \textbf{Método.} Revisión sistemática según las guías de Kitchenham y Charters y la declaración PRISMA 2020, con búsquedas en Scopus, Web of Science, IEEE Xplore y ACM Digital Library (2017--2026), criterios explícitos de selección, validación del cribado por dos revisores, evaluación de calidad con ocho criterios y extracción de datos del texto completo. \textbf{Resultados.} \pendiente{se completan tras la extracción del texto completo}. \textbf{Conclusiones.} \pendiente{se completan tras la síntesis}.
+\textbf{Contexto.} La clasificación automática de requerimientos no funcionales (NFR) está limitada por el desbalance extremo de clases. La literatura ofrece técnicas de aumentación de datos, clasificadores basados en BERT y modelos de lenguaje de gran escala (LLM), pero no los compara de forma controlada. \textbf{Objetivo.} Identificar, evaluar y sintetizar la evidencia sobre las técnicas contra el desbalance en la clasificación de NFR, los clasificadores con que se combinan, el uso de LLM como clasificadores, las fuentes de datos y el rigor de la evaluación. \textbf{Método.} Revisión sistemática según Kitchenham y Charters y PRISMA 2020, con cuatro cadenas de búsqueda en Scopus (2017--2026), criterios explícitos de selección, validación del cribado por dos revisores, mapeo de los estudios incluidos y extracción de datos y evaluación de calidad del texto completo. \textbf{Resultados.} De \nIdent{} registros se incluyeron \nBuscados{} estudios primarios; el mapeo abarca \nMapeo{} y la síntesis del texto completo, \nSintesis. Desde 2024 la investigación se desplazó a los transformers y los LLM. Solo \nMapeoDesbalance{} estudios mencionan el desbalance en su resumen y cada estudio que lo trata evalúa una sola técnica. En el texto completo, \nMacro{} de \nSintesis{} estudios reportan F1 macro, \nDupSi{} controlan los duplicados entre entrenamiento y prueba y \nEstad{} aplican pruebas estadísticas. Ningún estudio compara varias técnicas de aumentación con BERT y contrasta el resultado con LLM. \textbf{Conclusiones.} La brecha es metodológica además de temática: la comparación pendiente debe hacerse sobre conjuntos sin duplicados, con métricas por clase y con pruebas de significancia.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -65,7 +72,7 @@ revisión sistemática, requerimientos no funcionales, desbalance de clases, aum
 %==============================================================================
 Los requerimientos no funcionales (NFR) expresan atributos de calidad como la seguridad, el desempeño, la portabilidad o la tolerancia a fallos, y su clasificación automática a partir de las especificaciones de software es una tarea consolidada en la ingeniería de requerimientos~\cite{ClelandHuang2007-NFR,Kurtanovic2017-SupervisedML,Hey2020-NoRBERT}. El principal obstáculo es el desbalance de clases: en la partición de entrenamiento que usa TAOS~\cite{BenAmmar2025-TAOS}, la clase funcional tiene 557 requerimientos y portabilidad, solo dos.
 
-El estado del arte asociado a esta investigación mostró que la aumentación de datos, los clasificadores basados en BERT y los LLM se han estudiado por separado. Cada estudio evalúa una única técnica contra el desbalance, y los LLM se comparan con transformers que no fueron entrenados con datos aumentados. Aquel análisis se basó en los resúmenes de los estudios de una sola base de datos. Esta revisión sistemática amplía la búsqueda a cuatro bases, valida la selección con dos revisores, evalúa la calidad de cada estudio y extrae los datos del texto completo, de modo que las brechas queden respaldadas por evidencia verificable.
+El estado del arte asociado a esta investigación mostró que la aumentación de datos, los clasificadores basados en BERT y los LLM se han estudiado por separado. Aquel análisis se basó en los resúmenes. Esta revisión sistemática valida la selección con dos revisores, evalúa la calidad de cada estudio y extrae los datos del texto completo, de modo que las brechas queden respaldadas por evidencia verificable. Además, examina con qué rigor se evalúan los estudios, porque una técnica de aumentación solo puede compararse con otra si el protocolo evita la fuga de datos.
 
 La Sección~\ref{sec:protocolo} describe el protocolo, la~\ref{sec:resultados} presenta los resultados por pregunta de investigación, la~\ref{sec:discusion} los discute, la~\ref{sec:amenazas} analiza las amenazas a la validez y la~\ref{sec:conclusiones} concluye.
 
@@ -111,23 +118,26 @@ PR5 & ¿Con qué rigor se evalúan los estudios (partición, fuga de datos, mét
 \end{tabularx}
 \end{table}
 
-\subsection{Fuentes y cadenas de búsqueda}
-Se consultaron cuatro bases de datos: Scopus, Web of Science Core Collection, IEEE Xplore y ACM Digital Library. En cada una se aplicaron cuatro cadenas equivalentes (Tabla~\ref{tab:busquedas}). Todas comparten un bloque común que combina los términos referidos a requerimientos no funcionales, de calidad o de software con el concepto de clasificación, y cada cadena añade uno de los ejes temáticos de la revisión. Donde la base lo permite, se emplean operadores de proximidad para evitar siglas ambiguas como SRS o EDA. Los filtros comunes son el periodo 2017--2026, los idiomas inglés y español, y los tipos artículo, ponencia, revisión y capítulo de libro. Las cadenas completas figuran en el Anexo~A. Las búsquedas en Scopus se realizaron en octubre de 2026 y las de las demás bases, en \pendiente{fecha}.
+\subsection{Fuente y cadenas de búsqueda}
+La búsqueda se realizó en Scopus, la mayor base de resúmenes y citas revisada por pares, que indexa las editoriales en que se publica la investigación en ingeniería de requerimientos: IEEE, ACM, Springer, Elsevier y MDPI. De los \nBuscados{} estudios incluidos, 53 son de IEEE, 34 de Springer, 14 de Elsevier, 10 de MDPI y 5 de ACM, entre ellos las actas de la conferencia RE y de sus talleres, la revista \emph{Requirements Engineering} y la revista \emph{Information and Software Technology}. Se descartó una búsqueda en Web of Science porque la institución no tiene suscripción activa. Los textos completos se obtuvieron de las versiones de acceso abierto y, para los artículos de Elsevier, de ScienceDirect mediante el acceso institucional.
+
+Se aplicaron cuatro cadenas (Tabla~\ref{tab:busquedas}). Todas comparten un bloque común que combina los términos referidos a requerimientos no funcionales, de calidad o de software con el concepto de clasificación, y cada cadena añade uno de los ejes de la revisión. El operador de proximidad \texttt{W/3} evita siglas ambiguas como SRS o EDA. Los filtros son el periodo 2017--2026, los idiomas inglés y español, y los tipos artículo, ponencia, revisión y capítulo de libro. Las cadenas completas figuran en el Anexo~A. La búsqueda se ejecutó en octubre de 2026.
 
 \begin{table}[!t]
-\caption{Registros recuperados por base de datos y eje temático}
+\caption{Registros recuperados en Scopus por cadena de búsqueda}
 \label{tab:busquedas}
 \centering\footnotesize
-\begin{tabularx}{\columnwidth}{@{}Y rrrr r@{}}
+\begin{tabularx}{\columnwidth}{@{}p{0.6cm} Y r@{}}
 \toprule
-\textbf{Base} & \textbf{Aum.} & \textbf{BERT} & \textbf{LLM} & \textbf{Ampl.} & \textbf{Total} \\
+\textbf{ID} & \textbf{Eje temático} & \textbf{Registros} \\
 \midrule
-Scopus & 84 & 214 & 173 & 94 & 565 \\
-Web of Science & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} \\
-IEEE Xplore & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} \\
-ACM DL & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} & \pendiente{} \\
+S1 & Aumentación de datos y desbalance & 84 \\
+S2 & BERT y transformers & 214 \\
+S3 & LLM como clasificador & 173 \\
+S4 & GitHub, auto-etiquetado y ampliación de datos & 94 \\
 \midrule
-\textbf{Total} & & & & & \pendiente{} \\
+ & \textbf{Total (con duplicados entre cadenas)} & \nIdent \\
+ & \textbf{Registros únicos} & \nCrib \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -158,9 +168,9 @@ CE5 & Duplicado, o versión resumida o extendida de otro registro. \\
 \end{table}
 
 \subsection{Proceso de selección y fiabilidad}
-La selección tiene tres etapas: eliminación de duplicados entre bases y cadenas, cribado por título y resumen, y evaluación de elegibilidad con el texto completo (Fig.~\ref{fig:prisma}). El cribado inicial se realizó con apoyo de un modelo de lenguaje, y cada decisión se documentó junto con el criterio aplicado. Para evaluar su fiabilidad, dos autores revisaron de forma independiente y ciega una muestra formada por todos los estudios incluidos y el 20\,\% de los excluidos. Cada uno trabajó con un orden aleatorio distinto y sin conocer las decisiones del cribado inicial ni las del otro revisor. El acuerdo entre los tres evaluadores, medido con el kappa de Fleiss, fue $\kappa$ = \kappaFleiss, y el kappa de Cohen entre pares osciló en \kappaCohen. Los desacuerdos se resolvieron por mayoría y discusión.
+La selección tiene tres etapas: eliminación de duplicados entre cadenas, cribado por título y resumen, y evaluación de elegibilidad con el texto completo (Fig.~\ref{fig:prisma}). El cribado inicial se realizó con apoyo de un modelo de lenguaje, y cada decisión se documentó junto con el criterio aplicado. Para evaluar su fiabilidad, dos autores revisaron de forma independiente y ciega una muestra formada por todos los estudios incluidos y el 20\,\% de los excluidos. Cada uno trabajó con un orden aleatorio distinto y sin conocer las decisiones del cribado inicial ni las del otro revisor. El acuerdo entre los tres evaluadores, medido con el kappa de Fleiss, fue $\kappa$ = \kappaFleiss, y el kappa de Cohen entre pares osciló en \kappaCohen. Los desacuerdos se resolvieron por mayoría y discusión.
 
-En la fase realizada en Scopus, los 565 registros se redujeron a 434 tras eliminar 131 duplicados entre cadenas. El cribado por título y resumen excluyó 277 (142 por CE1, 129 por CE2, 4 por CE3 y 2 por CE5), identificó 12 estudios secundarios y retuvo 145 estudios primarios para la lectura del texto completo.
+Los \nIdent{} registros se redujeron a \nCrib{} tras eliminar \nDup{} duplicados entre cadenas. El cribado por título y resumen excluyó \nExclCrib{} (\nCEuno{} por CE1, \nCEdos{} por CE2, \nCEtres{} por CE3 y \nCEcinco{} por CE5), identificó \nSec{} estudios secundarios y retuvo \nBuscados{} estudios primarios. De estos se obtuvo el texto completo de \nRecuperados{}: de las versiones de acceso abierto de las editoriales y, cuando no existían, de los preprints de arXiv de los mismos autores. La lectura excluyó \nExclTC: cuatro por CE2, porque sus clases no son tipos de requerimiento (defectos de redacción~\cite{ElHajjami2025-Synthline}, etiquetas de taxonomías de dominio para la trazabilidad en dos estudios y la utilidad de las reseñas para los requerimientos), y uno por CE3, la demostración de una herramienta sin evaluación nueva.
 
 \begin{figure}[!t]
 \centering
@@ -170,26 +180,31 @@ En la fase realizada en Scopus, los 565 registros se redujeron a 434 tras elimin
   excl/.style={draw, rounded corners=2pt, align=left, font=\scriptsize, text width=3.6cm, inner sep=3pt, fill=gray!8},
   etapa/.style={font=\scriptsize\bfseries, rotate=90, anchor=south},
   arr/.style={-{Latex[length=1.8mm]}, thick}]
-  \node[caja] (id) {Registros identificados\\Scopus 565 · WoS \pendiente{}\\IEEE \pendiente{} · ACM \pendiente{}\\$n =$ \pendiente{}};
-  \node[caja, below=6mm of id] (cr) {Registros cribados por\\título y resumen\\$n =$ \pendiente{}};
-  \node[caja, below=6mm of cr] (tc) {Textos completos\\evaluados\\$n =$ \pendiente{}};
-  \node[caja, below=6mm of tc, fill=blue!15] (in) {Estudios incluidos\\en la síntesis\\$n =$ \pendiente{}};
-  \node[excl, right=6mm of id] (e1) {Duplicados: \pendiente{}};
-  \node[excl, right=6mm of cr] (e2) {Excluidos: \pendiente{}\\(CE1, CE2, CE3, CE5)\\Secundarios (CE4): \pendiente{}};
-  \node[excl, right=6mm of tc] (e3) {Sin acceso: \pendiente{}\\Excluidos con texto\\completo: \pendiente{}};
-  \draw[arr] (id) -- (cr); \draw[arr] (cr) -- (tc); \draw[arr] (tc) -- (in);
-  \draw[arr] (id) -- (e1); \draw[arr] (cr) -- (e2); \draw[arr] (tc) -- (e3);
+  \node[caja] (id) {Registros identificados\\en Scopus (S1--S4)\\$n = \nIdent$};
+  \node[caja, below=6mm of id] (cr) {Registros cribados por\\título y resumen\\$n = \nCrib$};
+  \node[caja, below=6mm of cr] (bu) {Estudios primarios\\incluidos en el mapeo\\$n = \nBuscados$};
+  \node[caja, below=6mm of bu] (tc) {Textos completos\\evaluados\\$n = \nRecuperados$};
+  \node[caja, below=6mm of tc, fill=blue!15] (in) {Estudios en la síntesis\\del texto completo\\$n = \nSintesis$};
+  \node[excl, right=6mm of id] (e1) {Duplicados entre\\cadenas: \nDup};
+  \node[excl, right=6mm of cr] (e2) {Excluidos: \nExclCrib\\(CE1 \nCEuno, CE2 \nCEdos,\\CE3 \nCEtres, CE5 \nCEcinco)\\Secundarios (CE4): \nSec};
+  \node[excl, right=6mm of bu] (e3) {Texto completo no\\obtenido: \nSinAcceso\\(permanecen en el mapeo)};
+  \node[excl, right=6mm of tc] (e4) {Excluidos con el texto\\completo: \nExclTC{}\\(CE2 4, CE3 1)};
+  \draw[arr] (id) -- (cr); \draw[arr] (cr) -- (bu); \draw[arr] (bu) -- (tc); \draw[arr] (tc) -- (in);
+  \draw[arr] (id) -- (e1); \draw[arr] (cr) -- (e2); \draw[arr] (bu) -- (e3); \draw[arr] (tc) -- (e4);
   \node[etapa, left=2mm of id.west, anchor=south] {Identificación};
   \node[etapa, left=2mm of cr.west, anchor=south] {Cribado};
-  \node[etapa, left=2mm of tc.west, anchor=south] {Elegibilidad};
+  \node[etapa, left=2mm of tc.west, anchor=south, yshift=6mm] {Elegibilidad};
   \node[etapa, left=2mm of in.west, anchor=south] {Inclusión};
 \end{tikzpicture}}
 \caption{Diagrama de flujo PRISMA 2020 de la selección de estudios.}
 \label{fig:prisma}
 \end{figure}
 
+\subsection{Mapeo y síntesis del texto completo}
+La revisión tiene dos niveles. El \emph{mapeo} caracteriza los \nMapeo{} estudios primarios elegibles a partir del título, el resumen y las palabras clave: enfoque principal, técnica contra el desbalance, fuente de datos, conjuntos y tipo de tarea. Las etiquetas se asignaron por palabras clave con verificación manual. La \emph{síntesis} usa el texto completo de los \nSintesis{} estudios elegibles disponibles. Los datos se extrajeron con un formulario estandarizado de 23 campos, agrupados en cinco bloques: datos y tarea (fuente del texto, conjunto, idioma, número de requerimientos y de clases, distribución de clases), tratamiento del desbalance (técnica y si se aplica solo al entrenamiento), clasificación (clasificadores y papel del LLM), evaluación (protocolo, control de duplicados, métricas, F1 macro, ponderado y de las clases minoritarias, línea base y pruebas estadísticas) y reproducibilidad (disponibilidad de código y datos, y limitaciones declaradas). Los estudios difieren en conjuntos, clases, particiones y métricas, por lo que no procede un metaanálisis. La síntesis es narrativa y tabular por pregunta de investigación, y la evidencia se pondera según la puntuación de calidad.
+
 \subsection{Evaluación de la calidad}
-La calidad de cada estudio incluido se evaluó con ocho criterios (Tabla~\ref{tab:calidad}), adaptados de Dybå y Dingsøyr~\cite{Dyba2008-Agile} y de las guías de Kitchenham y Charters~\cite{Kitchenham2007-Guidelines} al problema de la clasificación con desbalance. Cada criterio se puntúa con 1 (sí), 0.5 (parcialmente) o 0 (no), lo que da un total entre 0 y 8. La puntuación no se usó para excluir estudios, sino para ponderar la evidencia en la síntesis. Dos autores revisaron de forma independiente el 20\,\% de las evaluaciones.
+La calidad de cada estudio de la síntesis se evaluó con ocho criterios (Tabla~\ref{tab:calidad}), adaptados de Dybå y Dingsøyr~\cite{Dyba2008-Agile} y de las guías de Kitchenham y Charters~\cite{Kitchenham2007-Guidelines} al problema de la clasificación con desbalance. Cada criterio se puntúa con 1 (sí), 0.5 (parcialmente) o 0 (no), lo que da un total entre 0 y 8. La puntuación no se usó para excluir estudios, sino para ponderar la evidencia. La extracción y la evaluación las realizó un revisor con apoyo de un modelo de lenguaje, verificando cada cifra en el texto del estudio; \pendiente{dos autores revisan de forma independiente el 20\,\% de las evaluaciones}.
 
 \begin{table}[!t]
 \caption{Criterios de evaluación de la calidad}
@@ -211,54 +226,70 @@ QA8 & Discute limitaciones o amenazas a la validez. \\
 \end{tabularx}
 \end{table}
 
-\subsection{Extracción y síntesis de datos}
-Los datos se extrajeron del texto completo con un formulario estandarizado de 23 campos, agrupados en cinco bloques: datos y tarea (fuente del texto, conjunto, idioma, número de requerimientos y de clases, distribución de clases), tratamiento del desbalance (técnica y si la aumentación se aplica solo al entrenamiento), clasificación (clasificadores y papel del LLM), evaluación (protocolo, control de duplicados, métricas, F1 macro, ponderado y de las clases minoritarias, línea base y pruebas estadísticas) y reproducibilidad (disponibilidad de código y datos, y limitaciones declaradas). Dado que los estudios difieren en conjuntos, clases, particiones y métricas, no procede un metaanálisis. La síntesis es narrativa y tabular por pregunta de investigación, y la evidencia se pondera según la puntuación de calidad.
-
 %==============================================================================
 \section{Resultados}\label{sec:resultados}
 %==============================================================================
 \subsection{Estudios seleccionados}
-\pendiente{Tras unificar las cuatro bases, describir el número de estudios incluidos, su distribución por año, tipo de publicación y fuente, y la puntuación de calidad.}
+Los \nMapeo{} estudios del mapeo se concentran en los últimos años: 90 de los \nBuscados{} incluidos son de 2025 o 2026 (Tabla~\ref{tab:mapeo}). La Tabla~\ref{tab:sintesis} resume los \nSintesis{} estudios de la síntesis. Su puntuación de calidad media es \qMedia{} sobre 8 (de \qMin{} a \qMax); \nCalidadAlta{} estudios alcanzan 6 o más y \nCalidadBaja{} quedan por debajo de 4.
 
-\subsection{PR1: enfoques de clasificación}
-\pendiente{Síntesis a partir del formulario de extracción.}
+\tablaMapeo
+\tablaSintesis
 
-\subsection{PR2: técnicas contra el desbalance}
-\pendiente{Síntesis a partir del formulario de extracción.}
+\subsection{PR1: enfoques de clasificación}\label{sec:pr1}
+La Tabla~\ref{tab:mapeo} muestra tres etapas. Hasta 2020 predomina el aprendizaje automático clásico: SVM, Naive Bayes y regresión logística con representaciones TF-IDF~\cite{Kurtanovic2017-SupervisedML,Toth2018-Study}. Entre 2021 y 2023 los transformers, sobre todo BERT, pasan a ser el enfoque principal, a partir de NoRBERT~\cite{Hey2020-NoRBERT}. Desde 2024 crecen los LLM, que en 2024--2026 suman 39 estudios frente a 50 de transformers.
 
-\subsection{PR3: LLM como clasificadores}
-\pendiente{Síntesis a partir del formulario de extracción.}
+El texto completo matiza la ventaja aparente de los modelos más recientes. Los transformers ajustados mantienen el mejor desempeño en las tareas multiclase cuando se entrenan con datos suficientes: Binkhonain y Zhao~\cite{Binkhonain2023-Machine} reimplementaron cuatro enfoques sobre PROMISE\_exp y NoRBERT obtuvo los promedios macro y micro más altos. Sin embargo, en sus subclases raras el resultado se invierte: el enfoque jerárquico con SVM superó a NoRBERT en tres clases pequeñas (A, MN y L). Los clasificadores sin entrenamiento supervisado alcanzan cifras modestas en las clases raras: con similitud semántica, el F1 de portabilidad fue 0.00 y el de tolerancia a fallos, 0.12~\cite{Younas2019-Automated}.
 
-\subsection{PR4: conjuntos y fuentes de datos}
-\pendiente{Síntesis a partir del formulario de extracción.}
+\subsection{PR2: técnicas contra el desbalance}\label{sec:pr2}
+Solo \nMapeoDesbalance{} de los \nMapeo{} estudios mencionan el desbalance en su resumen, y \nMapeoTecnica{} describen una técnica para tratarlo (Tabla~\ref{tab:tecnicas}). El remuestreo tipo SMOTE es la más frecuente, seguida de la generación con LLM. La aumentación léxica (EDA), TextAttack o TAOS y la retrotraducción aparecen en uno o dos estudios cada una.
 
-\subsection{PR5: rigor de la evaluación}
-\pendiente{Síntesis de los criterios QA1--QA8. Se incluirá la verificación de la partición pública de TAOS: el 52\,\% de sus requerimientos de prueba también figura en entrenamiento y sus 1,534 filas corresponden a 988 requerimientos distintos.}
+\tablaTecnicas
+
+En la síntesis, \nTecnica{} de \nSintesis{} estudios aplican alguna técnica y cada uno evalúa una sola, sin compararla con otras técnicas de aumentación. TAOS~\cite{BenAmmar2025-TAOS} combina siete aumentadores de TextAttack con un filtro de paráfrasis y eleva el F1 macro de BERT de 0.44 a 0.89. Pham et al.~\cite{Pham2025-Generating} generaron NFR sintéticos con GPT-4o, pero al probar en PROMISE el modelo entrenado solo con datos reales (F1 ponderado 0.80) superó al combinado (0.77) y al sintético (0.51); el sintético solo ayudó al probar en PURE. Shreda y Hanani~\cite{Shreda2025-Identifying} combinaron SMOTE con submuestreo y Kiani et al.~\cite{Kiani2026-DeepLearning} usaron un sobremuestreo modificado con un ensamble de transformers. Otros estudios recurren a pesos de clase y Focal Loss~\cite{Nagaraju2026-Hierarchical} o a la descomposición del entrenamiento en subconjuntos balanceados~\cite{Binkhonain2023-Machine}.
+
+Varios estudios evitan el problema en lugar de tratarlo: eliminan la clase con un único ejemplo~\cite{Toth2018-Study} o restringen la tarea a las subclases con más de 50 ejemplos~\cite{Li2022-Automatic}. Donde el F1 macro está disponible, la brecha con el ponderado es amplia: BERT sin tratamiento obtiene un F1 macro de 0.34 en PROMISE y 0.44 en PROMISE\_exp~\cite{Aryan2025-Multi}, y regresión logística, 0.66 en las subclases de NFR~\cite{Nagaraju2026-Hierarchical}.
+
+\subsection{PR3: LLM como clasificadores}\label{sec:pr3}
+En la síntesis, \nLLMclas{} estudios usan un LLM como clasificador y \nLLMgen{} como generador de datos. Los resultados dependen del escenario. Con \emph{few-shot} y prompts diseñados, Binkhonain y Alfayez~\cite{Binkhonain2025-Prompts} alcanzaron un F1 macro de 0.92 en la tarea FR/NFR y de 0.94 en la multiclase de NFR, con pruebas Scott-Knott ESD y tamaño del efecto de Cliff. Tang et al.~\cite{Tang2025-FewShot} mostraron que añadir ejemplos puede empeorar el resultado (\emph{over-prompting}) y que el F1 macro (0.60--0.80) queda por debajo del ponderado en todos los modelos, porque los LLM favorecen las clases dominantes. En cambio, ChatGPT y Gemini sin ejemplos quedaron 18 puntos por debajo del mejor clasificador ajustado en PROMISE (0.78 frente a 0.96)~\cite{Saleem2025-Generative}. Sobre issues de GitHub, el mejor de cuatro LLM sin ejemplos alcanzó un F1 macro de 0.64, con mantenibilidad entre 0.15 y 0.52 según el modelo~\cite{Kamal2026-GitReq}. En reseñas, ChatGPT igualó a un grupo de evaluadores legos al clasificar características de calidad (exactitud 0.66 frente a 0.63--0.72), sin superarlo, y tendió a asignar la clase mayoritaria~\cite{Groen2025-Classification}. Los clasificadores \emph{zero-shot} basados en codificadores, como SBERT, obtienen un F1 ponderado de 0.66 en FR/NFR y de 0.72--0.80 en las NFR frecuentes, con valores más bajos en las clases raras~\cite{Alhoshan2023-ZeroShot}.
+
+La comparación es incompleta en todos los casos: los LLM se contrastan con transformers ajustados sin datos aumentados~\cite{Binkhonain2025-Prompts}, con modelos de inferencia y de prompts~\cite{Fazelnia2024-Lessons} o con ML clásico~\cite{Chaudhary2025-Exploring}. Ningún estudio compara un LLM con un BERT entrenado con aumentación.
+
+\subsection{PR4: conjuntos y fuentes de datos}\label{sec:pr4}
+PROMISE y sus variantes dominan: \nMapeoPROMISE{} de los \nMapeo{} estudios del mapeo usan especificaciones de requerimientos, en su mayoría PROMISE o PROMISE\_exp, y 17 de los \nSintesis{} de la síntesis los usan. Las alternativas son PURE~\cite{Khayashi2026-Deep,Shreda2025-Identifying}, SecReq, las reseñas de aplicaciones (\nMapeoResenas{} estudios)~\cite{Chaudhary2025-Exploring,Alsaleh2025-Hybrid,Groen2025-Classification,Wellhausen2026-UserReviews}, los issues de GitHub (\nMapeoIssues) y las historias de usuario (\nMapeoHistorias). GitReq~\cite{Kamal2026-GitReq} es el primer conjunto público de issues de GitHub clasificados en categorías de calidad: 6,302 requerimientos validados por expertos (Fleiss $\kappa = 0.72$) en ocho clases alineadas con ISO/IEC 25010, depurados de duplicados por similitud y con escalabilidad (157) y mantenibilidad (144) como clases menores. La tarea binaria FR/NFR aparece en \nMapeoBinaria{} estudios y la multietiqueta en \nMapeoMultiet. Las vías para ampliar los conjuntos son el aprendizaje semisupervisado~\cite{Deocadez2017-Automatically}, el \emph{few-shot}~\cite{Saleem2025-Analyzing} y la generación sintética~\cite{Pham2025-Generating}. La calidad de PROMISE es una limitación reconocida: NoRBERT y DBGAT advierten que contiene duplicados y etiquetas erróneas y usan una versión reetiquetada~\cite{Hey2020-NoRBERT,Li2022-Automatic}.
+
+\subsection{PR5: rigor de la evaluación}\label{sec:pr5}
+La Tabla~\ref{tab:calidadres} resume la evaluación de calidad. Los criterios más débiles son la variabilidad o las pruebas estadísticas (QA6) y la reproducibilidad (QA7): \nEstad{} de \nSintesis{} estudios aplican pruebas de significancia y \nCodigo{} publican código o datos. Le siguen el protocolo sin fuga (QA3) y las métricas adecuadas para el desbalance (QA4): \nMacro{} estudios reportan F1 macro y los demás informan exactitud, F1 ponderado o micro, que ocultan el desempeño en las clases raras. Binkhonain y Zhao~\cite{Binkhonain2023-Machine} señalaron que NoRBERT reporta F1 ponderado, sesgado hacia las clases mayoritarias.
+
+\tablaCalidad
+
+La fuga de datos es el riesgo principal para comparar técnicas de aumentación. Solo \nDupSi{} estudios controlan los duplicados entre entrenamiento y prueba, \nDupNo{} no lo hacen y \nDupNoIndica{} no lo indican. De los estudios que remuestrean o aumentan, \nSoloEnt{} lo hacen solo en el entrenamiento, \nEntNoIndica{} no lo precisan y \nNoEnt{} sobremuestrea todo el conjunto antes de la validación cruzada~\cite{Metu2024-Hybrid}; este último reporta exactitudes superiores a 0.98, coherentes con esa fuga. TAOS aumenta solo el entrenamiento, pero su partición pública mezcla ambos conjuntos: al verificar su repositorio, 240 de los 461 requerimientos de prueba (52\,\%) también figuran en entrenamiento, y sus 1,534 filas corresponden a 988 requerimientos distintos.
 
 %==============================================================================
 \section{Discusión}\label{sec:discusion}
 %==============================================================================
-\pendiente{Interpretación de los resultados, implicaciones para la investigación propuesta y comparación con el estado del arte.}
+La evidencia confirma las brechas del estado del arte con más precisión. Primero, las técnicas contra el desbalance se evalúan aisladas: ningún estudio compara TAOS, EDA y SMOTE-Tomek con el mismo clasificador y la misma partición. Segundo, los LLM se comparan con transformers sin aumentación, por lo que no se sabe si un BERT entrenado con datos aumentados los iguala o supera. Tercero, la ganancia de la aumentación es incierta: la mayor mejora reportada, la de TAOS, se midió sobre una partición con fuga, y la generación con GPT-4o no superó a los datos reales en PROMISE.
+
+A estas brechas temáticas se suma una metodológica. Con pocos estudios que reportan F1 macro, controlan duplicados o aplican pruebas estadísticas, las cifras publicadas no son comparables entre sí. Para la investigación propuesta se derivan cuatro requisitos: eliminar los duplicados antes de partir, aumentar solo el entrenamiento dentro de cada pliegue de una validación cruzada estratificada, reportar F1 macro y por clase, y contrastar las diferencias con pruebas estadísticas. Los estudios mejor evaluados~\cite{Hey2020-NoRBERT,Binkhonain2023-Machine,Binkhonain2025-Prompts,Alhoshan2023-ZeroShot} sirven de referencia para estas prácticas.
 
 %==============================================================================
 \section{Amenazas a la validez}\label{sec:amenazas}
 %==============================================================================
-\textbf{Validez de constructo.} Las cadenas de búsqueda pueden omitir estudios que describen la tarea con otros términos. Para mitigarlo, se combinaron cuatro ejes temáticos, se emplearon sinónimos y variantes ortográficas y se usaron operadores de proximidad.
+\textbf{Cobertura de la búsqueda.} La búsqueda usó una sola base. Scopus indexa las editoriales donde se publica el área, pero pueden faltar trabajos indexados solo en otras bases o en repositorios de preprints. Para mitigarlo, se combinaron cuatro ejes temáticos con sinónimos, variantes ortográficas y operadores de proximidad, y los trabajos base del periodo más citados por los incluidos, como Kurtanović y Maalej y NoRBERT, figuran en el corpus.
 
 \textbf{Sesgo de selección.} El cribado inicial se realizó con apoyo de un modelo de lenguaje. Para controlarlo, dos autores validaron de forma independiente y ciega una muestra de las decisiones, se midió el acuerdo con kappa y se documentó el criterio aplicado a cada registro.
 
-\textbf{Sesgo de publicación.} La revisión incluye solo literatura indexada en cuatro bases; pueden faltar estudios con resultados negativos o publicados en otros medios.
+\textbf{Disponibilidad del texto completo.} La síntesis abarca los \nSintesis{} estudios cuyo texto completo se obtuvo; los \nSinAcceso{} restantes solo contribuyen al mapeo. Los estudios de acceso abierto podrían diferir de los de pago, y en tres casos se leyó el preprint de arXiv, que puede diferir en detalles de la versión publicada. Esta limitación se reduce a medida que se incorporan los textos completos obtenidos por la suscripción institucional.
 
-\textbf{Validez de la extracción.} La extracción la realizó un revisor con un formulario estandarizado; dos autores revisaron una muestra.
+\textbf{Validez de la extracción.} La extracción la realizó un revisor con apoyo de un modelo de lenguaje y verificando cada cifra en el texto del estudio; dos autores revisan una muestra. Las etiquetas del mapeo se asignaron a partir de los resúmenes.
 
 \textbf{Validez de las conclusiones.} La heterogeneidad de conjuntos, clases y métricas impide comparar cifras entre estudios; por ello, la síntesis es narrativa y se pondera por calidad.
 
 %==============================================================================
 \section{Conclusiones}\label{sec:conclusiones}
 %==============================================================================
-\pendiente{Respuesta breve a cada pregunta de investigación y brechas confirmadas.}
+\textbf{PR1.} La clasificación de NFR pasó del ML clásico a los transformers y, desde 2024, a los LLM; los transformers ajustados siguen siendo la referencia en la tarea multiclase. \textbf{PR2.} El desbalance se reconoce pero rara vez se trata; cada estudio evalúa una sola técnica y varios evitan las clases raras. \textbf{PR3.} Los LLM con \emph{few-shot} compiten con BERT, pero favorecen las clases dominantes y nunca se comparan con un BERT aumentado. \textbf{PR4.} PROMISE y sus variantes dominan pese a sus duplicados; PURE, las reseñas y GitHub son alternativas emergentes. \textbf{PR5.} El rigor es bajo en las pruebas estadísticas, la reproducibilidad y el control de la fuga de datos. La comparación controlada de TAOS, EDA y SMOTE-Tomek con BERT, contrastada con LLM sobre un conjunto sin duplicados y con métricas por clase, ocupa un espacio que la literatura revisada deja abierto.
 
-\textbf{Disponibilidad de datos.} Las cadenas de búsqueda, las decisiones de cribado con el criterio aplicado, el formulario de extracción y el código del análisis están disponibles en el repositorio del proyecto (\url{https://github.com/AlessandroPastor/research}).
+\textbf{Disponibilidad de datos.} Las cadenas de búsqueda, las decisiones de cribado con el criterio aplicado, el formulario de extracción y evaluación de calidad, y el código del análisis están disponibles en el repositorio del proyecto (\url{https://github.com/AlessandroPastor/research}).
 
 \bibliographystyle{IEEEtran}
 \bibliography{referencias_nfr}

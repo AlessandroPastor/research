@@ -10,44 +10,17 @@ git commit -m "Entregables RSL: <qué subiste>"
 git push
 ```
 
-> Las exportaciones de las bases de datos **no se suben a GitHub** (están en el `.gitignore` por
-> licencia). Basta con dejarlas en la carpeta indicada de esta laptop.
+> Las exportaciones de las bases de datos y los PDF **no se suben a GitHub** (están en el `.gitignore`
+> por licencia). Basta con dejarlos en la carpeta indicada de esta laptop.
 
 ---
 
-## 1. Búsquedas en Web of Science, IEEE Xplore y ACM — _responsable: Alessandro_
+## 1. Búsquedas — ✅ cerrado
 
-Fórmulas y pasos de exportación: `Articulos\FORMULAS_BUSQUEDA_WOS_IEEE_ACM.txt`.
-Hacer las 12 búsquedas **el mismo día**.
-
-| ✔   | Archivo                                      | Carpeta           | Cómo exportarlo                |
-| --- | -------------------------------------------- | ----------------- | ------------------------------ |
-| [ ] | `W1.xls`                                     | `Articulos\WOS\`  | Excel → _Full Record_          |
-| [ ] | `W2.xls`                                     | `Articulos\WOS\`  | Excel → _Full Record_          |
-| [ ] | `W3.xls`                                     | `Articulos\WOS\`  | Excel → _Full Record_          |
-| [ ] | `W4.xls`                                     | `Articulos\WOS\`  | Excel → _Full Record_          |
-| [ ] | `I1.csv`                                     | `Articulos\IEEE\` | CSV → _Citation and Abstract_  |
-| [ ] | `I2.csv`                                     | `Articulos\IEEE\` | CSV → _Citation and Abstract _ |
-| [ ] | `I3.csv`                                     | `Articulos\IEEE\` | CSV → _Citation and Abstract_  |
-| [ ] | `I4.csv`                                     | `Articulos\IEEE\` | CSV → _Citation and Abstract_  |
-| [ ] | `A1.bib` (y `A1_p2.bib`… si hay más páginas) | `Articulos\ACM\`  | BibTeX, 50 por página          |
-| [ ] | `A2.bib`                                     | `Articulos\ACM\`  | BibTeX                         |
-| [ ] | `A3.bib`                                     | `Articulos\ACM\`  | BibTeX                         |
-| [ ] | `A4.bib`                                     | `Articulos\ACM\`  | BibTeX                         |
-| [ ] | `conteos.txt` (la tabla de abajo, llena)     | `Articulos\`      | Bloc de notas                  |
-
-Contenido de `conteos.txt`:
-
-```
-Fecha de búsqueda: __/__/2026
-
-        Eje 1   Eje 2   Eje 3   Eje 4
-WoS     W1=___  W2=___  W3=___  W4=___
-IEEE    I1=___  I2=___  I3=___  I4=___
-ACM     A1=___  A2=___  A3=___  A4=___
-
-Errores o cambios en alguna fórmula (copiar el mensaje exacto):
-```
+La RSL usa **solo Scopus** (S1–S4, octubre de 2026; 565 registros). Web of Science se descartó porque la
+UPeU ya no tiene la suscripción. IEEE Xplore y ACM tampoco se buscan aparte: Scopus indexa sus
+artículos (53 de los 145 incluidos son de IEEE y 5 de ACM). La justificación y la amenaza a la validez ya
+están redactadas en `RSL\rsl.tex`.
 
 ---
 
@@ -78,36 +51,40 @@ Errores o cambios en alguna fórmula (copiar el mensaje exacto):
 
 | ✔   | Pregunta                                                                                                         | Respuesta |
 | --- | ---------------------------------------------------------------------------------------------------------------- | --------- |
-| [ ] | ¿Se agrega la PR5 sobre calidad de la evidencia ("¿con qué rigor se evalúan los métodos contra el desbalance?")? |           |
-| [ ] | ¿La evaluación de calidad la hace Claude con el texto completo y Andrés y Cristian revisan una muestra?          |           |
+| [ ] | ¿Se queda la PR5 sobre el rigor de la evaluación? (ya está redactada en la RSL)                                  |           |
+| [ ] | ¿Andrés y Cristian revisan una muestra del 20 % de la extracción y la calidad?                                   |           |
 
 ---
 
 ## 5. PDF de texto completo — _responsables: los tres_
 
-Claude ya descargó los de acceso abierto que permiten descarga automática (33) en
-`Articulos\PDF\01_semillas` … `Articulos\PDF\07_revisiones`. Faltan **135**, listados en
-**`Articulos\PDF\FALTANTES.xlsx`** (con enlaces clicables):
+Todo está en **`Articulos\PDF\INDICE_ARTICULOS.xlsx`**:
 
-| Acceso  | Cuántos | Cómo                                                                      |
-| ------- | ------- | ------------------------------------------------------------------------- |
-| Abierto | 55      | Clic en "Abrir" → botón PDF. Gratis, sin cuenta. **Empezar por estos.**   |
-| De pago | 74      | Entrar primero con la cuenta de la biblioteca de la UPeU y luego "Abrir". |
-| Sin DOI | 6       | El enlace abre Google Scholar con el título.                              |
+- Hoja **Estudios**: los 145 incluidos, con una X en la ecuación (S1–S4) que los encontró, el estado del
+  PDF, el enlace "abrir" y la carpeta y el nombre exactos con que hay que guardarlo.
+- Hoja **Por ecuación**: los mismos estudios agrupados por S1, S2, S3 y S4.
+- Hoja **Ecuaciones**: el texto completo de cada ecuación para pegar en Scopus.
 
-| ✔   | Qué                                                                            | Dónde                          |
-| --- | ------------------------------------------------------------------------------ | ------------------------------ |
-| [ ] | Cada PDF guardado en la carpeta y con el **nombre exacto** que indica el Excel | `Articulos\PDF\<carpeta>\`     |
-| [ ] | Columna "¿Descargado?" marcada en el Excel                                     | `Articulos\PDF\FALTANTES.xlsx` |
+| Estado del PDF               | Cuántos | Cómo                                                                       |
+| ---------------------------- | ------- | -------------------------------------------------------------------------- |
+| Descargado                   | 27      | Ya extraídos en la RSL.                                                    |
+| ScienceDirect (UPeU)         | 12      | Entrar a ScienceDirect con la cuenta de la UPeU → "abrir" → _Download PDF_. **Empezar por estos.** |
+| Acceso abierto (navegador)   | 38      | Clic en "abrir" → botón PDF. Gratis, sin cuenta.                           |
+| De pago (sin suscripción)    | 62      | IEEE, Springer, etc. Probar con el autor (ResearchGate) o pedirlo por correo. |
+| Sin DOI                      | 6       | El enlace abre Google Scholar con el título.                               |
 
-Sugerencia para repartir: Alessandro → `03_aumentacion`, `01_semillas`, `02_trabajos_base`;
-Andrés → `04_bert_transformers`; Cristian → `05_llm`, `06_ml_dl_clasico`, `07_revisiones`.
+| ✔   | Qué                                                                            | Dónde                                    |
+| --- | ------------------------------------------------------------------------------ | ---------------------------------------- |
+| [ ] | Cada PDF guardado en la carpeta y con el **nombre exacto** que indica el Excel | `Articulos\PDF\<carpeta>\`               |
+| [ ] | Avisar a Claude: extrae los nuevos y regenera la RSL                           | `python Articulos\resultados_rsl.py`     |
+
+Para actualizar el Excel después de descargar: `python Articulos\indice_articulos.py`.
 
 ## Resumen de responsables
 
-| Quién          | Qué                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------- |
-| **Alessandro** | Bloques 1, 3 y 4, y repartir el bloque 5                                                           |
-| **Andrés**     | Planilla del kappa (bloque 2) y parte de los PDF                                                   |
-| **Cristian**   | Planilla del kappa (bloque 2) y parte de los PDF                                                   |
-| **Claude**     | PDF de acceso abierto, protocolo, lista de calidad, formulario de extracción y redacción de la RSL |
+| Quién          | Qué                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------- |
+| **Alessandro** | Bloques 3 y 4; los 12 PDF de ScienceDirect                                                |
+| **Andrés**     | Planilla del kappa (bloque 2) y parte de los PDF de acceso abierto                        |
+| **Cristian**   | Planilla del kappa (bloque 2) y parte de los PDF de acceso abierto                        |
+| **Claude**     | Extracción y calidad de cada PDF nuevo, tablas de resultados y redacción de la RSL        |

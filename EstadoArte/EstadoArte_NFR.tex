@@ -323,7 +323,7 @@ Sabir et al.~\cite{Sabir2021-DeepLearning,Sabir2022-Custom} & 2021--22 & Aumenta
 Or~\cite{Or2025-SMOTETomek} & 2025 (preprint) & SMOTE-Tomek & RL; PROMISE, 969 req. FR/NFR & Exactitud 59.85\,\%\,$\rightarrow$\,76.16\,\% & Binaria; sin BERT \\
 Ben Ammar y Almatrafi~\cite{BenAmmar2025-TAOS} & 2025 & TAOS (TextAttack) & BERT base; 1,534 req., 12 clases & F1 ponderado 0.75\,$\rightarrow$\,0.93; F1 macro 0.44\,$\rightarrow$\,0.89 & Solo frente a BERT sin aumentación; PO queda en 10 \\
 Suchi et al.~\cite{Suchi2024-Explainable} & 2024 & Generación con GPT-Neo & BiLSTM-SVM; PROMISE\_exp $\rightarrow$ 6,783 req. & Exactitud 97\,\% & Binaria; sin BERT \\
-Pham et al.~\cite{Pham2025-Generating} & 2025 & NFR sintéticos con GPT-4o & 3 algoritmos de ML; NFR multiclase & Sintético + real mejor que solo real & Sin BERT; sin comparar otros métodos \\
+Pham et al.~\cite{Pham2025-Generating} & 2025 & NFR sintéticos con GPT-4o & SVM, NB y BERT; 11 clases NFR & En PROMISE, BERT real 0.80 frente a 0.77 combinado y 0.51 sintético; el sintético ayuda al probar en PURE & F1 ponderado; sin comparar otros métodos \\
 Qin y Peng~\cite{Qin2025-ChatNRC} & 2025 & ChatNRC: LLM generador y discriminador & PROMISE-NFR, 4 categorías & F1 ponderado 0.96 & Sin las clases raras \\
 Wang et al.~\cite{Wang2025-Learning} & 2025 & Generación con LLM y pérdida de cola larga & TextCNN; EMSE multietiqueta & Supera a ML, DL y LLM & Multietiqueta; sin BERT \\
 Naseer et al.~\cite{Naseer2026-Fused} & 2026 & Retrotraducción (inglés--alemán) & BERT & Exactitud 94.3\,\%; F1 0.90 & Un solo método \\
@@ -413,7 +413,7 @@ Naseer et al.~\cite{Naseer2026-Fused} balancearon las clases minoritarias traduc
 La generación con LLM es la línea más reciente y creciente:
 \begin{itemize}
   \item Suchi et al.~\cite{Suchi2024-Explainable} ampliaron PROMISE\_exp con GPT-Neo hasta 6,783 requerimientos FR/NFR balanceados.
-  \item Pham et al.~\cite{Pham2025-Generating} generaron NFR sintéticos por clase con GPT-4o: los datos sintéticos y aumentados superaron a los reales solos en tres algoritmos de ML.
+  \item Pham et al.~\cite{Pham2025-Generating} generaron NFR sintéticos por clase con GPT-4o. El texto completo matiza el resumen: al probar en PROMISE, BERT entrenado solo con datos reales (F1 ponderado 0.80) supera al combinado (0.77) y al sintético (0.51); la ventaja del sintético aparece al probar en otro conjunto, PURE.
   \item ChatNRC~\cite{Qin2025-ChatNRC} usa un LLM como generador y discriminador sobre cuatro categorías de PROMISE-NFR.
   \item NFRLT~\cite{Wang2025-Learning} combina muestras generadas por LLM con una pérdida ajustada a la distribución de cola larga.
   \item KANFR-LT~\cite{Peng2026-Knowledge} genera muestras de las clases de cola guiado por un grafo de conocimiento.
@@ -522,7 +522,7 @@ La Fig.~\ref{fig:flujo} presenta el flujo experimental que responde a las brecha
 %==============================================================================
 En los 145 estudios revisados, la clasificación de NFR pasó del ML clásico a los transformers y, desde 2024, a los LLM. La mayor parte de la producción es de 2025--2026 (PR1). El desbalance se reconoce como un problema central, pero solo un tercio de los estudios lo trata. Cuando lo hacen, cada uno evalúa un único método: SMOTE en la tarea binaria, generación con LLM o aumentaciones propias (PR2). Los LLM se usan sobre todo como clasificadores \emph{zero-shot} y \emph{few-shot}, y su ventaja depende del escenario. Sin embargo, se comparan con transformers que no fueron entrenados con datos aumentados (PR3). La mayoría de los estudios usa PROMISE y sus variantes; GitReq y el aprendizaje semi-supervisado y activo abren el camino para ampliar los conjuntos (PR4). La comparación controlada de TAOS, EDA y SMOTE-Tomek con BERT, contrastada con LLM, ocupa un espacio que los estudios revisados dejan abierto. Esa comparación debe hacerse sobre el conjunto sin duplicados, porque la partición pública de TAOS mezcla entrenamiento y prueba.
 
-\textbf{Limitaciones.} Los estudios proceden de Scopus, por lo que pueden faltar trabajos indexados solo en otras bases. Los resultados atribuidos a cada estudio, salvo los de TAOS, provienen de sus resúmenes, y las categorías del panorama se asignaron por palabras clave con verificación manual. La revisión sistemática asociada a esta investigación ampliará la búsqueda a Web of Science, IEEE Xplore y ACM Digital Library y extraerá los datos del texto completo de cada estudio.
+\textbf{Limitaciones.} Los estudios proceden de Scopus, por lo que pueden faltar trabajos indexados solo en otras bases. Los resultados atribuidos a cada estudio, salvo los de TAOS, provienen de sus resúmenes, y las categorías del panorama se asignaron por palabras clave con verificación manual. La revisión sistemática asociada a esta investigación extrae los datos del texto completo de los estudios disponibles y evalúa su calidad.
 
 \textbf{Disponibilidad de datos.} La lista de estudios revisados, su caracterización y el código del análisis bibliométrico y de la verificación de TAOS están disponibles en el repositorio del proyecto (\url{https://github.com/AlessandroPastor/research}).
 
