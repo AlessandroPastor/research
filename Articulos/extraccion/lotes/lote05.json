@@ -1,0 +1,47 @@
+{
+  "138": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE NFR (625); SecReq (510)", "Idioma": "Inglés",
+    "N.º de requerimientos": "625 y 510", "Tarea": "Otra", "N.º de clases": "FR/NFR; clases NFR; seguridad/no seguridad",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Ninguna (zero-shot)", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "Zero-shot con SBERT, AllMiniLM, BERT4RE y SObert", "Uso del LLM": "Clasificador zero-shot",
+    "Protocolo de evaluación": "Sin entrenamiento; evaluación sobre el conjunto completo", "¿Controla duplicados entre entrenamiento y prueba?": "No aplica",
+    "Métricas reportadas": "Precisión, exhaustividad y F1 ponderados y por clase", "F1 macro": "",
+    "F1 ponderado": "FR/NFR 0.66; NFR frecuentes 0.72–0.80; seguridad 0.66", "F1 de clases minoritarias": "Más bajo en las clases raras (anexo en GitHub)",
+    "Línea base comparada": "Enfoques supervisados (NoRBERT y otros)", "¿Prueba estadística?": "Sí", "¿Código o datos disponibles?": "Sí",
+    "Limitaciones declaradas": "Sección de amenazas a la validez", "Aporte a la PR": "PR3",
+    "Notas del revisor": "ANOVA de medidas repetidas y prueba de Friedman. Código en github.com/waadalhoshan/ZSL4REQ.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 1, "QA4": 0.5, "QA5": 1, "QA6": 1, "QA7": 1, "QA8": 1},
+    "obs_calidad": "QA4 parcial: F1 ponderado y por clase, sin macro."
+  },
+  "174": {
+    "Fuente del texto": "SRS", "Conjunto(s) de datos": "PROMISE NFR (12 clases); además defectos y conflictos (otras tareas)", "Idioma": "Inglés",
+    "N.º de requerimientos": "625", "Tarea": "Multiclase FR+NFR", "N.º de clases": "12", "¿Reporta la distribución de clases?": "Sí",
+    "Técnica contra el desbalance": "Sobremuestreo y submuestreo", "¿Aumenta solo el entrenamiento?": "Sí",
+    "Clasificador(es)": "NLI con RoBERTa; ChatGPT, modelo de prompts, BERT y clasificadores estadísticos", "Uso del LLM": "Clasificador zero-shot",
+    "Protocolo de evaluación": "Partición 80/10/10 y validación cruzada de 10 pliegues; escenarios supervisado y zero-shot",
+    "¿Controla duplicados entre entrenamiento y prueba?": "No se indica", "Métricas reportadas": "Precisión, exhaustividad y F1 por clase",
+    "F1 macro": "", "F1 ponderado": "NLI > 0.83 en clasificación de requerimientos", "F1 de clases minoritarias": "Por clase en tablas (PO con 1 ejemplo)",
+    "Línea base comparada": "ChatGPT, prompt learning, BERT y modelos probabilísticos", "¿Prueba estadística?": "No", "¿Código o datos disponibles?": "Parcial",
+    "Limitaciones declaradas": "Sección de amenazas y limitaciones", "Aporte a la PR": "PR2, PR3",
+    "Notas del revisor": "El conjunto de prueba se mantiene sin alterar al remuestrear (buena práctica).",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 1, "QA4": 0.5, "QA5": 1, "QA6": 0, "QA7": 0.5, "QA8": 1},
+    "obs_calidad": "QA4 parcial: F1 por clase, sin promedio macro explícito."
+  },
+  "181": {
+    "Elegible tras texto completo": "No", "Motivo si no es elegible": "CE2",
+    "Notas del revisor": "Asigna requerimientos regulatorios a etiquetas de taxonomías de dominio (250–1183 clases) para trazabilidad; las clases no son tipos de requerimiento ni atributos de calidad."
+  },
+  "269": {
+    "Fuente del texto": "Reseñas/feedback", "Conjunto(s) de datos": "1880 reseñas anotadas de 10 apps (Google Play y App Store)", "Idioma": "Inglés",
+    "N.º de requerimientos": "1880", "Tarea": "Otra", "N.º de clases": "4 (FR 712, NFR 654, ambos 298, ninguno 216)",
+    "¿Reporta la distribución de clases?": "Sí", "Técnica contra el desbalance": "Ninguna", "¿Aumenta solo el entrenamiento?": "No aplica",
+    "Clasificador(es)": "GPT-4o mini (zero-shot); RF, DT, SVC, XGBoost, RL", "Uso del LLM": "Clasificador zero-shot",
+    "Protocolo de evaluación": "Zero-shot con 3 prompts y 3 temperaturas; ML clásico en partición de prueba", "¿Controla duplicados entre entrenamiento y prueba?": "No se indica",
+    "Métricas reportadas": "Precisión, exhaustividad y F1 micro", "F1 macro": "", "F1 ponderado": "F1 micro 0.842 (temperatura 0.2); ML clásico ≤ 0.49",
+    "F1 de clases minoritarias": "No se reporta", "Línea base comparada": "Cinco modelos de ML clásico", "¿Prueba estadística?": "No",
+    "¿Código o datos disponibles?": "Sí", "Limitaciones declaradas": "Sección de amenazas a la validez", "Aporte a la PR": "PR3, PR4",
+    "Notas del revisor": "La temperatura afecta el resultado (mejor a 0.2). Anotación por 5 ingenieros con consenso mayoritario.",
+    "calidad": {"QA1": 1, "QA2": 1, "QA3": 0.5, "QA4": 0, "QA5": 1, "QA6": 0, "QA7": 1, "QA8": 1},
+    "obs_calidad": "QA4: solo F1 micro."
+  }
+}
