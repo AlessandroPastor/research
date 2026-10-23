@@ -67,11 +67,12 @@ Todo está en **`Articulos\PDF\INDICE_ARTICULOS.xlsx`**:
 
 | Estado del PDF               | Cuántos | Cómo                                                                       |
 | ---------------------------- | ------- | -------------------------------------------------------------------------- |
-| Descargado                   | 27      | Ya extraídos en la RSL.                                                    |
-| ScienceDirect (UPeU)         | 12      | Entrar a ScienceDirect con la cuenta de la UPeU → "abrir" → _Download PDF_. **Empezar por estos.** |
-| Acceso abierto (navegador)   | 38      | Clic en "abrir" → botón PDF. Gratis, sin cuenta.                           |
-| De pago (sin suscripción)    | 62      | IEEE, Springer, etc. Probar con el autor (ResearchGate) o pedirlo por correo. |
-| Sin DOI                      | 6       | El enlace abre Google Scholar con el título.                               |
+| Descargado                   | 67      | Ya extraídos en la RSL (incluye los 11 de ScienceDirect y 25 bajados por Claude). |
+| Acceso abierto (navegador)   | 13      | ACM, Wiley y repositorios bloquean la descarga automática: clic en "abrir" → botón PDF desde el navegador. |
+| De pago (sin suscripción)    | 61      | IEEE, Springer, etc. Probar con el autor (ResearchGate) o pedirlo por correo. Si no, quedan como "sin acceso" en el PRISMA. |
+| Sin DOI                      | 4       | El enlace abre Google Scholar con el título.                               |
+
+Para volver a intentar la descarga automática de los de acceso abierto: `python Articulos\descargar_abiertos.py`.
 
 | ✔   | Qué                                                                            | Dónde                                    |
 | --- | ------------------------------------------------------------------------------ | ---------------------------------------- |

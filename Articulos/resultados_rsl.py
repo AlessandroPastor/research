@@ -61,6 +61,27 @@ CORTO = {
     "380": ("NguyenVan2026-Evaluating", "Jerárq.", "4 fuentes, sin dup.", "Focal Loss", "Transformer jerárquico", "0.90/0.72/0.55"),
     "400": ("Kaur2026-Hybrid", "Jerárq.", "PROMISE\\_exp, PURE, SRS", "Aumentación BERT previa$^b$", "LSTM-BERT-LSTM", "--"),
     "419": ("Rahman2026-RequiBERT", "Bin./NFR", "PROMISE", "Elimina PO", "BERT de dominio", "0.85"),
+    "89": ("Vijayvargiya2022-Software", "Bin.", "PROMISE", "SMOTE previo$^b$", "8 modelos DL", "--"),
+    "97": ("Yahya2023-Novel", "NFR 5", "Reseñas en árabe", "EDA (TextAttack)", "RNN + LSTM", "--"),
+    "112": ("Yucalar2023-Developing", "Bin.", "Turco (4,600)", "Ninguna", "BERTurk y 19 más", "--"),
+    "127": ("Khan2023-Non", "MC 12", "PROMISE", "Muestras añadidas a mano", "XLNet, BERT", "--"),
+    "156": ("Bagies2024-Classifying", "Seg. CIA", "1,135 req. seguridad", "Ninguna", "SVM + SBERT", "--"),
+    "164": ("Abbas2024-Enscl", "Bin.", "PROMISE\\_exp", "SMOTE-Tomek previo$^b$", "Ensamble + CatBoost", "--"),
+    "231": ("Alhaizaey2025-AgilePLM", "MC 8", "10,006 historias", "Focal Loss", "BERT, XLNet", "--"),
+    "241": ("Eltahier2025-Bert", "Bin.", "PROMISE, FR\\_NFR", "Ninguna", "BERT", "--"),
+    "261": ("Subahi2025-Enhancing", "Seg. bin./7", "803 NFR", "Paráfrasis T5", "BERT, ANN, SVM", "--"),
+    "267": ("Petrillo2025-Explainable", "Seg. bin.", "SecReq", "3 aumentaciones (entren.)", "BERT, RoBERTa, XLNet", "--"),
+    "275": ("Karlsson2025-Reliable", "FR/NFR", "PROMISE", "Ninguna", "GPT-4o, LLaMA 3.3", "--"),
+    "299": ("Shafikuzzaman2025-Effectiveness", "Bin./NFR", "PROMISE, SecReq", "Omite clases raras", "GPT-4o, Llama 3, SBERT", "0.66--0.80"),
+    "336": ("Bhar2026-Knowledge", "NFR 5", "PROMISE + clínicos", "Ninguna", "BERT, SVM", "--"),
+    "344": ("Aldhafer2026-Adaptive", "Bin./4/10", "PROMISE, EHR", "Aumentación adaptativa (entren.)", "BiGRU", "+6.7 pts"),
+    "348": ("Said2026-Intelligent", "MC 12", "PROMISE(\\_exp)", "Aumentación (entren.)", "BERT + RoBERTa", "0.84/0.90"),
+    "363": ("Almohammady2026-Context", "4 NFR", "PROMISE, PURE", "Focal Loss", "Codificador de dominio", "0.80$^d$"),
+    "381": ("Aloufi2026-Evireqrag", "Bin./NFR", "PROMISE(\\_exp), SecReq", "Ninguna", "RAG + LLM", "0.89"),
+    "403": ("Limaylla2025-Spanish", "NFR 11", "PROMISE\\_exp (español)", "Generación ChatGPT + RUS", "RL, NB, SVM", "en tablas"),
+    "414": ("Bishop2026-demand", "NFR 9", "Sintético (O3DG)", "Generación con LLM", "ML y DL", "--"),
+    "425": ("Alhoshan2026-SeqFAL", "Seg. bin.", "SecReq + PROMISE", "Ninguna", "Aprendizaje activo federado", "--"),
+    "430": ("Bagies2026-Transformer", "Seg. bin.", "Reseñas", "Ninguna", "SBERT, Paraphrase", "--"),
     "252": ("Groen2025-Classification", "Calidad ISO", "1,000 reseñas", "Ninguna", "Patrones, crowd, ChatGPT", "--"),
     "391": ("Kamal2026-GitReq", "MC 8", "GitReq (6,302 issues)", "Ninguna", "4 LLM zero-shot", "0.64"),
     "432": ("Wellhausen2026-UserReviews", "Usab. bin.", "300 reseñas", "Ninguna", "GPT-4.1", "--"),
@@ -174,34 +195,48 @@ lineas += [r"\midrule", rf"\textbf{{Total}} & {sum(aum.values())} \\", r"\bottom
            r"\end{table}}", ""]
 
 # --- Tabla: síntesis del texto completo -----------------------------------
-lineas += [r"\newcommand{\tablaSintesis}{%", r"\begin{table*}[!t]",
-           r"\caption{Estudios analizados con el texto completo ($n=\nSintesis$)}", r"\label{tab:sintesis}",
-           r"\centering\scriptsize",
-           r"\begin{tabularx}{\textwidth}{@{}L{2.3cm} L{1.3cm} L{2.0cm} L{3.4cm} Y L{1.4cm} c c c c@{}}",
-           r"\toprule",
-           r"\textbf{Estudio} & \textbf{Tarea} & \textbf{Datos} & \textbf{Tratamiento del desbalance} & "
-           r"\textbf{Clasificador} & \textbf{F1 macro} & \textbf{Dup.} & \textbf{Est.} & \textbf{Cód.} & \textbf{QA} \\",
-           r"\midrule"]
+# Se divide en partes de hasta FILAS_POR_TABLA filas para que cada una quepa en una página.
+FILAS_POR_TABLA = 30
 SIMB = {"Sí": r"\checkmark", "No": "--", "No aplica": "n/a", "No se indica": "?", "Parcial": "p"}
-for i in sintesis:
+CABECERA = [r"\centering\scriptsize",
+            r"\begin{tabularx}{\textwidth}{@{}L{2.3cm} L{1.3cm} L{2.0cm} L{3.4cm} Y L{1.4cm} c c c c@{}}",
+            r"\toprule",
+            r"\textbf{Estudio} & \textbf{Tarea} & \textbf{Datos} & \textbf{Tratamiento del desbalance} & "
+            r"\textbf{Clasificador} & \textbf{F1 macro} & \textbf{Dup.} & \textbf{Est.} & \textbf{Cód.} & \textbf{QA} \\",
+            r"\midrule"]
+NOTA = (r"\\[2pt]\parbox{\textwidth}{\scriptsize Bin.: binaria FR/NFR; MC: multiclase con FR y NFR (número de "
+        r"clases); Multiet.: multietiqueta; Jerárq.: jerárquica; Seg.: seguridad; ROS/RUS: sobremuestreo y "
+        r"submuestreo aleatorios; (entren.): aplicado solo al entrenamiento. Dup.: controla duplicados entre "
+        r"entrenamiento y prueba; Est.: prueba estadística; Cód.: código o datos disponibles; \checkmark{} sí, -- no, "
+        r"? no se indica, n/a no aplica, p parcial. QA: puntuación de calidad sobre 8. "
+        r"$^a$F1 calculado con la precisión y la exhaustividad promedio por clase. "
+        r"$^b$El remuestreo o la aumentación se aplican antes de partir el conjunto. "
+        r"$^c$Con fuga entre entrenamiento y prueba (Sección~\ref{sec:pr5}). "
+        r"$^d$En proyectos no vistos; 0.97 con validación cruzada por oración.}")
+
+
+def fila_sintesis(i):
     v = estudios[i]
     clave, tarea, datos, desb, clas, f1 = CORTO[i]
-    anio = incluidos[i]["anio"]
-    lineas.append(
-        rf"\cite{{{clave}}} ({anio}) & {tarea} & {datos} & {desb} & {clas} & {f1} & "
-        f"{SIMB.get(v['¿Controla duplicados entre entrenamiento y prueba?'], '?')} & "
-        f"{SIMB.get(v['¿Prueba estadística?'], '?')} & {SIMB.get(v['¿Código o datos disponibles?'], '?')} & "
-        f"{totales[i]:g} \\\\")
-lineas += [r"\bottomrule", r"\end{tabularx}",
-           r"\\[2pt]\parbox{\textwidth}{\scriptsize Bin.: binaria FR/NFR; MC: multiclase con FR y NFR (número de "
-           r"clases); Multiet.: multietiqueta; Jerárq.: jerárquica; ROS/RUS: sobremuestreo y submuestreo aleatorios; "
-           r"(entren.): aplicado solo al entrenamiento. Dup.: controla duplicados entre entrenamiento y prueba; "
-           r"Est.: prueba estadística; Cód.: código o datos disponibles; \checkmark{} sí, -- no, ? no se indica, "
-           r"n/a no aplica, p parcial. QA: puntuación de calidad sobre 8. "
-           r"$^a$F1 calculado con la precisión y la exhaustividad promedio por clase. "
-           r"$^b$El remuestreo o la aumentación se aplican antes de partir el conjunto. "
-           r"$^c$Con fuga entre entrenamiento y prueba (Sección~\ref{sec:pr5}).}",
-           r"\end{table*}}", ""]
+    return (rf"\cite{{{clave}}} ({incluidos[i]['anio']}) & {tarea} & {datos} & {desb} & {clas} & {f1} & "
+            f"{SIMB.get(v['¿Controla duplicados entre entrenamiento y prueba?'], '?')} & "
+            f"{SIMB.get(v['¿Prueba estadística?'], '?')} & {SIMB.get(v['¿Código o datos disponibles?'], '?')} & "
+            f"{totales[i]:g} \\\\")
+
+
+partes = [sintesis[k:k + FILAS_POR_TABLA] for k in range(0, len(sintesis), FILAS_POR_TABLA)]
+lineas.append(r"\newcommand{\tablaSintesis}{%")
+for n, parte in enumerate(partes, 1):
+    sufijo = "" if len(partes) == 1 else f" (parte {n} de {len(partes)})"
+    lineas += [r"\begin{table*}[!t]",
+               rf"\caption{{Estudios analizados con el texto completo ($n=\nSintesis$){sufijo}}}"]
+    if n == 1:
+        lineas.append(r"\label{tab:sintesis}")
+    lineas += CABECERA + [fila_sintesis(i) for i in parte] + [r"\bottomrule", r"\end{tabularx}"]
+    if n == len(partes):
+        lineas.append(NOTA)
+    lineas.append(r"\end{table*}")
+lineas += ["}", ""]
 
 # --- Tabla: calidad por criterio ------------------------------------------
 lineas += [r"\newcommand{\tablaCalidad}{%", r"\begin{table}[!t]",
