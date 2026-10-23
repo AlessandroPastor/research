@@ -50,6 +50,17 @@ CORTO = {
     "177": ("Saleem2024-Mlr", "Multiet.", "PROMISE, EHR", "Ninguna", "BM25 + RL", "+13\\,\\%"),
     "226": ("Saleem2025-Analyzing", "MC", "Kaggle (976)", "Ninguna", "Few-shot (redes prot.)", "--"),
     "228": ("Binkhonain2025-Prompts", "Bin./NFR", "PROMISE, SecReq", "Ninguna", "5 LLM few-shot", "0.92--0.94"),
+    "9": ("Li2018-Automatically", "MC", "Solicitudes OSS (3,000)", "Palabras clave, aprendizaje activo", "SVM, k-NN, NB", "--"),
+    "71": ("Li2022-Automatically", "NFR", "PROMISE ampliado", "Conjunto balanceado nuevo", "BERT + Bi-LSTM", "--"),
+    "72": ("Kaur2022-Bert", "4 NFR", "PROMISE", "Omite clases raras", "BERT-CNN", "--"),
+    "118": ("Kaur2023-Improving", "Bin./NFR", "PROMISE", "Agrupa raras en 'otras'", "BERT-BiLSTM-CNN", "--"),
+    "245": ("Casillo2025-Beyond", "Seg. bin.", "SecReq", "Ninguna", "ML, BERT con CWE/CVE", "--"),
+    "253": ("Ali2025-Cloud", "Bin./NFR", "PROMISE (1,521)", "SMOTE previo$^b$", "SVM, RF, CNN, BERT", "--"),
+    "285": ("Alsanoosy2025-Large", "Bin.", "9 fuentes (4,732)", "Ninguna (balanceado)", "Ensamble de 7 codif.", "--"),
+    "349": ("Petrillo2026-Explainable", "Seg. bin.", "SecReq", "Ninguna", "RoBERTa, LoRA", "--"),
+    "380": ("NguyenVan2026-Evaluating", "Jerárq.", "4 fuentes, sin dup.", "Focal Loss", "Transformer jerárquico", "0.90/0.72/0.55"),
+    "400": ("Kaur2026-Hybrid", "Jerárq.", "PROMISE\\_exp, PURE, SRS", "Aumentación BERT previa$^b$", "LSTM-BERT-LSTM", "--"),
+    "419": ("Rahman2026-RequiBERT", "Bin./NFR", "PROMISE", "Elimina PO", "BERT de dominio", "0.85"),
     "252": ("Groen2025-Classification", "Calidad ISO", "1,000 reseñas", "Ninguna", "Patrones, crowd, ChatGPT", "--"),
     "391": ("Kamal2026-GitReq", "MC 8", "GitReq (6,302 issues)", "Ninguna", "4 LLM zero-shot", "0.64"),
     "432": ("Wellhausen2026-UserReviews", "Usab. bin.", "300 reseñas", "Ninguna", "GPT-4.1", "--"),
@@ -188,7 +199,7 @@ lineas += [r"\bottomrule", r"\end{tabularx}",
            r"Est.: prueba estadística; Cód.: código o datos disponibles; \checkmark{} sí, -- no, ? no se indica, "
            r"n/a no aplica, p parcial. QA: puntuación de calidad sobre 8. "
            r"$^a$F1 calculado con la precisión y la exhaustividad promedio por clase. "
-           r"$^b$El sobremuestreo se aplica antes de la validación cruzada. "
+           r"$^b$El remuestreo o la aumentación se aplican antes de partir el conjunto. "
            r"$^c$Con fuga entre entrenamiento y prueba (Sección~\ref{sec:pr5}).}",
            r"\end{table*}}", ""]
 
